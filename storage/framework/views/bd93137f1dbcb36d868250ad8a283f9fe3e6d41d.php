@@ -1,0 +1,1 @@
+<?php /**PATH /var/www/html/resources/views/components/frontend/product-popup.blade.php ENDPATH**/ ?>

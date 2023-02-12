@@ -1,0 +1,30 @@
+===DOC ROOT Folders===
+/home/hypersho/public_html/
+########################################################
+===Links List===
+########################################################
+===ALLOW List===
+########################################################
+===ImunifyAV Check List===
+
+########################################################
+===Maldet Check List===
+{HEX}Malware.Expert.php.move.upload.file.multipart.form.get.dir.unlink.isset.post.post : /home/hypersho/public_html/assets/images/advertisement
+{HEX}Malware.Expert.php.move.upload.file.multipart.form.get.dir.unlink.isset.post.post : /home/hypersho/public_html/uploads/brand-images
+{HEX}Malware.Expert.php.move.upload.file.multipart.form.get.dir.unlink.isset.post.post : /home/hypersho/public_html/public/assets/images/advertisement/zconfig.php
+{HEX}Malware.Expert.php.move.upload.file.multipart.form.get.dir.unlink.isset.post.post : /home/hypersho/public_html/public/uploads/brand-images/zconfig.php
+{CAV}GGS.Team.detection.A : /home/hypersho/public_html/vendor/symfony/console/Resources/bin/hiddeninput.exe
+########################################################
+===GREP check List===
+./vendor/fakerphp/faker/src/Faker/Provider/nb_NO/Person.php
+./vendor/fakerphp/faker/src/Faker/Provider/nl_NL/Person.php
+########################################################
+===Image Check List===
+./public/uploads/product-images/mn3aqX5Y4JjaCRLestWw.jpg: RIFF (little-endian) data
+./public/uploads/product-images/Y46hYRWpzyxByoNp7xSU.jpg: RIFF (little-endian) data
+./public/uploads/product-images/fvK5YquVBil4t8Oe0jri.jpg: RIFF (little-endian) data
+./public/uploads/product-images/zQ5U3eUA8eZyZP0O5Iix.jpg: RIFF (little-endian) data
+./public/uploads/product-images/pL2GiixuuBDAuCQ9kHZD.jpg: RIFF (little-endian) data
+./public/uploads/product-images/6X5jzt6XCoSziFBD27Gn.jpg: RIFF (little-endian) data
+./public/uploads/product-images/sU3A2M8s6IE8CfnuWnwr.jpg: RIFF (little-endian) data
+########################################################

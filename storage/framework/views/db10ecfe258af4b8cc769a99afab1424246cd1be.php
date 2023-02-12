@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\hypershop\resources\views/components/frontend/product-popup.blade.php ENDPATH**/ ?>

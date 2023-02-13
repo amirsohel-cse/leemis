@@ -7,7 +7,7 @@
     .login-popup.login .tab-pane {
         padding-top: 0;
         padding-bottom: 0;
-    } 
+    }
 
     .list-item :hover {
         background-color: #E2E8F0;
@@ -84,7 +84,7 @@
                     @endif
                 </a>
 
-               
+
                 <div id="smb" style="margin:auto;" class="row col-xl-12 col-lg-10 col-md-8 search-mobile">
                     <div id="smb2" style="margin-right:0px;padding-right:0" class="col-md-9">
                         <div class="header-search-field">
@@ -155,7 +155,7 @@
             if (Auth::id()) {
                 $wishlist = \App\Model\Wishlist::where('user_id', Auth::id())->count();
             }
-            
+
             $cart = 0;
             if (Auth::id()) {
                 $cart = \App\Model\Cart::whereHas('product')
@@ -226,7 +226,7 @@
                     !--
                 </script>-->
 
-               
+
                 @php
                     $language = \App\Model\Language::select('short_code','name')->get()
                 @endphp
@@ -543,10 +543,10 @@
                                         <form id="customerLogin" method="POST">
 
                                             <div class="form-group">
-                                                <label>{{ __('Mobile no') }}. *</label>
-                                                <input placeholder="Enter mobile no" name="phone" type="text"
-                                                    class="form-control  @error('phone') is-invalid @enderror"
-                                                    value="{{ old('phone') }}" required autofocus>
+                                                <label>{{ __('Email') }}. *</label>
+                                                <input placeholder="Enter email" name="email" type="text"
+                                                    class="form-control  @error('email') is-invalid @enderror"
+                                                    value="{{ old('email') }}" required autofocus>
 
 
                                                 <div class="alert alert-danger alert-dismissible d-none"
@@ -772,12 +772,12 @@
 </div>
 
 @push('script')
-    
+
 <script>
     $(document).ready(function() {
 
-        
-        
+
+
 
 
         $(".password-field").each(function(){

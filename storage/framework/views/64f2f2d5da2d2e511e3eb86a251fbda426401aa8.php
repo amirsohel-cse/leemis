@@ -7,7 +7,7 @@
     .login-popup.login .tab-pane {
         padding-top: 0;
         padding-bottom: 0;
-    } 
+    }
 
     .list-item :hover {
         background-color: #E2E8F0;
@@ -84,7 +84,7 @@
                     <?php endif; ?>
                 </a>
 
-               
+
                 <div id="smb" style="margin:auto;" class="row col-xl-12 col-lg-10 col-md-8 search-mobile">
                     <div id="smb2" style="margin-right:0px;padding-right:0" class="col-md-9">
                         <div class="header-search-field">
@@ -155,7 +155,7 @@
             if (Auth::id()) {
                 $wishlist = \App\Model\Wishlist::where('user_id', Auth::id())->count();
             }
-            
+
             $cart = 0;
             if (Auth::id()) {
                 $cart = \App\Model\Cart::whereHas('product')
@@ -226,7 +226,7 @@
                     !--
                 </script>-->
 
-               
+
                 <?php
                     $language = \App\Model\Language::select('short_code','name')->get()
                 ?>
@@ -544,9 +544,9 @@
                                         <form id="customerLogin" method="POST">
 
                                             <div class="form-group">
-                                                <label><?php echo e(__('Mobile no')); ?>. *</label>
-                                                <input placeholder="Enter mobile no" name="phone" type="text"
-                                                    class="form-control  <?php $__errorArgs = ['phone'];
+                                                <label><?php echo e(__('Email')); ?>. *</label>
+                                                <input placeholder="Enter email" name="email" type="text"
+                                                    class="form-control  <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -554,7 +554,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                    value="<?php echo e(old('phone')); ?>" required autofocus>
+                                                    value="<?php echo e(old('email')); ?>" required autofocus>
 
 
                                                 <div class="alert alert-danger alert-dismissible d-none"
@@ -789,12 +789,12 @@ unset($__errorArgs, $__bag); ?>" placeholder="Minumum 8 characters" value="<?php
 </div>
 
 <?php $__env->startPush('script'); ?>
-    
+
 <script>
     $(document).ready(function() {
 
-        
-        
+
+
 
 
         $(".password-field").each(function(){

@@ -90,7 +90,7 @@ class LoginController extends Controller
      */
     public function username()
     {
-        return 'phone';
+        return 'email';
     }
 
     /**
@@ -101,9 +101,9 @@ class LoginController extends Controller
      */
     public function logout(Request $request, User $user)
     {
-        
+
         $user = User::find(Auth::id());
-    
+
 
         $this->guard()->logout();
 
@@ -130,15 +130,15 @@ class LoginController extends Controller
     {
 
         $user = User::find(Auth::id());
-        
-        
+
+
 
         if(!$user->status){
             Auth::logout();
-            
+
             return redirect()->back()->with('notify','disabled');
-            
-        } 
+
+        }
 
 
         if ($request->ajax()){
@@ -147,7 +147,7 @@ class LoginController extends Controller
                 'auth' => auth()->check(),
                 'route' => route('customer.profile'),
             ]);
-    
+
         } else return redirect()->route('view.cart');
     }
 
@@ -193,14 +193,14 @@ class LoginController extends Controller
             }else{
                 $check = User::where('fb_id', $user->id)->first();
             }
-            
+
             if ($check) {
                 Auth::login($check);
                 $this->authenticatedSocial();
                 // return redirect()->intended($this->redirectPath());
                 return redirect()->route('customer.profile');
             } else {
-                
+
                     $data = new User();
                     $data->name = $user->name;
                     $data->email = $user->email;
@@ -210,12 +210,12 @@ class LoginController extends Controller
                     $data->save();
                     Auth::login($data);
                     $this->authenticatedSocial();
-                
-                
-                return redirect()->route('customer.profile'); 
+
+
+                return redirect()->route('customer.profile');
             }
         }catch(Exception $e){
-           
+
             return redirect('/login')->with('error','Login Failed');
         }
     }
@@ -252,7 +252,7 @@ class LoginController extends Controller
 
             return $request->wantsJson()
                         ? new JsonResponse([], 204)
-                      
+
                         : null;
         }
 

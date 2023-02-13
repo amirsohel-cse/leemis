@@ -1,6 +1,4 @@
-@extends('frontend.master.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <style>
         .login-popup#login-page {
             margin: auto;
@@ -139,98 +137,58 @@
                             <div class="left"
                                 style="background-image: url('https://hyper.springsoftit.com/public/frontend/images/login.jpg')">
                                 <div class="account-content">
-                                    <h3 class="account-title">{{ languageChange('Login your Account') }}</h3>
+                                    <h3 class="account-title"><?php echo e(languageChange('Login your Account')); ?></h3>
                                     <p><span style="text-align:center"> Don't have an account? <a
-                                                href="{{ route('customer.register') }}">Sign Up</a> </span> </p>
+                                                href="<?php echo e(route('customer.register')); ?>">Sign Up</a> </span> </p>
                                 </div>
                             </div>
-                            {{-- <div class="right">
-                            @if (session()->has('errors'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Your credentials does not match!</strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            @endif
-
-                            @if (Session::get('error'))
-                            <div class="alert text-white container" style="background: red;">
-                                {{ Session::get('error') }}
-                            </div>
-                            @endif
-                            <form id="customer-login-form" action="{{ route('customer.login') }}" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="font-weight-bold text-dark">{{languageChange('Mobile no')}}. *</label>
-                                    <input placeholder="Enter mobile no" name="phone" type="text"
-                                    class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"
-                                    required autofocus>
-                                    @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    @if (session('notify'))
-
-
-                                    <div class="alert alert-danger alert-dismissible fade show"
-                                        role="alert">
-                                        <strong>Your Account Has Been Disabled!</strong>
-                                        <button type="button" class="close" data-dismiss="alert"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    @endif
-                                </div>
-                                <div class="form-group mb-0">
-                                    <label class="font-weight-bold text-dark">{{languageChange('Password')}} *</label>
-                                    <input type="password" name="password" placeholder="Minimum 8 characters"
-                                    class="form-control mb-1 @error('password') is-invalid @enderror"
-                                    value="{{ old('password') }}" required autocomplete="password" autofocus>
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <a href="#" class="fp mt-2 mb-2"><u>{{languageChange('Forgot password')}}?</u> </a>
-                                <button type="submit" class="btn btn-primary btn-block my-4">{{languageChange('Sign In')}}</button>
-                               <span id="m-sign" style="text-align:center"> Don't have an account? <a href="{{ route('customer.register') }}">Sign Up</a> </span>
-                            </form>
-                        </div> --}}
+                            
 
 
                             <div class="right">
-                                @if (session()->has('errors'))
+                                <?php if(session()->has('errors')): ?>
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <strong>Your credentials does not match!</strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                @endif
+                                <?php endif; ?>
 
-                                @if (Session::get('error'))
+                                <?php if(Session::get('error')): ?>
                                     <div class="alert text-white container" style="background: red;">
-                                        {{ Session::get('error') }}
+                                        <?php echo e(Session::get('error')); ?>
+
                                     </div>
-                                @endif
-                                <form id="customer-login-form" action="{{ route('customer.login') }}" method="POST">
-                                    @csrf
+                                <?php endif; ?>
+                                <form id="customer-login-form" action="<?php echo e(route('customer.login')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
                                     <div class="form-group">
-                                        <label class="font-weight-bold text-dark">{{ languageChange('Email') }}.
+                                        <label class="font-weight-bold text-dark"><?php echo e(languageChange('Email')); ?>.
                                             *</label>
                                         <input placeholder="Enter email" name="email" type="text"
-                                            class="form-control @error('email') is-invalid @enderror"
-                                            value="{{ old('email') }}" required autofocus>
-                                        @error('email')
+                                            class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                            value="<?php echo e(old('email')); ?>" required autofocus>
+                                        <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                        @enderror
-                                        @if (session('notify'))
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        <?php if(session('notify')): ?>
                                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                 <strong>Your Account Has Been Disabled!</strong>
                                                 <button type="button" class="close" data-dismiss="alert"
@@ -238,25 +196,39 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="form-group mb-0">
-                                        <label class="font-weight-bold text-dark">{{ languageChange('Password') }} *</label>
+                                        <label class="font-weight-bold text-dark"><?php echo e(languageChange('Password')); ?> *</label>
                                         <input type="password" name="password" placeholder="Minimum 8 characters"
-                                            class="form-control mb-1 @error('password') is-invalid @enderror"
-                                            value="{{ old('password') }}" required autocomplete="password" autofocus>
-                                        @error('password')
+                                            class="form-control mb-1 <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                            value="<?php echo e(old('password')); ?>" required autocomplete="password" autofocus>
+                                        <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                                <strong><?php echo e($message); ?></strong>
                                             </span>
-                                        @enderror
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
-                                    <a href="#" class="fp mt-2 mb-2"><u>{{ languageChange('Forgot password') }}?</u>
+                                    <a href="#" class="fp mt-2 mb-2"><u><?php echo e(languageChange('Forgot password')); ?>?</u>
                                     </a>
                                     <button type="submit"
-                                        class="btn btn-primary btn-block my-4">{{ languageChange('Sign In') }}</button>
+                                        class="btn btn-primary btn-block my-4"><?php echo e(languageChange('Sign In')); ?></button>
                                     <span id="m-sign" style="text-align:center"> Don't have an account? <a
-                                            href="{{ route('customer.register') }}">Sign Up</a> </span>
+                                            href="<?php echo e(route('customer.register')); ?>">Sign Up</a> </span>
                                 </form>
 
                                 <div class="social-icons social-icon-border-color d-flex justify-content-start">
@@ -277,4 +249,6 @@
             $(this).alert('close');
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/frontend/auth/login.blade.php ENDPATH**/ ?>

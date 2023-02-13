@@ -1,6 +1,4 @@
-@extends('vendor.master.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <style>
     .login-popup#login-page{
         margin: auto;
@@ -60,24 +58,24 @@
                     <div class="tab-content">
                         <!-- sign in tab -->
                         <div class="tab-pane active" id="sign-in-tab">
-                            @if(session()->has('activeerr'))
+                            <?php if(session()->has('activeerr')): ?>
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
-                                    <strong>{{session('activeerr')}}</strong>
+                                    <strong><?php echo e(session('activeerr')); ?></strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            @endif
-                            @if(session()->has('pass'))
+                            <?php endif; ?>
+                            <?php if(session()->has('pass')): ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
-                                <strong>{{session('pass')}}</strong>
+                                <strong><?php echo e(session('pass')); ?></strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        <?php endif; ?>
                              <!-- reg successful msg -->
                              <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
                                 <strong id="reg_successful"></strong>
@@ -92,29 +90,57 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form id="customer-login-form" action="{{ route('vendor.login') }}" method="POST">
-                                @csrf
+                            <form id="customer-login-form" action="<?php echo e(route('vendor.login')); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group">
                                     <label>Email *</label>
                                     <input placeholder="Enter email" name="email" type="text"
-                                    class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                                    class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('email')); ?>"
                                     required autofocus>
-                                    @error('email')
+                                    <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong><?php echo e($message); ?></strong>
                                     </span>
-                                    @enderror
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="form-group mb-0">
                                     <label>Password *</label>
                                     <input type="password" name="password" placeholder="Minimum 8 characters"
-                                    class="form-control @error('password') is-invalid @enderror"
-                                    value="{{ old('password') }}" required autocomplete="password" autofocus>
-                                    @error('password')
+                                    class="form-control <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                    value="<?php echo e(old('password')); ?>" required autocomplete="password" autofocus>
+                                    <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong><?php echo e($message); ?></strong>
                                     </span>
-                                    @enderror
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <a href="#" class="fp mt-2 mb-2"> <u style="color:#fd3d11; ">Forgot password?</u></a>
 
@@ -141,51 +167,51 @@
                             <form  method="post" id="registerForm" >
                                 <div class="form-group mb-3">
                                     <label>Your Name *</label>
-                                    <input placeholder="Enter your name" id="reg_name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                                    <input placeholder="Enter your name" id="reg_name" type="text" class="form-control" name="name" value="<?php echo e(old('name')); ?>" required>
                                     <strong><span id="reg_name_error" class="invalid-feedback" role="alert">
                                     </span> </strong>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Mobile No. *</label>
-                                    <input placeholder="Enter mobile no" type="number" id="reg_phone" class="form-control" name="phone"  value="{{ old('phone') }}" required>
+                                    <input placeholder="Enter mobile no" type="number" id="reg_phone" class="form-control" name="phone"  value="<?php echo e(old('phone')); ?>" required>
                                     <strong><span id="reg_phone_error" class="invalid-feedback" role="alert">
                                     </span> </strong>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Email *</label>
-                                    <input placeholder="Enter email" type="email" id="reg_email" class="form-control" name="email"  value="{{ old('email') }}" required>
+                                    <input placeholder="Enter email" type="email" id="reg_email" class="form-control" name="email"  value="<?php echo e(old('email')); ?>" required>
                                     <strong><span id="reg_email_error" class="invalid-feedback" role="alert">
                                     </span> </strong>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Shop Name *</label>
-                                    <input placeholder="Enter your shop name" type="text" id="reg_shop_name" class="form-control" name="shop_name"  value="{{ old('shop_name') }}" required>
+                                    <input placeholder="Enter your shop name" type="text" id="reg_shop_name" class="form-control" name="shop_name"  value="<?php echo e(old('shop_name')); ?>" required>
                                     <strong><span id="reg_shop_name_error" class="invalid-feedback" role="alert">
                                     </span> </strong>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Address *</label>
-                                    <input placeholder="Enter your address" type="text" id="reg_address" class="form-control" name="address"  value="{{ old('address') }}" required>
+                                    <input placeholder="Enter your address" type="text" id="reg_address" class="form-control" name="address"  value="<?php echo e(old('address')); ?>" required>
                                     <strong><span id="reg_address_error" class="invalid-feedback" role="alert">
                                     </span> </strong>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Password *</label>
-                                    <input type="password" id="reg_password" class="form-control"   name="password"  value="{{ old('password') }}" placeholder="Minimum 8 characters" required>
+                                    <input type="password" id="reg_password" class="form-control"   name="password"  value="<?php echo e(old('password')); ?>" placeholder="Minimum 8 characters" required>
                                      <input type="checkbox" id="clickkor" class="mt-2 mr-2">Show Password
                                     <strong><span id="reg_password_error" class="invalid-feedback" role="alert">
                                     </span> </strong>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Password Confirmation *</label>
-                                    <input type="password" id"reg_password" class="form-control"  name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required>
+                                    <input type="password" id"reg_password" class="form-control"  name="password_confirmation" value="<?php echo e(old('password_confirmation')); ?>" placeholder="Confirm Password" required>
 
 
                                 </div>
 
                                 <div class="tacbox">
                                         <input id="checkbox" type="checkbox" />
-                                        <label for="checkbox"> I agree to these <a href="{{route('pages', 'terms-of-use')}}">Terms and Conditions</a>..</label>
+                                        <label for="checkbox"> I agree to these <a href="<?php echo e(route('pages', 'terms-of-use')); ?>">Terms and Conditions</a>..</label>
                                           <strong><span id="checkbox_feedback" class="invalid-feedback text-danger" role="alert">
                                         </span> </strong>
                                 </div>
@@ -385,24 +411,24 @@
 <!--                    <div class="tab-content">-->
                         <!-- sign in tab -->
 <!--                        <div class="tab-pane active" id="sign-in-tab">-->
-<!--                            @if(session()->has('activeerr'))-->
+<!--                            <?php if(session()->has('activeerr')): ?>-->
 <!--                                <div class="alert alert-danger alert-dismissible fade show" role="alert">-->
 
-<!--                                    <strong>{{session('activeerr')}}</strong>-->
+<!--                                    <strong><?php echo e(session('activeerr')); ?></strong>-->
 <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
 <!--                                        <span aria-hidden="true">&times;</span>-->
 <!--                                    </button>-->
 <!--                                </div>-->
-<!--                            @endif-->
-<!--                            @if(session()->has('pass'))-->
+<!--                            <?php endif; ?>-->
+<!--                            <?php if(session()->has('pass')): ?>-->
 <!--                            <div class="alert alert-danger alert-dismissible fade show" role="alert">-->
 
-<!--                                <strong>{{session('pass')}}</strong>-->
+<!--                                <strong><?php echo e(session('pass')); ?></strong>-->
 <!--                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
 <!--                                    <span aria-hidden="true">&times;</span>-->
 <!--                                </button>-->
 <!--                            </div>-->
-<!--                        @endif-->
+<!--                        <?php endif; ?>-->
                              <!-- reg successful msg -->
 <!--                             <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">-->
 <!--                                <strong id="reg_successful"></strong>-->
@@ -417,29 +443,57 @@
 <!--                                    <span aria-hidden="true">&times;</span>-->
 <!--                                </button>-->
 <!--                            </div>-->
-<!--                            <form id="customer-login-form" action="{{ route('vendor.login') }}" method="POST">-->
-<!--                                @csrf-->
+<!--                            <form id="customer-login-form" action="<?php echo e(route('vendor.login')); ?>" method="POST">-->
+<!--                                <?php echo csrf_field(); ?>-->
 <!--                                <div class="form-group">-->
 <!--                                    <label>Mobile no. *</label>-->
 <!--                                    <input placeholder="Enter mobile no" name="phone" type="text"-->
-<!--                                    class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}"-->
+<!--                                    class="form-control <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('phone')); ?>"-->
 <!--                                    required autofocus>-->
-<!--                                    @error('phone')-->
+<!--                                    <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>-->
 <!--                                    <span class="invalid-feedback" role="alert">-->
-<!--                                        <strong>{{ $message }}</strong>-->
+<!--                                        <strong><?php echo e($message); ?></strong>-->
 <!--                                    </span>-->
-<!--                                    @enderror-->
+<!--                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>-->
 <!--                                </div>-->
 <!--                                <div class="form-group mb-0">-->
 <!--                                    <label>Password *</label>-->
 <!--                                    <input type="password" name="password" placeholder="Minimum 8 characters"-->
-<!--                                    class="form-control @error('password') is-invalid @enderror"-->
-<!--                                    value="{{ old('password') }}" required autocomplete="password" autofocus>-->
-<!--                                    @error('password')-->
+<!--                                    class="form-control <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"-->
+<!--                                    value="<?php echo e(old('password')); ?>" required autocomplete="password" autofocus>-->
+<!--                                    <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>-->
 <!--                                    <span class="invalid-feedback" role="alert">-->
-<!--                                        <strong>{{ $message }}</strong>-->
+<!--                                        <strong><?php echo e($message); ?></strong>-->
 <!--                                    </span>-->
-<!--                                    @enderror-->
+<!--                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>-->
 <!--                                </div>-->
 <!--                                <a href="#" class="fp mt-2 mb-2"> <u style="color:#fd3d11; ">Forgot password?</u></a>                          -->
 
@@ -466,48 +520,48 @@
 <!--                            <form  method="post" id="registerForm" >-->
 <!--                                <div class="form-group mb-3">-->
 <!--                                    <label>Your Name *</label>-->
-<!--                                    <input placeholder="Enter your name" id="reg_name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>-->
+<!--                                    <input placeholder="Enter your name" id="reg_name" type="text" class="form-control" name="name" value="<?php echo e(old('name')); ?>" required>-->
 <!--                                    <strong><span id="reg_name_error" class="invalid-feedback" role="alert">-->
 <!--                                    </span> </strong>-->
 <!--                                </div>-->
 <!--                                <div class="form-group mb-3">-->
 <!--                                    <label>Mobile No. *</label>-->
-<!--                                    <input placeholder="Enter mobile no" type="number" id="reg_phone" class="form-control" name="phone"  value="{{ old('phone') }}" required>-->
+<!--                                    <input placeholder="Enter mobile no" type="number" id="reg_phone" class="form-control" name="phone"  value="<?php echo e(old('phone')); ?>" required>-->
 <!--                                    <strong><span id="reg_phone_error" class="invalid-feedback" role="alert">-->
 <!--                                    </span> </strong>-->
 <!--                                </div>-->
 <!--                                <div class="form-group mb-3">-->
 <!--                                    <label>Email *</label>-->
-<!--                                    <input placeholder="Enter email" type="email" id="reg_email" class="form-control" name="email"  value="{{ old('email') }}" required>-->
+<!--                                    <input placeholder="Enter email" type="email" id="reg_email" class="form-control" name="email"  value="<?php echo e(old('email')); ?>" required>-->
 <!--                                    <strong><span id="reg_email_error" class="invalid-feedback" role="alert">-->
 <!--                                    </span> </strong>-->
 <!--                                </div>-->
 <!--                                <div class="form-group mb-3">-->
 <!--                                    <label>Shop Name *</label>-->
-<!--                                    <input placeholder="Enter your shop name" type="text" id="reg_shop_name" class="form-control" name="shop_name"  value="{{ old('shop_name') }}" required>-->
+<!--                                    <input placeholder="Enter your shop name" type="text" id="reg_shop_name" class="form-control" name="shop_name"  value="<?php echo e(old('shop_name')); ?>" required>-->
 <!--                                    <strong><span id="reg_shop_name_error" class="invalid-feedback" role="alert">-->
 <!--                                    </span> </strong>-->
 <!--                                </div>-->
 <!--                                <div class="form-group mb-3">-->
 <!--                                    <label>Address *</label>-->
-<!--                                    <input placeholder="Enter your address" type="text" id="reg_address" class="form-control" name="address"  value="{{ old('address') }}" required>-->
+<!--                                    <input placeholder="Enter your address" type="text" id="reg_address" class="form-control" name="address"  value="<?php echo e(old('address')); ?>" required>-->
 <!--                                    <strong><span id="reg_address_error" class="invalid-feedback" role="alert">-->
 <!--                                    </span> </strong>-->
 <!--                                </div>-->
 <!--                                <div class="form-group mb-3">-->
 <!--                                    <label>Password *</label>-->
-<!--                                    <input type="password" id="reg_password" class="form-control" name="password"  value="{{ old('password') }}" placeholder="Minimum 8 characters" required>-->
+<!--                                    <input type="password" id="reg_password" class="form-control" name="password"  value="<?php echo e(old('password')); ?>" placeholder="Minimum 8 characters" required>-->
 <!--                                    <strong><span id="reg_password_error" class="invalid-feedback" role="alert">-->
 <!--                                    </span> </strong>-->
 <!--                                </div>-->
 <!--                                <div class="form-group mb-3">-->
 <!--                                    <label>Password Confirmation *</label>-->
-<!--                                    <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required>-->
+<!--                                    <input type="password" class="form-control" name="password_confirmation" value="<?php echo e(old('password_confirmation')); ?>" placeholder="Confirm Password" required>-->
 <!--                                </div>-->
 
 <!--                                <div class="tacbox">-->
 <!--                                        <input id="checkbox" type="checkbox" />-->
-<!--                                        <label for="checkbox"> I agree to these <a href="{{route('terms')}}">Terms and Conditions</a>..</label>-->
+<!--                                        <label for="checkbox"> I agree to these <a href="<?php echo e(route('terms')); ?>">Terms and Conditions</a>..</label>-->
 <!--                                          <strong><span id="checkbox_feedback" class="invalid-feedback text-danger" role="alert">-->
 <!--                                        </span> </strong>-->
 <!--                                </div>  -->
@@ -593,7 +647,7 @@
 
                     <form id="fp-form" method="post">
 
-                        <input name="phone" id="fp-phone" placeholder="Mobile No." type="number" class="form-control" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                        <input name="phone" id="fp-phone" placeholder="Mobile No." type="number" class="form-control" value="<?php echo e(old('phone')); ?>" required autocomplete="phone" autofocus>
 
                         <strong><span id="fp_phone_error" class="invalid-feedback" role="alert">
                         </span> </strong>
@@ -634,13 +688,13 @@
 
                         <input hidden name="uniqid" id="reset_uniqid" >
                         <div class="">
-                            <input id="reset_password" class="form-control" type="password" name="password" placeholder="Password (minimum 8 characters)" value="{{ old('password') }}" required autocomplete="new-password" autofocus>
+                            <input id="reset_password" class="form-control" type="password" name="password" placeholder="Password (minimum 8 characters)" value="<?php echo e(old('password')); ?>" required autocomplete="new-password" autofocus>
                             <br>
                             <strong><span id="reset_password_error" class="invalid-feedback" role="alert">
                             </span> </strong>
                         </div>
 
-                        <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" value="{{ old('password') }}" required autocomplete="new-password" autofocus>
+                        <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" value="<?php echo e(old('password')); ?>" required autocomplete="new-password" autofocus>
 
                         <div class="button-box">
                             <div class="login-toggle-btn">
@@ -656,10 +710,10 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('page-scripts')
-    <script src="{{ asset('vendor/js/vendor-login-register.js')}}"> </script>
+<?php $__env->startSection('page-scripts'); ?>
+    <script src="<?php echo e(asset('vendor/js/vendor-login-register.js')); ?>"> </script>
 
 
     <script>
@@ -675,7 +729,7 @@
             })
         })
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
@@ -712,3 +766,5 @@
 
 
 
+
+<?php echo $__env->make('vendor.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/vendor/auth/login.blade.php ENDPATH**/ ?>

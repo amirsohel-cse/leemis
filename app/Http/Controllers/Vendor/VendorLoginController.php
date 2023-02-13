@@ -94,7 +94,7 @@ class VendorLoginController extends Controller
      */
     public function username()
     {
-        return 'phone';
+        return 'email';
     }
 
     /**
@@ -107,7 +107,7 @@ class VendorLoginController extends Controller
     {
         // update user->status to 0 just before logout
         $vendor = Vendor::find(Auth::id());
-       
+
         $vendor->save();
 
         $this->guard()->logout();
@@ -136,9 +136,9 @@ class VendorLoginController extends Controller
     protected function authenticated(Request $request)
     {
         // update user->status to 1 after login
-        $phone = $request->input('phone');
-        $vendor = Vendor::where('phone',$phone)->first();
-        
+        $email = $request->input('email');
+        $vendor = Vendor::where('email',$email)->first();
+
         $vendor->save();
 
 
@@ -167,7 +167,7 @@ class VendorLoginController extends Controller
 
         $errors = [$this->username() => trans('auth.failed')];
 
-        $user = Vendor::where('phone', $request->{$this->username()})->first();
+        $user = Vendor::where('email', $request->{$this->username()})->first();
 
         if(!empty($user)){
 
@@ -194,11 +194,11 @@ class VendorLoginController extends Controller
             ->withErrors($errors);
     }
 
-    
-    
+
+
      protected function credentials(Request $request)
     {
-        return ['phone'=>$request->{$this->username()}, 'password'=>$request->password,'s_status'=>'1'];
+        return ['email'=>$request->{$this->username()}, 'password'=>$request->password,'s_status'=>'1'];
     }
 
 

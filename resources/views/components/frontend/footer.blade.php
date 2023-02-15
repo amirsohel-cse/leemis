@@ -3,13 +3,13 @@
 @endphp
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/brands.min.css" />
-                        
+
 <footer class="footer">
    <div class="footer-help-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="left-content"> 
+                    <div class="left-content">
                         <h3 class="title">{{__('We\'re Always Here To Help')}}</h3>
                         <p>{{__('Reach out to us through any of these support channels')}}</p>
                     </div>
@@ -24,10 +24,10 @@
                             <div class="icon">
                                 <i class="las la-phone"></i>
                             </div>
-                            
+
                             <div class="content">
-                                <p>{{__('HOTLINE')}}</p>          
-                                <h6 class="title">{{$footer->site_number}}</h6>                      
+                                <p>{{__('HOTLINE')}}</p>
+                                <h6 class="title">{{$footer->site_number}}</h6>
                             </div>
                         </div>
 
@@ -37,20 +37,20 @@
                             <div class="icon">
                                 <i class="las la-exclamation-circle"></i>
                             </div>
-                            
+
                             <div class="content">
-                                <p>{{__('HELP CENTER')}}</p>          
-                                <h6 class="title">help.hypershop.com.bd</h6>                      
+                                <p>{{__('HELP CENTER')}}</p>
+                                <h6 class="title">{{$footer->help_center}}</h6>
                             </div>
                         </div>
                         <div class="help-item">
-                            
+
                             <div class="icon">
                                 <i class="las la-envelope"></i>
                             </div>
                             <div class="content">
-                                <p>{{__('EMAIL SUPPORT')}}</p>          
-                                <h6 class="title"><a href="mailto:info@hypershop.com">info@hypershop.com.bd</a></h6>                      
+                                <p>{{__('EMAIL SUPPORT')}}</p>
+                                <h6 class="title"><a href="mailto:{{$footer->email_support}}">{{$footer->email_support}}</a></h6>
                             </div>
                         </div>
                     </div>
@@ -59,8 +59,8 @@
         </div>
     </div>
 </div>
-    
-<style>    
+
+<style>
     .footer-help-area {
     padding: 25px 0;
     background-color: #F7F7FA;
@@ -143,24 +143,24 @@
         <div class="container">
             <div class="row">
                 @foreach ($cateogries_footer as $category)
-                    
+
               <!--  <div class="col-lg-2">
                     <div class="footer-menu-widget">
                         <h4 class="title">{{$category->name}}</h4>
                         <ul class="footer-menu-list">
                             @foreach ($category->sub_categories as $sub)
-                            
+
                             @if($loop->iteration == 10) @break @endif
-                                
+
                             <li><a href="{{route('childCategorize.product',[$sub->id, Str::slug($sub->name)])}}">{{$sub->name}}</a></li>
                             @endforeach
-                            
+
                         </ul>
                     </div>
                 </div>  -->
                 @endforeach
-              
-          
+
+
                 <div class="col-lg-4">
                     <div class="footer-collapse-data">
                         <div class="footer-collapse-data-inner" style="font-size:16px; color:000 !important">
@@ -179,7 +179,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="d-inline-block">
-                        <h5>Delivery Time : (Inside Dhaka - 5 days & Outside Dhaka - 10 days)</h5>
+                        <h5>Delivery Time : ({{$footer->delivery_time}})</h5>
                         <h6 class="mb-1">CONNECT WITh US</h6>
                         <div class="social-icons social-icons-colored">
                             <?php
@@ -187,69 +187,69 @@
                             ?>
                             @if($social && $social->f_status)
                                 <a href="{{$social->facebook}}" target="_blank" class="social-icon social-facebook w-icon-facebook"></a>
-                           
+
                             @endif
-                        
+
                             @if($social && $social->l_status)
                             <a href="{{$social->linkedin}}" target="_blank" class="social-icon social-instagram w-icon-instagram"></a>
-                           
+
                             @endif
-    
+
                             @if($social && $social->t_status)
                                     <a href="{{$social->twitter}}" target="_blank" class="social-icon social-pinterest w-icon-youtube"></a>
-                               
-                                @endif                            
-                            
-    
+
+                                @endif
+
+
                                 @if($social && $social->d_status)
                                 <a href="{{$social->dribble}}" target="_blank" class="social-icon social-twitter w-icon-twitter"></a>
-                            
-                            @endif 
-                            
-                            
-                            
+
+                            @endif
+
+
+
                                @if($social && $social->link_status)
                                 <a href="{{$social->link}}" target="_blank" class="social-icon social-facebook"><i class="fab fa-linkedin-in"></i></a>
-                          
+
                             @endif
-                            
-                            
+
+
                              @if($social && $social->snap_status)
                                 <a href="{{$social->snapchat}}" target="_blank" class="social-icon social-linkedin w-icon-linkedin"><i class="fab fa-snapchat-ghost"></i></a>
-                          
+
                             @endif
-                            
-                            
+
+
                              @if($social && $social->tiktok_status)
                                 <a href="{{$social->tiktok}}" target="_blank" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="64" height="64" viewBox="0 0 64 64" style=" fill:#000000;"><path d="M48,8H16c-4.418,0-8,3.582-8,8v32c0,4.418,3.582,8,8,8h32c4.418,0,8-3.582,8-8V16C56,11.582,52.418,8,48,8z M50,27 c-3.964,0-6.885-1.09-9-2.695V38.5C41,44.841,35.841,50,29.5,50S18,44.841,18,38.5S23.159,27,29.5,27h2v5h-2 c-3.584,0-6.5,2.916-6.5,6.5s2.916,6.5,6.5,6.5s6.5-2.916,6.5-6.5V14h5c0.018,1.323,0.533,8,9,8V27z"></path></svg></a>
                             @endif
-                            
-                            
+
+
                              @if($social && $social->pinterest_status)
                                 <a href="{{$social->pinterest}}" target="_blank" class="social-icon social-linkedin w-icon-linkedin"><i class="fab fa-pinterest"></i></a>
-                           
+
                             @endif
-                            
-                            
+
+
                             <style>
-                                
+
                                 .fa-tiktok{
                                     font-family: "Font Awesome 5 Free";
                                         font-weight: 900;
                                 }
-                                
+
                                 .fa-tiktok:before {
                                     content: "\e07b";
                                 }
-                                
+
                             </style>
-                            
+
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <a data-toggle="modal" href="#TrackModal" class="track-order-text"><i class="las la-truck"></i> {{__('Track Order')}}</a>
-                    <p>{{__('Hypershop a trusted ecommerce platform in Bangladesh')}}</p>
+                    <p>{{__('Hypershop a trusted ecommerce platform in Hong Kong')}}</p>
                 </div>
                 <div class="col-lg-3">
                     <h6 class="mb-2">{{__('SHOP ON THE GO')}}</h6>
@@ -272,7 +272,7 @@
                                     <img src="\storage\storeLogo\{{$headerLogo->file}}" alt="logo" width="110" height="30"/>
                                 @else
                                     <img src="\storage\storeLogo\common.png" alt="logo" width="110" height="30"/>
-                                @endif                
+                                @endif
                             </a>
                         </div>
                         <label class="label-social d-block text-dark mt-4"><h4>{{languageChange('Get in Touch')}}</h4></label>
@@ -285,7 +285,7 @@
                             @else
                                 <a href="#" class="social-icon social-facebook w-icon-facebook"></a>
                             @endif
-                        
+
                             @if($social && $social->l_status)
                             <a href="{{$social->linkedin}}" target="_blank" class="social-icon social-instagram w-icon-instagram"></a>
                             @else
@@ -296,14 +296,14 @@
                                     <a href="{{$social->twitter}}" target="_blank" class="social-icon social-pinterest w-icon-youtube"></a>
                                 @else
                                     <a href="#" class="social-icon social-pinterest w-icon-youtube"></a>
-                                @endif                            
-                            
+                                @endif
+
 
                                 @if($social && $social->d_status)
                                 <a href="{{$social->dribble}}" target="_blank" class="social-icon social-twitter w-icon-twitter"></a>
                             @else
                                 <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
-                            @endif 
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -357,7 +357,7 @@
                         <h4 class="footer-widget-title">
                             <?php
                             $footerText=\App\Model\Footer::first();
-                            
+
                             ?>
                             @if($footerText)
                                 {{$footerText->footer}}
@@ -366,25 +366,25 @@
                             @endif
                         </h4>
                         <p ><i class="fas fa-map-marker-alt"></i>
-                            &nbsp;  
-                            
+                            &nbsp;
+
                             <?php
                             $copyright=\App\Model\Footer::first();
                             ?>
                             @if($copyright)
                                 {!!$copyright->copyright!!}
-                                
+
                             @else
                                 <p class="copyright">Nothing</p>
                             @endif
                         </p>
-                        <p> <i class="fa fa-phone"></i> &nbsp; 
+                        <p> <i class="fa fa-phone"></i> &nbsp;
                             <?php
                             $phone=\App\Model\Footer::first();
                             ?>
                             @if($phone)
                                 {{$phone->site_number}}
-                                
+
                             @else
                                 <p class="copyright">Nothing</p>
                             @endif
@@ -394,7 +394,7 @@
             </div> -->
         </div>
     </div><!-- footer-middle -->
-    
+
     <div class="footer-bottom">
         <div class="container d-block">
             <div class="row justify-content-between align-items-center">
@@ -405,13 +405,13 @@
                             <p class="copyright">Nothing</p>
                         @endif</p>
                 </div>
-                        
+
                 <div class="col-lg-9 mt-lg-0 mt-3">
                     <ul class="inline-menu justify-content-lg-end">
                         @php
                             $pages =\App\Page::where('status',1)->get();
                         @endphp
-                        
+
                         @foreach($pages as $page)
                         <li><a href="{{route('pages',$page->slug)}}">{{$page->name}}</a></li>
                         @endforeach
@@ -426,12 +426,12 @@
 </footer>
 
 @push('script')
-    
+
 
 <script>
     $('.read-more-btn').on('click', function(){
         $('.footer-collapse-data').toggleClass('active');
-        
+
         if ($(this).text() == "Read More") {
             $(this).text("Read Less");
         } else {

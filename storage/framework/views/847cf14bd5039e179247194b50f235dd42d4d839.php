@@ -1,8 +1,6 @@
-@extends('admin.layout.master.master')
-
-@section('main-content')
-<link rel="stylesheet" href="{{asset('/backend/assets/vendor/summernote/dist/summernote.min.css')}}">
-<link rel="stylesheet" href="{{asset('/backend/assets/vendor/summernote/dist/summernote-bs4.min.css')}}">
+<?php $__env->startSection('main-content'); ?>
+<link rel="stylesheet" href="<?php echo e(asset('/backend/assets/vendor/summernote/dist/summernote.min.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('/backend/assets/vendor/summernote/dist/summernote-bs4.min.css')); ?>">
 <style type="text/css">
 textarea.input-field
 {
@@ -37,27 +35,13 @@ textarea.input-field
     hyphens: auto;
 }
 </style>
-<script src="{{asset('../backend/assets/vendor/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('../backend/assets/vendor/jquery/jquery.min.js')); ?>"></script>
 
 
 <div class="card">
     <div class="card-body">
         <form class="addFooter">
-            {{-- <div class="row justify-content-center">
-                <div class="col-lg-3">
-                    <div class="left-area">
-                        <h4 class="heading">
-                            Footer Heading *
-                            <p class="sub-heading">(In Any Language)</p>
-                        </h4>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="tawk-area">
-                        <textarea class="input-field" name="footer" required="" placeholder="Footer Text *">{{$data ?$data->footer:''}}</textarea>
-                    </div>
-                </div>
-            </div> --}}
+            
             <div class="row justify-content-center">
                 <div class="col-lg-3">
                     <div class="left-area">
@@ -69,7 +53,7 @@ textarea.input-field
                 </div>
                 <div class="col-lg-6">
                     <div class="tawk-area">
-                        <textarea class="form-control summernote" name="copyright" required="" rows="10"  placeholder="Copyright Text *">{{$data ?$data->copyright:''}}</textarea>
+                        <textarea class="form-control summernote" name="copyright" required="" rows="10"  placeholder="Copyright Text *"><?php echo e($data ?$data->copyright:''); ?></textarea>
 
                     </div>
                 </div>
@@ -86,7 +70,7 @@ textarea.input-field
                 </div>
                 <div class="col-lg-6">
                     <div class="tawk-area">
-                        <input class="form-control my-3" name="phone" required value="{{$data->site_number}}">
+                        <input class="form-control my-3" name="phone" required value="<?php echo e($data->site_number); ?>">
                     </div>
                 </div>
             </div>
@@ -101,7 +85,7 @@ textarea.input-field
                 </div>
                 <div class="col-lg-6">
                     <div class="tawk-area">
-                        <input class="form-control my-3" name="help_center" required value="{{$data->email_support}}">
+                        <input class="form-control my-3" name="help_center" required value="<?php echo e($data->email_support); ?>">
                     </div>
                 </div>
             </div>
@@ -116,7 +100,7 @@ textarea.input-field
                 </div>
                 <div class="col-lg-6">
                     <div class="tawk-area">
-                        <input class="form-control my-3" name="email_support" required value="{{$data->help_center}}">
+                        <input class="form-control my-3" name="email_support" required value="<?php echo e($data->help_center); ?>">
                     </div>
                 </div>
             </div>
@@ -131,7 +115,7 @@ textarea.input-field
                 </div>
                 <div class="col-lg-6">
                     <div class="tawk-area">
-                        <input class="form-control my-3" name="delivery_time" required value="{{$data->delivery_time}}">
+                        <input class="form-control my-3" name="delivery_time" required value="<?php echo e($data->delivery_time); ?>">
                     </div>
                 </div>
             </div>
@@ -148,7 +132,7 @@ textarea.input-field
                 </div>
                 <div class="col-lg-6">
                     <div class="tawk-area">
-                        <textarea class="summernote" name="copy" required="" placeholder="copyright Text *">{{$data?$data->cotact:''}}</textarea>
+                        <textarea class="summernote" name="copy" required="" placeholder="copyright Text *"><?php echo e($data?$data->cotact:''); ?></textarea>
                     </div>
                 </div>
             </div>
@@ -205,17 +189,17 @@ textarea.input-field
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('page-stylesheet')
+<?php $__env->startSection('page-stylesheet'); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('page-scripts')
+<?php $__env->startSection('page-scripts'); ?>
 
-    <script src="{{asset('/backend/js/category.js')}}"></script>
-    <!--<script src="{{asset('/backend/assets/bundles/mainscripts.bundle.js')}}"></script>-->
-    <script src="{{asset('/backend/assets/vendor/summernote/dist/summernote-bs4.min.js')}}"></script>
+    <script src="<?php echo e(asset('/backend/js/category.js')); ?>"></script>
+    <!--<script src="<?php echo e(asset('/backend/assets/bundles/mainscripts.bundle.js')); ?>"></script>-->
+    <script src="<?php echo e(asset('/backend/assets/vendor/summernote/dist/summernote-bs4.min.js')); ?>"></script>
     <script>
         $('.summernote').summernote({
             placeholder: 'text',
@@ -223,4 +207,6 @@ textarea.input-field
             height: 220,
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layout.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/admin/setting/footer-view.blade.php ENDPATH**/ ?>

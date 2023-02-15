@@ -57,7 +57,7 @@ class SettingController extends Controller
         $validated = $req->validate([
             'file' => 'required',
         ]);
-        
+
         $file=Campaign::where('type',$req->logoType)->first();
         if($file){
             $file_name=$file->file;
@@ -65,7 +65,7 @@ class SettingController extends Controller
             @unlink($file_path);
             $file->delete();
         }
-        
+
         $data=new Campaign;
         if($req->file('file')){
             $file=$req->file('file');
@@ -73,25 +73,25 @@ class SettingController extends Controller
             $req->file->move('storage/storeLogo/',$filename);
             $data->file=$filename;
         }
-     
+
         $data->type=$req->logoType;
         $data->save();
-        
+
         return response()->json(['success'=>'Ajax request submitted successfully']);
         return redirect()->back();
     }
     public function storeBannerLink(Request $request)
     {
-         
- 
+
+
         $validated = $request->validate([
             'file' => 'required',
         ]);
-        
+
         $file=Campaign::where('type',$request->logoType)->first();
-   
+
         if($file){
-          
+
             $file->file=$request->file;
             $file->save();
         }
@@ -102,8 +102,8 @@ class SettingController extends Controller
             $data->type=$request->logoType;
             $data->save();
         }
-        
-        
+
+
         return response()->json(['success'=>'Ajax request submitted successfully']);
         return redirect()->back();
 
@@ -146,7 +146,7 @@ class SettingController extends Controller
         else{
             $barText="";
         }
-        
+
         $barText2=Logo::where('type','version')->first();
         if($barText2){
             $barText2=$barText2->file;
@@ -162,7 +162,7 @@ class SettingController extends Controller
         $validated = $req->validate([
             'file' => 'required',
         ]);
-        
+
         $file=Logo::where('type',$req->logoType)->first();
 
         if($file){
@@ -171,7 +171,7 @@ class SettingController extends Controller
             @unlink($file_path);
             $file->delete();
         }
-        
+
         $data=new Logo;
         if($req->file('file')){
             $file=$req->file('file');
@@ -179,22 +179,22 @@ class SettingController extends Controller
             $req->file->move('storage/storeLogo/',$filename);
             $data->file=$filename;
         }
-     
+
         $data->type=$req->logoType;
         $data->save();
-        
+
         return response()->json(['success'=>'Ajax request submitted successfully']);
         return redirect()->back();
     }
     public function storeBarText(Request $req)
     {
-      
+
         $validated = $req->validate([
             'file' => 'required',
         ]);
         $file=Logo::where('type',$req->logoType)->first();
         if($file){
-          
+
             $file->file=$req->file;
             $file->save();
         }
@@ -204,8 +204,8 @@ class SettingController extends Controller
             $data->type=$req->logoType;
             $data->save();
         }
-        
-        
+
+
         return response()->json(['success'=>'Ajax request submitted successfully']);
         return redirect()->back();
     }
@@ -216,42 +216,48 @@ class SettingController extends Controller
     }
     public function storeFooter(Request $req)
     {
-       
+
         $validated = $req->validate([
             'footer' => 'required',
             'copyright'=>'required',
             'copy'=>'required',
-            'phone' => 'required'
+            'phone' => 'required',
+            'email_support' => 'required',
+            'help_center' => 'required',
+            'delivery_time' => 'required'
 
         ]);
         $footer=Footer::first();
         if($footer){
             $footer->delete();
         }
-  
+
         $data=new Footer;
 
         $data->footer=$req->footer;
         $data->copyright=$req->copyright;
         $data->cotact=$req->copy;
         $data->site_number = $req->phone;
+        $data->email_support = $req->email_support;
+        $data->help_center = $req->help_center;
+        $data->delivery_time = $req->delivery_time;
 
         $data->save();
-        
+
         return response()->json(['success'=>'Ajax request submitted successfully']);
-       
+
     }
     public function socialLinks()
     {
-      
+
         $data=Social::first();
         return view('admin.setting.socialLinks',['data'=>$data]);
     }
     public function socialLinksStore(Request $req)
     {
-        
 
-        
+
+
         $validated = $req->validate([
             'facebook' => 'required',
             'google'=>'required',
@@ -264,7 +270,7 @@ class SettingController extends Controller
             'pinterest' => 'required'
         ]);
         $social=Social::first();
-        
+
         if($social){
             $social->facebook=$req->facebook;
             $social->f_status=$req->f_status;
@@ -276,24 +282,24 @@ class SettingController extends Controller
             $social->l_status=$req->l_status;
             $social->dribble=$req->dribble;
             $social->d_status=$req->d_status;
-            
+
             $social->snapchat=$req->snap;
             $social->snap_status=$req->snap_status;
-            
+
             $social->link=$req->link;
             $social->link_status=$req->link_status;
-            
-            
+
+
              $social->tiktok=$req->tiktok;
             $social->tiktok_status=$req->tiktok_status;
-            
+
              $social->pinterest=$req->pinterest;
             $social->pinterest_status=$req->pinterest_status;
-           
+
             $social->save();
-            
+
         }
-        
+
         else{
             $social=new Social;
             $social->facebook=$req->facebook;
@@ -306,34 +312,34 @@ class SettingController extends Controller
             $social->l_status=$req->l_status;
             $social->dribble=$req->dribble;
             $social->d_status=$req->d_status;
-            
+
              $social->snapchat=$req->snap;
             $social->snap_status=$req->snap_status;
-            
+
             $social->link=$req->link;
             $social->link_status=$req->link_status;
-            
-            
-            
+
+
+
                 $social->tiktok=$req->tiktok;
             $social->tiktok_status=$req->tiktok_status;
-            
+
              $social->pinterest=$req->pinterest;
             $social->pinterest_status=$req->pinterest_status;
-            
-            
+
+
             $social->save();
         }
         return response()->json(['success'=>'Ajax request submitted successfully']);
-        
+
     }
     public function favicon()
     {
         $data=Favicon::first();
-       
+
         if($data){
             $data=$data->file;
-            
+
         }
         else{
             $data="common.png";
@@ -342,7 +348,7 @@ class SettingController extends Controller
     }
     public function storeFavicon(Request $req)
     {
-       
+
         $validated = $req->validate([
             'file' => 'required',
         ]);
@@ -353,7 +359,7 @@ class SettingController extends Controller
             @unlink($data_path);
             $data->delete();
         }
-  
+
         $data=new Favicon;
         if($req->file('file')){
             $file=$req->file('file');
@@ -362,7 +368,7 @@ class SettingController extends Controller
             $data->file=$filename;
         }
         $data->save();
-        
+
         return response()->json(['success'=>'Ajax request submitted successfully']);
     }
     public function shipping()
@@ -372,7 +378,7 @@ class SettingController extends Controller
     }
     public function addShipping(Request $request)
     {
-       
+
 
         $this->validate($request, [
             'title' => 'required|unique:shippings',
@@ -401,7 +407,7 @@ class SettingController extends Controller
         $method->save();
         return response()->json($method,200);
     }
-    
+
     public function deleteShipping(Shipping $method)
     {
 
@@ -425,8 +431,8 @@ class SettingController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'details' => 'required'
-        ]);      
-  
+        ]);
+
         $service = new Service();
         $service->title = $request->title;
         $service->details = $request->details;
@@ -442,7 +448,7 @@ class SettingController extends Controller
     {
         $service->title = $request->title;
         $service->details = $request->details;
-      
+
         $service->save();
         return response()->json($service,200);
     }
@@ -471,7 +477,7 @@ class SettingController extends Controller
             'fax'=>'required',
         ]);
         $contacts=Contact::first();
-        
+
         if($contacts){
             $contacts->contact_title=$req->contactTitle;
             $contacts->contact_text=$req->contactText;
@@ -482,12 +488,12 @@ class SettingController extends Controller
             $contacts->street=$req->streetAddress;
             $contacts->phone=$req->phone;
             $contacts->fax=$req->fax;
-           
-           
+
+
             $contacts->save();
-            
+
         }
-        
+
         else{
             $contacts=new Contact;
             $contacts->contact_title=$req->contactTitle;
@@ -499,12 +505,12 @@ class SettingController extends Controller
             $contacts->street=$req->streetAddress;
             $contacts->phone=$req->phone;
             $contacts->fax=$req->fax;
-           
-           
+
+
             $contacts->save();
         }
         return response()->json(['success'=>'Ajax request submitted successfully']);
-        
+
     }
     public function headerText()
     {
@@ -539,8 +545,8 @@ class SettingController extends Controller
         // return $req;
         // $validated = $req->validate([
         //      'file' => 'required',
-            
-          
+
+
         // ]);
 
         $text=HeaderText::where('type','=',$req->type)->first();
@@ -548,9 +554,9 @@ class SettingController extends Controller
         if($text){
             $text->text=$req->text;
             $text->save();
-            
+
         }
-        
+
         else{
             $text=new HeaderText;
             $text->text=$req->text;
@@ -558,7 +564,7 @@ class SettingController extends Controller
             $text->save();
         }
         return response()->json(['success'=>'Ajax request submitted successfully']);
-        
+
     }
     public function sliders()
     {
@@ -568,13 +574,13 @@ class SettingController extends Controller
     public function storeSlider(Request $request)
     {
         $this->validate($request, [
-           
+
             'photo'=>'required',
             'link' => 'required',
-           
+
         ]);
-      
-        
+
+
         $slider = new Slider();
         if ($request->hasFile('photo')){
             $image = $request->file('photo');
@@ -588,11 +594,11 @@ class SettingController extends Controller
             })->save($filePath.'/'.$input['imagename']);
             $slider->image_file = $input['imagename'];
         }
-        
-        
-       
+
+
+
          $slider->link = $request->link;
-       
+
         $slider->save();
         $data = Slider::latest()->first();
         return response()->json($data, 200);
@@ -618,10 +624,10 @@ class SettingController extends Controller
             })->save($filePath.'/'.$input['imagename']);
             $slider->image_file = $input['imagename'];
         }
-       
+
          $slider->link = $request->edit_link;
-        
-      
+
+
         $slider->save();
         return response()->json($slider,200);
     }
@@ -645,8 +651,8 @@ class SettingController extends Controller
             'photo'=>'required',
              'link' => 'required',
         ]);
-      
-  
+
+
         $advertise = new Advertise();
         if ($request->hasFile('photo')){
             $extension = $request->photo->getClientOriginalExtension();
@@ -684,7 +690,7 @@ class SettingController extends Controller
         $advertise->description = $request->edit_description;
         $advertise->link = $request->edit_link;
         $advertise->text_position = $request->edit_position;
-      
+
         $advertise->save();
         return response()->json($advertise,200);
     }
@@ -710,7 +716,7 @@ class SettingController extends Controller
     public function Cache(){
         Artisan::call('cache:clear');
         return redirect('/admin/dashboard')->with('cache', 'Cache Cleared Successfully');
-    
+
     }
 
     // terms and conditaion
@@ -738,7 +744,7 @@ class SettingController extends Controller
     public function productSliders()
     {
        $sliders = ProductSlider::latest()->get();
-       
+
         $category = Category::all();
 
        return view('admin.setting.product_slider',['sliders'=>$sliders,'category' => $category]);
@@ -746,16 +752,16 @@ class SettingController extends Controller
 
     public function productSlidersStore(Request $request)
     {
-        
-        
+
+
         $this->validate($request, [
            'subcategorysliderstore'=>'required',
             'photo'=>'required',
             'link' => 'required',
-           
+
         ]);
-      
-        
+
+
         $slider = new ProductSlider();
         if ($request->hasFile('photo')){
             $image = $request->file('photo');
@@ -767,15 +773,15 @@ class SettingController extends Controller
             $img->save($filePath.'/'.$input['imagename']);
             $slider->photo = $input['imagename'];
         }
-        
-        
-       
+
+
+
          $slider->link = $request->link;
          $slider->category_id = $request->subcategorysliderstore;
-       
+
         $slider->save();
         $data = ProductSlider::latest()->first();
-       
+
 
         return redirect()->back();
     }
@@ -783,12 +789,12 @@ class SettingController extends Controller
 
     public function productSlidersUpdate(Request $request, $id)
     {
-     
+
         $this->validate($request, [
            'subcategorysliderstore'=>'required',
             'link' => 'required',
         ]);
-        
+
         $slider = ProductSlider::findOrFail($id);
         if ($request->hasFile('photo')){
             @unlink('storage/storeSliders/'.$slider->photo);
@@ -803,10 +809,10 @@ class SettingController extends Controller
             })->save($filePath.'/'.$input['imagename']);
             $slider->photo = $input['imagename'];
         }
-       
+
          $slider->link = $request->edit_link;
         $slider->category_id = $request->subcategorysliderstore;
-      
+
         $slider->save();
         return redirect()->back();
     }
@@ -819,30 +825,30 @@ class SettingController extends Controller
         @unlink('storage/storeSliders/'.$slider->photo);
 
         $slider->delete();
-        
+
         return redirect()->back();
     }
-    
-    
-    
+
+
+
     public function subcategoryslider (){
-      
+
          $subcategory = SubCategory::all();
          $sliders = SubCategorySlider::latest()->get();
 
        return view('admin.setting.subcategoryslider',['sliders'=>$sliders, 'subcategory'=>$subcategory]);
     }
-    
+
     public function subcategorysliderstore(Request $request)
     {
         $this->validate($request, [
             'subcategorysliderstore'=>'required',
             'photo'=>'required',
             'link' => 'required',
-           
+
         ]);
-      
-        
+
+
         $slider = new SubCategorySlider();
         if ($request->hasFile('photo')){
             $image = $request->file('photo');
@@ -854,33 +860,33 @@ class SettingController extends Controller
             $img->save($filePath.'/'.$input['imagename']);
             $slider->photo = $input['imagename'];
         }
-        
-        
+
+
          $slider->subcategory_id = $request->subcategorysliderstore;
          $slider->link = $request->link;
-       
+
         $slider->save();
         $data = SubCategorySlider::latest()->first();
-       
+
 
         return redirect()->back();
     }
-    
-    
+
+
     public function subcategorysliderUpdate(Request $request, $id)
     {
-                
+
         $this->validate($request, [
             'subcategorysliderstore'=>'required',
             'edit_link' => 'required',
-           
+
         ]);
-     
+
 
         $slider = SubCategorySlider::findOrFail($id);
-        
 
-        
+
+
 
         if ($request->hasFile('photo')){
             @unlink('storage/subcategorysliderstore/'.$slider->photo);
@@ -896,12 +902,12 @@ class SettingController extends Controller
         $slider->subcategory_id = $request->subcategorysliderstore;
          $slider->link = $request->edit_link;
 
-        
-      
+
+
         $slider->save();
         return redirect()->back();
     }
-    
+
      public function subcategorysliderDelete ($id)
     {
         $slider = SubCategorySlider::findOrFail($id);
@@ -909,7 +915,7 @@ class SettingController extends Controller
         @unlink('storage/subcategorysliderstore/'.$slider->photo);
 
         $slider->delete();
-        
+
         return redirect()->back();
     }
 

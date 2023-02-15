@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hypershop</title>
+    <title>Yuu Solution</title>
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <link rel="stylesheet" href="<?php echo e(asset('vendor/css/bootstrap.min.css')); ?>">

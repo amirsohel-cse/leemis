@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Backend\Category;
 
 use App\Http\Controllers\Controller;
 use App\Model\AttributeOption;
-use App\Model\Brand;
 use App\Model\Category;
 use App\Model\CategoryAttribute;
+use App\model\CategoryTranslation;
 use App\Model\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
@@ -16,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        
+
         return view('admin.category.category-view', compact('categories'));
     }
 
@@ -34,7 +35,6 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->commision = $request->commision;
-        
 
         if ($request->hasFile('photo')) {
             $extension = $request->photo->getClientOriginalExtension();
@@ -74,7 +74,6 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->commision = $request->commision;
-        
 
         if ($request->hasFile('photo')) {
             unlink('uploads/category-images/' . $category->photo);
@@ -175,30 +174,27 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-
         foreach ($categoryAttribute->options as $key => $item) {
-            
-            if(isset($request->options[$key])){
-                
+
+            if (isset($request->options[$key])) {
+
                 $item->update([
                     'category_attribute_id' => $categoryAttribute->id,
                     'option' => $request->options[$key],
                 ]);
-            }else{
+            } else {
                 $item->delete();
             }
-            
+
             $last = $key + 1;
         }
 
-        
-        if(isset($request->options[$last])){
+        if (isset($request->options[$last])) {
             AttributeOption::create([
                 'category_attribute_id' => $categoryAttribute->id,
                 'option' => $request->options[$last],
             ]);
         }
-        
 
         return redirect()->back()->with('success', " Category Attribute Updated successfully");
     }
@@ -221,7 +217,6 @@ class CategoryController extends Controller
     {
         $category = Category::with('attributes.options')->find($request->category_id);
 
-
         $product = Product::find($request->product_id);
 
         $attributes = $category->attributes;
@@ -230,8 +225,31 @@ class CategoryController extends Controller
 
         return response([
             'attributes' => $attributes,
-            'optionId' => $optionId
-        ],200);
+            'optionId' => $optionId,
+        ], 200);
+
+    }
+
+    public function addTranslation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'lang' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all(),
+            ]);
+        }
+
+        $trans = new CategoryTranslation();
+        $trans->category_id = $request->get('category_id');
+        $trans->name = $request->get('name');
+        $trans->lang = $request->get('lang');
+        $trans->save();
+
+        return response()->json(['success' => 'Translation added successfully.']);
 
     }
 }

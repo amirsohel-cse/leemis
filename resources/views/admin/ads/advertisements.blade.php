@@ -108,7 +108,7 @@
                                 <option value="710x185">@lang('710x185')</option>
                                 <option value="1440x250">@lang('1440x250')</option>
                                 <option value="1440x80">@lang('1440x80')</option>
-                                
+
                             </select>
                         </div>
                         <div class="form-group ru">

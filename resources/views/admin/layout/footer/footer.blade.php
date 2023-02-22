@@ -54,7 +54,14 @@
     $('.dropdown-toggle').dropdown();
 </script>
 
-
+<script>
+    $(document).ready(function() {
+        toastr.options = {
+            "progressBar": true,
+            "positionClass": "toast-top-right"
+        };
+    });
+</script>
 
 <script>
     $.ajaxSetup({
@@ -63,6 +70,8 @@
         }
     });
 </script>
+
+
 
 <!-- Javascript -->
 <script src="assets/bundles/libscripts.bundle.js"></script>

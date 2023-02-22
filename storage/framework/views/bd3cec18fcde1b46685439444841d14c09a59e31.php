@@ -1,6 +1,4 @@
-@extends('admin.layout.master.master')
-
-@section('main-content')
+<?php $__env->startSection('main-content'); ?>
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 col-sm-12">
@@ -43,66 +41,66 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @forelse($categories as $row)
-                                    <tr data-id="{{ $row->id }}">
-                                        <td>{{ $row->id }}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>{{ $row->slug }}</td>
-                                        <td>{{ $row->commision }} %</td>
+                                <?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                    <tr data-id="<?php echo e($row->id); ?>">
+                                        <td><?php echo e($row->id); ?></td>
+                                        <td><?php echo e($row->name); ?></td>
+                                        <td><?php echo e($row->slug); ?></td>
+                                        <td><?php echo e($row->commision); ?> %</td>
 
                                         <td>
-                                            <select class="theme-bg" name="" data-id="{{ $row->id }}"
+                                            <select class="theme-bg" name="" data-id="<?php echo e($row->id); ?>"
                                                 id="selectStatus">
-                                                <option value="1" {{ $row->status == 1 ? 'selected' : '' }}>Active
+                                                <option value="1" <?php echo e($row->status == 1 ? 'selected' : ''); ?>>Active
                                                 </option>
-                                                <option value="0" {{ $row->status == 0 ? 'selected' : '' }}>Deactive
+                                                <option value="0" <?php echo e($row->status == 0 ? 'selected' : ''); ?>>Deactive
                                                 </option>
                                             </select>
                                         </td>
                                         <td>
-                                            <select class="theme-bg" name="" data-id="{{ $row->id }}"
+                                            <select class="theme-bg" name="" data-id="<?php echo e($row->id); ?>"
                                                 id="isFeatured">
-                                                <option value="1" {{ $row->is_featured == 1 ? 'selected' : '' }}>Yes
+                                                <option value="1" <?php echo e($row->is_featured == 1 ? 'selected' : ''); ?>>Yes
                                                 </option>
-                                                <option value="0" {{ $row->is_featured == 0 ? 'selected' : '' }}>No
+                                                <option value="0" <?php echo e($row->is_featured == 0 ? 'selected' : ''); ?>>No
                                                 </option>
                                             </select>
                                         </td>
                                         <td>
-                                            <button data-id="{{ $row->id }}" data-toggle="modal"
+                                            <button data-id="<?php echo e($row->id); ?>" data-toggle="modal"
                                                 data-target="#editCategoryModal"
                                                 class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
 
                                             <button class="btn btn-primary mr-1 addTranslationBtn"
-                                                data-id="{{ $row->id }}" data-name="{{ $row->name }}"
+                                                data-id="<?php echo e($row->id); ?>" data-name="<?php echo e($row->name); ?>"
                                                 data-toggle="modal" data-target="#addLangCategoryModal"
                                                 title="Add Language">
                                                 <i class="fa fa-language"></i>
                                             </button>
 
                                             <button class="btn btn-primary btn-attr mr-1"
-                                                data-href="{{ route('category-attributes', @$row->id) }}"
+                                                data-href="<?php echo e(route('category-attributes', @$row->id)); ?>"
                                                 data-toggle="tooltip" title="Attributes">
                                                 <i class="fa fa-list"></i>
                                             </button>
 
                                             <a class="btn btn-primary mr-1"
-                                                href="{{ route('category-attributes-show', @$row->id) }}"
+                                                href="<?php echo e(route('category-attributes-show', @$row->id)); ?>"
                                                 data-toggle="tooltip" title="Attributes">
                                                 <i class="fa fa-eye"></i>
                                             </a>
 
-                                            <button data-id="{{ $row->id }}"
+                                            <button data-id="<?php echo e($row->id); ?>"
                                                 class="btn btn-danger btn-round deleteBtn" style="cursor: pointer"
                                                 type="submit"><i class="fa fa-trash"></i></button>
 
                                         </td>
 
                                     </tr>
-                                @empty
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <td colspan="5" class="text-center">No data Available</td>
-                                @endforelse
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -112,7 +110,7 @@
 
     </div>
 
-    {{-- Add category lang Modal starts --}}
+    
     <div class="modal ml-5 fade bd-example-modal-lg" tabindex="-1" id="addLangCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -127,7 +125,7 @@
                         <div class="col-md-8 ml-auto mr-auto">
 
                             <form action="" id="add-category-form" method="post" enctype="multipart/form-data">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3"></label>
                                     <div class="col-sm-9">
@@ -180,7 +178,7 @@
         </div>
     </div>
 
-    {{-- Add category Modal starts --}}
+    
     <div class="modal ml-5 fade bd-example-modal-lg" tabindex="-1" id="addCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -194,7 +192,7 @@
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto">
                             <form action="" id="add-category-form" method="post" enctype="multipart/form-data">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <span style="color: red" class="catname"></span>
 
                                 <div class="input-group mb-3">
@@ -277,9 +275,9 @@
             </div>
         </div>
     </div>
-    {{-- Add Category Modal ends --}}
+    
 
-    {{-- Edit Category modal starts --}}
+    
     <div class="modal fade bd-example-modal-lg" tabindex="-1" id="editCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -293,7 +291,7 @@
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto">
                             <form action="" id="edit-category-form" method="post" enctype="multipart/form-data">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <span style="color: red" class="catname"></span>
 
                                 <div class="input-group mb-3">
@@ -306,7 +304,7 @@
                                         aria-describedby="inputGroup-sizing-default">
                                 </div>
 
-                                {{-- category id input file --}}
+                                
                                 <input type="text" id="category-id" name="id" hidden>
                                 <span style="color: red" class="slug"></span>
 
@@ -386,13 +384,13 @@
             </div>
         </div>
     </div>
-    {{-- Edit Category modal ends --}}
+    
 
 
     <div class="modal fade" tabindex="-1" role="dialog" id="attribute">
         <div class="modal-dialog modal-lg" role="document">
             <form action="" method="post">
-                @csrf
+                <?php echo csrf_field(); ?>
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Attribute</h5>
@@ -433,12 +431,12 @@
             </form>
         </div>
     </div>
-@endsection
-@section('page-stylesheet')
-    <!--<link rel="stylesheet" href="{{ asset('/backend/assets/css/nice-select.css') }}">-->
-@endsection
-@section('page-scripts')
-    <!--<script src="{{ asset('/backend/assets/js/jquery.nice-select.js') }}"></script>-->
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-stylesheet'); ?>
+    <!--<link rel="stylesheet" href="<?php echo e(asset('/backend/assets/css/nice-select.css')); ?>">-->
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-scripts'); ?>
+    <!--<script src="<?php echo e(asset('/backend/assets/js/jquery.nice-select.js')); ?>"></script>-->
     <script>
         $(document).ready(function() {
             $('.addTranslationBtn').on('click', function() {
@@ -457,7 +455,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ route('admin.addCategoryTranslation') }}",
+                url: "<?php echo e(route('admin.addCategoryTranslation')); ?>",
                 data: {
                     category_id: category_id,
                     name: name,
@@ -531,5 +529,7 @@
             $(this).closest('.removeEl').remove();
         })
     </script>
-    <script src="{{ asset('/backend/js/category.js') }}"></script>
-@endsection
+    <script src="<?php echo e(asset('/backend/js/category.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layout.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/admin/category/category-view.blade.php ENDPATH**/ ?>

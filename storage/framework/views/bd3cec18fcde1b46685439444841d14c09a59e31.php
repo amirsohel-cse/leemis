@@ -112,74 +112,6 @@
     </div>
 
     
-    <div class="modal ml-5 fade bd-example-modal-lg" tabindex="-1" id="addLangCategoryModal" role="dialog"
-        aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title h4" id="myLargeModalLabel"><strong>ADD CATEGORY TRANSLATION</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-8 ml-auto mr-auto">
-
-                            <form action="" id="add-category-form" method="post" enctype="multipart/form-data">
-                                <?php echo csrf_field(); ?>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3"></label>
-                                    <div class="col-sm-9">
-                                        <div class="text-danger print-error-msg" style="display: none;">
-                                            <ul></ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <input type="hidden" id="translate_category_id" name="category_id" />
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3">Category Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cat_name" id="cat_name" readonly />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3">Select Language</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" name="language" id="language">
-                                            <option value="">Select language</option>
-                                            <option value="EN">English</option>
-                                            <option value="cn">Traditional Chinese</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3">Translated Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="translated_name"
-                                            id="translated_name" />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3"></label>
-                                    <div class="col-sm-9">
-                                        <button type="button" class="btn btn-primary theme-bg gradient btn-submit">Update
-                                            Category</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default closeBtn" data-dismiss="modal"><b>Close</b></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
     <div class="modal ml-5 fade bd-example-modal-lg" tabindex="-1" id="addCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -438,61 +370,6 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-scripts'); ?>
     <!--<script src="<?php echo e(asset('/backend/assets/js/jquery.nice-select.js')); ?>"></script>-->
-    <script>
-        $(document).ready(function() {
-            $('.addTranslationBtn').on('click', function() {
-                $('#cat_name').val($(this).data('name'));
-                $('#translate_category_id').val($(this).data('id'));
-            });
-        });
-    </script>
-
-    <script>
-        $(".btn-submit").click(function(e) {
-            e.preventDefault();
-            var category_id = $("#translate_category_id").val();
-            var name = $("#translated_name").val();
-            var lang = $("#language").val();
-
-            $.ajax({
-                type: 'POST',
-                url: "<?php echo e(route('admin.addCategoryTranslation')); ?>",
-                data: {
-                    category_id: category_id,
-                    name: name,
-                    lang: lang
-                },
-                beforeSend: function(){
-                    $(".btn-submit").addClass('disabled');
-                    $(".btn-submit").html('<i class="fa fa-spinner fa-spin"></i> Updating');
-                },
-                success: function(data) {
-                    if ($.isEmptyObject(data.error)) {
-                        toastr.success(data.success);
-                        $('#addLangCategoryModal').modal('hide');
-
-                        $("#translate_category_id").val('');
-                        $("#translated_name").val('');
-                        $("#language").val('');
-                    } else {
-                        printErrorMsg(data.error);
-                    }
-                    $(".btn-submit").removeClass('disabled');
-                    $(".btn-submit").html('Update Category');
-                }
-            });
-
-        });
-
-        function printErrorMsg(msg) {
-            $(".print-error-msg").find("ul").html('');
-            $(".print-error-msg").css('display', 'block');
-            $.each(msg, function(key, value) {
-                $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
-            });
-
-        }
-    </script>
 
     <script !src="">
         $('.btn-attr').on('click', function(e) {

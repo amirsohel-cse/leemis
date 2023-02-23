@@ -4,12 +4,12 @@ namespace App\Http\Controllers\backend;
 
 use App\Model\Category;
 use Illuminate\Http\Request;
-use App\model\CategoryTranslation;
+use App\Model\CategoryTranslation;
 use App\Http\Controllers\Controller;
 use App\Model\ChildCategory;
-use App\model\ChildCategoryTranslation;
+use App\Model\ChildCategoryTranslation;
 use App\Model\SubCategory;
-use App\model\SubCategoryTranslation;
+use App\Model\SubCategoryTranslation;
 use Illuminate\Support\Facades\Validator;
 
 class TranslationController extends Controller

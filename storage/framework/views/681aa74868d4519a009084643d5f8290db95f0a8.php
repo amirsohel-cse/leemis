@@ -40,9 +40,8 @@
                                                 class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
 
-                                            <button data-id="<?php echo e($row->id); ?>"
-                                                class="btn btn-danger btn-round deleteBtn" style="cursor: pointer"
-                                                type="submit"><i class="fa fa-trash"></i></button>
+                                            <button data-id="<?php echo e($row->id); ?>" class="btn btn-danger btn-round deleteBtn"
+                                                style="cursor: pointer" type="submit"><i class="fa fa-trash"></i></button>
 
                                         </td>
 
@@ -112,7 +111,9 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3"></label>
                                     <div class="col-sm-9">
-                                        <button type="button" class="btn btn-primary theme-bg gradient add-btn-submit">Add Translation</button>
+                                        <button type="button"
+                                            class="btn btn-primary theme-bg gradient add-btn-submit">Add
+                                            Translation</button>
                                     </div>
                                 </div>
                             </form>
@@ -155,7 +156,8 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3">Category Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cat_name" id="cat_name" readonly />
+                                        <input type="text" class="form-control" name="cat_name" id="cat_name"
+                                            readonly />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -213,7 +215,7 @@
                     name: name,
                     lang: lang
                 },
-                beforeSend: function(){
+                beforeSend: function() {
                     $(".add-btn-submit").addClass('disabled');
                     $(".add-btn-submit").html('<i class="fa fa-spinner fa-spin"></i> Loading');
                 },
@@ -243,6 +245,57 @@
             });
 
         }
+
+        $(".deleteBtn").click(function(e) {
+            var translation_id = $(this).data('id');
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success ml-2',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?php echo e(route('admin.deleteCategoryTranslation')); ?>",
+                        data: {
+                            translation_id: translation_id
+                        },
+                        success: function(data) {
+                            swalWithBootstrapButtons.fire(
+                                'Deleted',
+                                'Your file has been deleted successfully)',
+                                'success'
+                            )
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1000);
+                        }
+                    });
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your file is safe :)',
+                        'error'
+                    )
+                }
+            })
+
+        });
     </script>
 <?php $__env->stopSection(); ?>
 

@@ -40,4 +40,12 @@ class TranslationController extends Controller
         return response()->json(['success' => 'Translation added successfully.']);
 
     }
+
+    public function deleteCategoryTranslation(Request $request)
+    {
+        $category = CategoryTranslation::find($request->translation_id);
+        $category->delete();
+
+        return response()->json(['success' => 'Translation deleted successfully.']);
+    }
 }

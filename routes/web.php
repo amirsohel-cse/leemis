@@ -410,7 +410,10 @@ Route::middleware('optimizeImages')->group(function () {
                 Route::post('/{category}/update', 'Backend\Category\CategoryController@update');
                 Route::get('/{category}/status/update', 'Backend\Category\CategoryController@statusUpdate');
                 Route::get('/{category}/feature/update', 'Backend\Category\CategoryController@featureUpdate');
+                
+                //translations
                 Route::get('/translations/{id}', 'Backend\TranslationController@categoryTranslation')->name('admin.categoryTranslations');
+                Route::post('/translations/delete', 'Backend\TranslationController@deleteCategoryTranslation')->name('admin.deleteCategoryTranslation');
                 Route::post('/add-category-translation', 'Backend\TranslationController@addTranslation')->name('admin.addCategoryTranslation');
             });
             /*Category routes ends*/

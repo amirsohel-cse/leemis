@@ -61,7 +61,7 @@
                                     <td>
                                         <button data-id="{{$row->id}}" data-toggle="modal" data-target="#editChildCategoryModal" class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer" type="button"><i class="fa fa-edit"></i> Edit</button>
                                         <a class="btn btn-primary mr-1"
-                                            href="{{ route('admin.categoryTranslations',['id'=>$row->id]) }}"
+                                            href="{{ route('admin.childCategoryTranslations',['id'=>$row->id]) }}"
                                             data-toggle="tooltip" title="Translations">
                                             <i class="fa fa-language"></i>
                                         </a>

@@ -660,9 +660,9 @@ Route::middleware('optimizeImages')->group(function () {
 
             //translations
             Route::get('/translations/{id}', 'Backend\TranslationController@childCategoryTranslation')->name('admin.childCategoryTranslations');
-            Route::post('/translations/delete', 'Backend\TranslationController@deleteChildCategoryTranslation')->name('admin.deletechildCategoryTranslation');
-            Route::post('/add-category-translation', 'Backend\TranslationController@addChildCategoryTranslation')->name('admin.addchildCategoryTranslation');
-            Route::post('/update-category-translation', 'Backend\TranslationController@editChildCategoryTranslation')->name('admin.editchildCategoryTranslation');
+            Route::post('/translations/delete', 'Backend\TranslationController@deleteChildCategoryTranslation')->name('admin.deleteChildCategoryTranslation');
+            Route::post('/add-category-translation', 'Backend\TranslationController@addChildCategoryTranslation')->name('admin.addChildCategoryTranslation');
+            Route::post('/update-category-translation', 'Backend\TranslationController@editChildCategoryTranslation')->name('admin.editChildCategoryTranslation');
         });
         /*Child Category Routes ends*/
         /*Brands Routes starts*/

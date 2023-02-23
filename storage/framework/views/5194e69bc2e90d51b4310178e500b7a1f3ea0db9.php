@@ -1,6 +1,4 @@
-@extends('admin.layout.master.master')
-
-@section('main-content')
+<?php $__env->startSection('main-content'); ?>
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 col-sm-12">
@@ -15,7 +13,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h5 class="card-title float-left">All Translations for <b>{{ $category->name }}</b></h5>
+                    <h5 class="card-title float-left">All Translations for <b><?php echo e($category->name); ?></b></h5>
                     <button class="btn btn-success btn-round float-right" id="addCategoryBtn" data-toggle="modal"
                         data-target="#addLangCategoryModal"><i class="fa fa-plus"></i> Add Translation</button>
                 </div>
@@ -31,26 +29,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($translations as $row)
-                                    <tr data-id="{{ $row->id }}">
-                                        <td style="width: 7%;">{{ $row->id }}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>{{ $row->lang }}</td>
+                                <?php $__empty_1 = true; $__currentLoopData = $translations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                    <tr data-id="<?php echo e($row->id); ?>">
+                                        <td style="width: 7%;"><?php echo e($row->id); ?></td>
+                                        <td><?php echo e($row->name); ?></td>
+                                        <td><?php echo e($row->lang); ?></td>
                                         <td style="width: 20%;" class="text-center">
-                                            <button data-id="{{ $row->id }}" data-name="{{ $row->name }}" data-lang="{{ $row->lang }}" data-toggle="modal"
+                                            <button data-id="<?php echo e($row->id); ?>" data-name="<?php echo e($row->name); ?>" data-lang="<?php echo e($row->lang); ?>" data-toggle="modal"
                                                 data-target="#editLangCategoryModal"
                                                 class="btn btn-primary btn-round mr-1 editDataBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
 
-                                            <button data-id="{{ $row->id }}" class="btn btn-danger btn-round deleteBtn"
+                                            <button data-id="<?php echo e($row->id); ?>" class="btn btn-danger btn-round deleteBtn"
                                                 style="cursor: pointer" type="submit"><i class="fa fa-trash"></i></button>
 
                                         </td>
 
                                     </tr>
-                                @empty
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <td colspan="5" class="text-center">No data Available</td>
-                                @endforelse
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -60,7 +58,7 @@
 
     </div>
 
-    {{-- Add category lang Modal --}}
+    
     <div class="modal ml-5 fade bd-example-modal-lg" tabindex="-1" id="addLangCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -75,7 +73,7 @@
                         <div class="col-md-8 ml-auto mr-auto">
 
                             <form action="" id="add-category-form" method="post" enctype="multipart/form-data">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3"></label>
                                     <div class="col-sm-9">
@@ -85,11 +83,11 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" id="category_id" value="{{ $category->id }}" name="category_id" />
+                                <input type="hidden" id="category_id" value="<?php echo e($category->id); ?>" name="category_id" />
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3">Category Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" value="{{ $category->name }}" readonly />
+                                        <input type="text" class="form-control" value="<?php echo e($category->name); ?>" readonly />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -129,7 +127,7 @@
         </div>
     </div>
 
-    {{-- Update category lang Modal --}}
+    
     <div class="modal ml-5 fade bd-example-modal-lg" tabindex="-1" id="editLangCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -144,7 +142,7 @@
                         <div class="col-md-8 ml-auto mr-auto">
 
                             <form action="" id="edit-category-form" method="post" enctype="multipart/form-data">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3"></label>
                                     <div class="col-sm-9">
@@ -155,12 +153,12 @@
                                 </div>
 
                                 <input type="hidden" id="translation_id" name="translation_id" />
-                                <input type="hidden" id="edit_category_id" value="{{ $category->id }}" name="category_id" />
+                                <input type="hidden" id="edit_category_id" value="<?php echo e($category->id); ?>" name="category_id" />
 
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3">Category Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" value="{{ $category->name }}"
+                                        <input type="text" class="form-control" value="<?php echo e($category->name); ?>"
                                             readonly />
                                     </div>
                                 </div>
@@ -198,11 +196,11 @@
             </div>
         </div>
     </div>
-@endsection
-@section('page-stylesheet')
-    <!--<link rel="stylesheet" href="{{ asset('/backend/assets/css/nice-select.css') }}">-->
-@endsection
-@section('page-scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-stylesheet'); ?>
+    <!--<link rel="stylesheet" href="<?php echo e(asset('/backend/assets/css/nice-select.css')); ?>">-->
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-scripts'); ?>
     <script>
         $(document).ready(function() {
             $('.editDataBtn').on('click', function() {
@@ -221,7 +219,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ route('admin.addChildCategoryTranslation') }}",
+                url: "<?php echo e(route('admin.addChildCategoryTranslation')); ?>",
                 data: {
                     category_id: category_id,
                     name: name,
@@ -267,7 +265,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ route('admin.editChildCategoryTranslation') }}",
+                url: "<?php echo e(route('admin.editChildCategoryTranslation')); ?>",
                 data: {
                     category_id: category_id,
                     translation_id: translation_id,
@@ -328,7 +326,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('admin.deleteChildCategoryTranslation') }}",
+                        url: "<?php echo e(route('admin.deleteChildCategoryTranslation')); ?>",
                         data: {
                             translation_id: translation_id
                         },
@@ -356,4 +354,6 @@
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layout.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/admin/child-category/child-category-translation.blade.php ENDPATH**/ ?>

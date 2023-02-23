@@ -641,6 +641,12 @@ Route::middleware('optimizeImages')->group(function () {
             Route::post('/{subCategory}/update', 'Backend\Category\SubCategoryController@update')->name('subcategory-update');
             Route::get('/{subCategory}/statusUpdate', 'Backend\Category\SubCategoryController@statusUpdate');
             Route::delete('/{subCategory}/delete', 'Backend\Category\SubCategoryController@delete');
+
+            //translations
+            Route::get('/translations/{id}', 'Backend\TranslationController@subCategoryTranslation')->name('admin.subCategoryTranslations');
+            Route::post('/translations/delete', 'Backend\TranslationController@deleteSubCategoryTranslation')->name('admin.deleteSubCategoryTranslation');
+            Route::post('/add-category-translation', 'Backend\TranslationController@addSubCategoryTranslation')->name('admin.addSubCategoryTranslation');
+            Route::post('/update-category-translation', 'Backend\TranslationController@editSubCategoryTranslation')->name('admin.editSubCategoryTranslation');
         });
         /*Sub Category Routes Ends*/
         /*Child Category Routes Starts*/
@@ -651,6 +657,12 @@ Route::middleware('optimizeImages')->group(function () {
             Route::patch('/{childCategory}/update', 'Backend\Category\ChildCategoryController@update');
             Route::get('/{childCategory}/statusUpdate', 'Backend\Category\ChildCategoryController@statusUpdate');
             Route::delete('/{childCategory}/delete', 'Backend\Category\ChildCategoryController@delete');
+
+            //translations
+            Route::get('/translations/{id}', 'Backend\TranslationController@childCategoryTranslation')->name('admin.childCategoryTranslations');
+            Route::post('/translations/delete', 'Backend\TranslationController@deleteChildCategoryTranslation')->name('admin.deletechildCategoryTranslation');
+            Route::post('/add-category-translation', 'Backend\TranslationController@addChildCategoryTranslation')->name('admin.addchildCategoryTranslation');
+            Route::post('/update-category-translation', 'Backend\TranslationController@editChildCategoryTranslation')->name('admin.editchildCategoryTranslation');
         });
         /*Child Category Routes ends*/
         /*Brands Routes starts*/

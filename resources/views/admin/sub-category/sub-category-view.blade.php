@@ -63,6 +63,11 @@
                                                 data-target="#editSubCategoryModal" data-category="{{$row}}" data-url="{{route('subcategory-update', $row->id)}}"
                                                 class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
+                                            <a class="btn btn-primary mr-1"
+                                                href="{{ route('admin.subCategoryTranslations',['id'=>$row->id]) }}"
+                                                data-toggle="tooltip" title="Translations">
+                                                <i class="fa fa-language"></i>
+                                            </a>
                                             <button data-id="{{ $row->id }}" class="btn btn-danger btn-round deleteBtn"
                                                 style="cursor: pointer" type="submit"><i
                                                     class="fa fa-trash"></i></button>

@@ -61,6 +61,11 @@
                                                 data-target="#editSubCategoryModal" data-category="<?php echo e($row); ?>" data-url="<?php echo e(route('subcategory-update', $row->id)); ?>"
                                                 class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
+                                            <a class="btn btn-primary mr-1"
+                                                href="<?php echo e(route('admin.subCategoryTranslations',['id'=>$row->id])); ?>"
+                                                data-toggle="tooltip" title="Translations">
+                                                <i class="fa fa-language"></i>
+                                            </a>
                                             <button data-id="<?php echo e($row->id); ?>" class="btn btn-danger btn-round deleteBtn"
                                                 style="cursor: pointer" type="submit"><i
                                                     class="fa fa-trash"></i></button>

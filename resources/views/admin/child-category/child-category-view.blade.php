@@ -19,7 +19,7 @@
                     <ul class="header-dropdown dropdown">
 
                         <li><a href="javascript:void(0);" class="full-screen"><i class="fa fa-expand"></i></a></li>
-                       
+
                     </ul>
                 </div>
                 <div class="body">

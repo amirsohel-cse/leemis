@@ -1,6 +1,4 @@
-@extends('admin.layout.master.master')
-
-@section('main-content')
+<?php $__env->startSection('main-content'); ?>
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 col-sm-12">
@@ -45,33 +43,33 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @forelse($subcategories as $row)
+                                <?php $__empty_1 = true; $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
-                                        <td>{{ isset($row->category->name) ? $row->category->name : '' }}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>{{ $row->slug }}</td>
+                                        <td><?php echo e(isset($row->category->name) ? $row->category->name : ''); ?></td>
+                                        <td><?php echo e($row->name); ?></td>
+                                        <td><?php echo e($row->slug); ?></td>
                                         <td>
-                                            <select class="theme-bg selectStatus" data-id="{{ $row->id }}">
-                                                <option value="1" {{ $row->status == 1 ? 'selected' : '' }}>Active
+                                            <select class="theme-bg selectStatus" data-id="<?php echo e($row->id); ?>">
+                                                <option value="1" <?php echo e($row->status == 1 ? 'selected' : ''); ?>>Active
                                                 </option>
-                                                <option value="0" {{ $row->status == 0 ? 'selected' : '' }}>Deactive
+                                                <option value="0" <?php echo e($row->status == 0 ? 'selected' : ''); ?>>Deactive
                                                 </option>
                                             </select>
                                         </td>
                                         <td>
-                                            <button data-id="{{ $row->id }}" data-toggle="modal"
-                                                data-target="#editSubCategoryModal" data-category="{{$row}}" data-url="{{route('subcategory-update', $row->id)}}"
+                                            <button data-id="<?php echo e($row->id); ?>" data-toggle="modal"
+                                                data-target="#editSubCategoryModal" data-category="<?php echo e($row); ?>" data-url="<?php echo e(route('subcategory-update', $row->id)); ?>"
                                                 class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
-                                            <button data-id="{{ $row->id }}" class="btn btn-danger btn-round deleteBtn"
+                                            <button data-id="<?php echo e($row->id); ?>" class="btn btn-danger btn-round deleteBtn"
                                                 style="cursor: pointer" type="submit"><i
                                                     class="fa fa-trash"></i></button>
                                         </td>
 
-                                    @empty
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                         <td colspan="5" class="text-center">No data Available</td>
                                     </tr>
-                                @endforelse
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -82,7 +80,7 @@
     </div>
 
 
-    {{-- Add subcategory Modal starts --}}
+    
     <div class="modal fade bd-example-modal-lg" tabindex="-1" id="addSubCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -96,7 +94,7 @@
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto">
                             <form action="" id="add-subcategory-form" method="post" enctype="multipart/form-data">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <span style="color: red" class="catIdError"></span>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -105,11 +103,11 @@
                                     </div>
                                     <select class="form-control" name="category_id" id="categoryId">
                                         <option value="" data-display="Select"><strong>Select Category</strong></option>
-                                        @forelse($categories as $row)
-                                            <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                        @empty
+                                        <?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                            <option value="<?php echo e($row->id); ?>"><?php echo e($row->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                             <option value=""><strong>No Categories Added</strong></option>
-                                        @endforelse
+                                        <?php endif; ?>
                                     </select>
                                 </div>
 
@@ -149,9 +147,9 @@
                                                 Brand*</strong></span>
                                     </div>
                                     <select name="top_brand" id="" class="form-control">
-                                        @foreach ($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($brand->id); ?>"><?php echo e($brand->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
 
                                 </div>
@@ -169,9 +167,9 @@
             </div>
         </div>
     </div>
-    {{-- Add subCategory Modal ends --}}
+    
 
-    {{-- Edit Sub Category Modal Starts --}}
+    
     <div class="modal fade bd-example-modal-lg" tabindex="-1" id="editSubCategoryModal" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -185,7 +183,7 @@
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto">
                             <form action="" id="edit-subcategory-form" method="post" enctype="multipart/form-data">
-                                @csrf
+                                <?php echo csrf_field(); ?>
 
                                 <input type="hidden" name="id" id="indentifier">
                                 <span style="color: red" class="catIdError"></span>
@@ -196,11 +194,11 @@
                                     </div>
                                     <select class="form-control" name="category_id" id="editcategoryId">
                                         <option value=""><strong>Select Category</strong></option>
-                                        @forelse($categories as $row)
-                                            <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                        @empty
+                                        <?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                            <option value="<?php echo e($row->id); ?>"><?php echo e($row->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                             <option value=""><strong>No Categories Added</strong></option>
-                                        @endforelse
+                                        <?php endif; ?>
                                     </select>
                                 </div>
 
@@ -244,9 +242,9 @@
                                                 Brand*</strong></span>
                                     </div>
                                     <select name="top_brand" id="" class="form-control topbrand">
-                                        @foreach ($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($brand->id); ?>"><?php echo e($brand->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
 
                                 </div>
@@ -263,8 +261,10 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('page-scripts')
-    <script src="{{ asset('/backend/js/sub-category.js') }}"></script>
-@endsection
+<?php $__env->startSection('page-scripts'); ?>
+    <script src="<?php echo e(asset('/backend/js/sub-category.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layout.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/admin/sub-category/sub-category-view.blade.php ENDPATH**/ ?>

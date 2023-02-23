@@ -31,13 +31,52 @@ class TranslationController extends Controller
             ]);
         }
 
-        $trans = new CategoryTranslation();
-        $trans->category_id = $request->get('category_id');
-        $trans->name = $request->get('name');
-        $trans->lang = $request->get('lang');
-        $trans->save();
+        $getTranslation = CategoryTranslation::where('category_id', $request->category_id)->where('lang', $request->lang)->first();
+        if (!$getTranslation) {
+            $trans = new CategoryTranslation();
+            $trans->category_id = $request->get('category_id');
+            $trans->name = $request->get('name');
+            $trans->lang = $request->get('lang');
+            $trans->save();
 
-        return response()->json(['success' => 'Translation added successfully.']);
+            return response()->json(['success' => 'Translation added successfully.']);
+        } else{
+            return response()->json([
+                'error' => ["Translation already exists"],
+            ]);
+        }
+
+
+    }
+
+    public function editTranslation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'lang' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all(),
+            ]);
+        }
+
+        $getTranslation = CategoryTranslation::where('category_id', $request->category_id)->where('id', '!=', $request->translation_id)->where('lang', $request->lang)->first();
+        if (!$getTranslation) {
+            $trans = CategoryTranslation::where('id', $request->translation_id)->first();
+            $trans->category_id = $request->get('category_id');
+            $trans->name = $request->get('name');
+            $trans->lang = $request->get('lang');
+            $trans->save();
+
+            return response()->json(['success' => 'Translation updated successfully.']);
+        } else{
+            return response()->json([
+                'error' => ["Translation already exists"],
+            ]);
+        }
+
 
     }
 

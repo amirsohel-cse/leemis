@@ -37,9 +37,9 @@
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->lang }}</td>
                                         <td style="width: 20%;" class="text-center">
-                                            <button data-id="{{ $row->id }}" data-toggle="modal"
-                                                data-target="#editCategoryModal"
-                                                class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer"
+                                            <button data-id="{{ $row->id }}" data-name="{{ $row->name }}" data-lang="{{ $row->lang }}" data-toggle="modal"
+                                                data-target="#editLangCategoryModal"
+                                                class="btn btn-primary btn-round mr-1 editDataBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
 
                                             <button data-id="{{ $row->id }}" class="btn btn-danger btn-round deleteBtn"
@@ -135,7 +135,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title h4" id="myLargeModalLabel"><strong>ADD CATEGORY TRANSLATION</strong></h5>
+                    <h5 class="modal-title h4" id="myLargeModalLabel"><strong>EDIT TRANSLATION</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -143,29 +143,31 @@
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto">
 
-                            <form action="" id="add-category-form" method="post" enctype="multipart/form-data">
+                            <form action="" id="edit-category-form" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3"></label>
                                     <div class="col-sm-9">
-                                        <div class="text-danger print-error-msg" style="display: none;">
+                                        <div class="text-danger print-edit-error-msg" style="display: none;">
                                             <ul></ul>
                                         </div>
                                     </div>
                                 </div>
 
-                                <input type="hidden" id="translate_category_id" name="category_id" />
+                                <input type="hidden" id="translation_id" name="translation_id" />
+                                <input type="hidden" id="edit_category_id" value="{{ $category->id }}" name="category_id" />
+
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3">Category Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cat_name" id="cat_name"
+                                        <input type="text" class="form-control" value="{{ $category->name }}"
                                             readonly />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3">Select Language</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="language" id="language">
+                                        <select class="form-control" name="language" id="edit_language">
                                             <option value="">Select language</option>
                                             <option value="EN">English</option>
                                             <option value="cn">Traditional Chinese</option>
@@ -176,15 +178,14 @@
                                     <label for="" class="col-sm-3">Translated Name</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="translated_name"
-                                            id="translated_name" />
+                                            id="edit_translated_name" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3"></label>
                                     <div class="col-sm-9">
-                                        <button type="button" class="btn btn-primary theme-bg gradient btn-submit">Update
-                                            Category</button>
+                                        <button type="button" class="btn btn-primary theme-bg gradient edit-btn-submit">Update Translation</button>
                                     </div>
                                 </div>
                             </form>
@@ -202,6 +203,15 @@
     <!--<link rel="stylesheet" href="{{ asset('/backend/assets/css/nice-select.css') }}">-->
 @endsection
 @section('page-scripts')
+    <script>
+        $(document).ready(function() {
+            $('.editDataBtn').on('click', function() {
+                $('#translation_id').val($(this).data('id'));
+                $('#edit_language').val($(this).data('lang'));
+                $('#edit_translated_name').val($(this).data('name'));
+            });
+        });
+    </script>
     <script>
         $(".add-btn-submit").click(function(e) {
             e.preventDefault();
@@ -244,6 +254,53 @@
             $(".print-error-msg").css('display', 'block');
             $.each(msg, function(key, value) {
                 $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+            });
+
+        }
+
+        $(".edit-btn-submit").click(function(e) {
+            e.preventDefault();
+            var category_id = $("#edit_category_id").val();
+            var translation_id = $("#translation_id").val();
+            var name = $("#edit_translated_name").val();
+            var lang = $("#edit_language").val();
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('admin.editCategoryTranslation') }}",
+                data: {
+                    category_id: category_id,
+                    translation_id: translation_id,
+                    name: name,
+                    lang: lang
+                },
+                beforeSend: function() {
+                    $(".edit-btn-submit").addClass('disabled');
+                    $(".edit-btn-submit").html('<i class="fa fa-spinner fa-spin"></i> Loading');
+                },
+                success: function(data) {
+                    if ($.isEmptyObject(data.error)) {
+                        toastr.success(data.success);
+                        $('#editLangCategoryModal').modal('hide');
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    } else {
+                        printEditErrorMsg(data.error);
+                    }
+                    $(".edit-btn-submit").removeClass('disabled');
+                    $(".edit-btn-submit").html('Update Translation');
+                }
+            });
+
+        });
+
+        function printEditErrorMsg(msg) {
+            $(".print-edit-error-msg").find("ul").html('');
+            $(".print-edit-error-msg").css('display', 'block');
+            $.each(msg, function(key, value) {
+                $(".print-edit-error-msg").find("ul").append('<li>' + value + '</li>');
             });
 
         }

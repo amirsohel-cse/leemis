@@ -415,6 +415,7 @@ Route::middleware('optimizeImages')->group(function () {
                 Route::get('/translations/{id}', 'Backend\TranslationController@categoryTranslation')->name('admin.categoryTranslations');
                 Route::post('/translations/delete', 'Backend\TranslationController@deleteCategoryTranslation')->name('admin.deleteCategoryTranslation');
                 Route::post('/add-category-translation', 'Backend\TranslationController@addTranslation')->name('admin.addCategoryTranslation');
+                Route::post('/update-category-translation', 'Backend\TranslationController@editTranslation')->name('admin.editCategoryTranslation');
             });
             /*Category routes ends*/
 

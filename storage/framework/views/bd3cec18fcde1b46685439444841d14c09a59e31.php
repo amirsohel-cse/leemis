@@ -72,12 +72,7 @@
                                                 class="btn btn-primary btn-round mr-1 editBtn" style="cursor: pointer"
                                                 type="button"><i class="fa fa-edit"></i> Edit</button>
 
-                                            <button class="btn btn-primary mr-1 addTranslationBtn"
-                                                data-id="<?php echo e($row->id); ?>" data-name="<?php echo e($row->name); ?>"
-                                                data-toggle="modal" data-target="#addLangCategoryModal"
-                                                title="Add Language">
-                                                <i class="fa fa-language"></i>
-                                            </button>
+                                            
 
                                             <button class="btn btn-primary btn-attr mr-1"
                                                 data-href="<?php echo e(route('category-attributes', @$row->id)); ?>"
@@ -89,6 +84,12 @@
                                                 href="<?php echo e(route('category-attributes-show', @$row->id)); ?>"
                                                 data-toggle="tooltip" title="Attributes">
                                                 <i class="fa fa-eye"></i>
+                                            </a>
+
+                                            <a class="btn btn-primary mr-1"
+                                                href="<?php echo e(route('admin.categoryTranslations',['id'=>$row->id])); ?>"
+                                                data-toggle="tooltip" title="Translations">
+                                                <i class="fa fa-language"></i>
                                             </a>
 
                                             <button data-id="<?php echo e($row->id); ?>"

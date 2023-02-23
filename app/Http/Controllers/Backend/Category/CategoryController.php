@@ -229,27 +229,4 @@ class CategoryController extends Controller
         ], 200);
 
     }
-
-    public function addTranslation(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'lang' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => $validator->errors()->all(),
-            ]);
-        }
-
-        $trans = new CategoryTranslation();
-        $trans->category_id = $request->get('category_id');
-        $trans->name = $request->get('name');
-        $trans->lang = $request->get('lang');
-        $trans->save();
-
-        return response()->json(['success' => 'Translation added successfully.']);
-
-    }
 }

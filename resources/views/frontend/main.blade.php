@@ -138,7 +138,7 @@
 
                                             <div class="d-flex flex-wrap justify-content-between align-items-center">
                                                 <div class="product-price">
-                                                    TK @if ($item->price == 0)
+                                                    HK$ @if ($item->price == 0)
                                                         <ins class="new-price">{{ $item->previous_price }}</ins>
                                                     @else
                                                         <ins class="new-price">{{ $item->price }}</ins><del
@@ -268,7 +268,7 @@
 
                                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                                             <div class="product-price">
-                                                TK @if ($item->price == 0)
+                                                HK$ @if ($item->price == 0)
                                                     <ins class="new-price">{{ $item->previous_price }}</ins>
                                                 @else
                                                     <ins class="new-price">{{ $item->price }}</ins><del
@@ -397,7 +397,7 @@
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
                                             <div class="product-price">
-                                                TK @if ($item->price == 0)
+                                                HK$ @if ($item->price == 0)
                                                     <ins class="new-price">{{ $item->previous_price }}</ins>
                                                 @else
                                                     <ins class="new-price">{{ $item->price }}</ins><del
@@ -510,7 +510,7 @@
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
                                             <div class="product-price">
-                                                TK @if ($item->price == 0)
+                                                HK$ @if ($item->price == 0)
                                                     <ins class="new-price">{{ $item->previous_price }}</ins>
                                                 @else
                                                     <ins class="new-price">{{ $item->price }}</ins><del
@@ -648,7 +648,7 @@
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
                                             <div class="product-price">
-                                                TK @if ($item->price == 0)
+                                                HK$ @if ($item->price == 0)
                                                     <ins class="new-price">{{ $item->previous_price }}</ins>
                                                 @else
                                                     <ins class="new-price">{{ $item->price }}</ins><del

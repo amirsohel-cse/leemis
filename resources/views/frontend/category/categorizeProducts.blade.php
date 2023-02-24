@@ -2,7 +2,7 @@
 @section('content')
 <head>
     <link rel="stylesheet" type="text/css" href="{{('frontend/assets/css/style.min.css')}}">
-   
+
 </head>
 <style>
     .category-top-slider .single-slide a img {
@@ -12,7 +12,7 @@
 </style>
 <main class="container">
     <div class="category-top-slider">
-        @foreach ($sliders as $slider) 
+        @foreach ($sliders as $slider)
         <div class="single-slide">
             <a href="{{$slider->link}}">
                 <img src="\storage\storeSliders\{{$slider->photo}}" alt="image">
@@ -51,7 +51,7 @@
                         <div class="filter-actions">
                             <label>Filter :</label>
                         </div>
-                        
+
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title"><span>All Categories</span></h3>
                             <ul class="widget-body filter-items search-ul">
@@ -91,13 +91,13 @@
                             <h3 class="widget-title"><span>Price</span></h3>
                             <div class="widget-body">
                                 <ul class="filter-items search-ul" id="priceUl">
-                                    <li><a href="#">Tk. 0 - 500</a></li>
-                                    <li><a href="#">Tk. 500 - 1000</a></li>
-                                    <li><a href="#">Tk. 1000 - 2000</a></li>
-                                    <li><a href="#">Tk. 2000 - 3000</a></li>
-                                    <li><a href="#">Tk. 3000 - 4000</a></li>
-                                    <li><a href="#">Tk. 4000 - 5000</a></li>
-                                    <li><a href="#">Tk. 5001 +</a></li>
+                                    <li><a href="#">HK$. 0 - 500</a></li>
+                                    <li><a href="#">HK$. 500 - 1000</a></li>
+                                    <li><a href="#">HK$. 1000 - 2000</a></li>
+                                    <li><a href="#">HK$. 2000 - 3000</a></li>
+                                    <li><a href="#">HK$. 3000 - 4000</a></li>
+                                    <li><a href="#">HK$. 4000 - 5000</a></li>
+                                    <li><a href="#">HK$. 5001 +</a></li>
                                 </ul>
                                 <form class="price-range">
                                     <input type="number" name="min_price" class="min_price text-center"
@@ -131,10 +131,10 @@
                                             title="Add to wishlist"></a>
                                     </div>
                                     @endif -->
-                                    
-                                    <!-- <div class="product-action-horizontal">    
-                                        @if($item->online_payment==1)                   
-                                    <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>                                                                          
+
+                                    <!-- <div class="product-action-horizontal">
+                                        @if($item->online_payment==1)
+                                    <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>
                                     @else
                                     <small class="text-success font-weight-bold text-uppercase">Cash On Delivery</small>
                                     @endif
@@ -167,7 +167,7 @@
 
                                     <div class="d-flex flex-wrap align-items-center justify-content-between">
                                         <div class="product-price mr-2">
-                                            TK <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
+                                            HK$ <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
                                         </div>
                                         <div class="ratings-container">
                                             <div class="ratings-full">

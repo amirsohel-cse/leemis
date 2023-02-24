@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.3.7/jquery.jscroll.min.js"></script>
 </head>
 <main class="container">
-    
+
     <div class="category-top-slider">
         @foreach ($sliders as $slider)
         <div class="single-slide">
@@ -31,7 +31,7 @@
                     <div class="sticky-sidebar">
                         <div class="filter-actions">
                             <label>Filter :</label>
-                            
+
                         </div>
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title"><span>All Categories</span></h3>
@@ -71,13 +71,13 @@
                             <h3 class="widget-title"><span>Price</span></h3>
                             <div class="widget-body">
                                 <ul class="filter-items search-ul" id="priceUl">
-                                    <li><a href="#">Tk. 0 - 500</a></li>
-                                    <li><a href="#">Tk. 500 - 1000</a></li>
-                                    <li><a href="#">Tk. 1000 - 2000</a></li>
-                                    <li><a href="#">Tk. 2000 - 3000</a></li>
-                                    <li><a href="#">Tk. 3000 - 4000</a></li>
-                                    <li><a href="#">Tk. 4000 - 5000</a></li>
-                                    <li><a href="#">Tk. 5001 +</a></li>
+                                    <li><a href="#">HK$. 0 - 500</a></li>
+                                    <li><a href="#">HK$. 500 - 1000</a></li>
+                                    <li><a href="#">HK$. 1000 - 2000</a></li>
+                                    <li><a href="#">HK$. 2000 - 3000</a></li>
+                                    <li><a href="#">HK$. 3000 - 4000</a></li>
+                                    <li><a href="#">HK$. 4000 - 5000</a></li>
+                                    <li><a href="#">HK$. 5001 +</a></li>
                                 </ul>
                                 <form class="price-range">
                                     <input type="number" name="min_price" class="min_price text-center"
@@ -110,10 +110,10 @@
                                         title="Add to wishlist"></a>
                                     </div>
                                     @endif
-                                    
-                                    <div class="product-action-horizontal">    
-                                        @if($item->online_payment==1)                   
-                                        <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>                                                                          
+
+                                    <div class="product-action-horizontal">
+                                        @if($item->online_payment==1)
+                                        <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>
                                         @else
                                         <small class="text-success font-weight-bold text-uppercase">Cash On Delivery</small>
                                         @endif
@@ -170,7 +170,7 @@
                                             )</a>
                                     </div>
                                     <div class="product-price">
-                                        TK <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
+                                        HK$ <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
                                     </div>
                                     @if($item->stock > 0)
                                     <a style="width:100%" data-id="{{$item->id}}" class="btn btn-primary btn-cart" href="#"> <i class="fas fa-shopping-cart"></i>&nbsp  Buy Now</a>

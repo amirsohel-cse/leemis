@@ -31,13 +31,13 @@
                                     <div class="product-action-vertical">
                                        <a href="#" data-id="{{$item->id}}" class="btn-product-icon btn-wishlist w-icon-heart"
                            title="Add to wishlist"></a>
-                           
+
                                     </div>
                                     @endif
-                                    
-                                    <!-- <div class="product-action-horizontal">    
-                                        @if($item->online_payment==1)                   
-                                    <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>                                                                  
+
+                                    <!-- <div class="product-action-horizontal">
+                                        @if($item->online_payment==1)
+                                    <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>
                                     @else
                                     <small class="text-success font-weight-bold text-uppercase">Cash On Delivery</small>
                                     @endif
@@ -49,7 +49,7 @@
                                             <button style="width: 100%; background-color: darkred; color: white" type="button" class="btn btn-danger" disabled><i class="fas fa-shopping-cart"></i>&nbsp  Out of Stock</button>
                                         @endif
                                     </div>
-                                    
+
                                 </figure>
                                 <div class="product-details">
                                     <h4 class="product-name"><a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">{{$item->name}}</a></h4>
@@ -88,7 +88,7 @@
                                             )</a>
                                     </div>
                                     <div class="product-price">
-                                        TK <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
+                                        HK$ <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
                                     </div>
                             </div>
 

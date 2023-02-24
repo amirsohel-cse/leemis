@@ -52,7 +52,7 @@
                                </a>
                             </td>
                             <td class="product-price">
-                                <ins class="new-price">Tk. {{$row->price}}</ins>
+                                <ins class="new-price">HK$. {{$row->price}}</ins>
                             </td>
                             <td class="product-stock-status">
                                 @if($row->stock_status == 1)

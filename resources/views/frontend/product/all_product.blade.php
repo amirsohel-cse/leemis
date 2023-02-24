@@ -2,7 +2,7 @@
 @section('content')
 
 <Style>
-    
+
 .btn-product-icon:hover, .btn-product-icon:active {
     border-color: #fd3d11 !important;
     color: #fff !important;
@@ -12,7 +12,7 @@
 
     <head>
         <link rel="stylesheet" type="text/css" href="{{('frontend/assets/css/style.min.css')}}">
-        
+
     </head>
     <main class="mains checkouts mt-5">
         <div class="page-content">
@@ -33,13 +33,13 @@
                             <h3 style="border: 1px solid #fd3d11;" class="widget-title m-4 p-3 collapsed"><span class="m-3">Price &nbsp</span></h3>
                             <div class="widget-body m-3" style="display: none">
                                 <ul class="filter-items search-ul" id="priceUl">
-                                    <li><a href="#">Tk. 0 - 500</a></li>
-                                    <li><a href="#">Tk. 500 - 1000</a></li>
-                                    <li><a href="#">Tk. 1000 - 2000</a></li>
-                                    <li><a href="#">Tk. 2000 - 3000</a></li>
-                                    <li><a href="#">Tk. 3000 - 4000</a></li>
-                                    <li><a href="#">Tk. 4000 - 5000</a></li>
-                                    <li><a href="#">Tk. 5001 +</a></li>
+                                    <li><a href="#">HK$. 0 - 500</a></li>
+                                    <li><a href="#">HK$. 500 - 1000</a></li>
+                                    <li><a href="#">HK$. 1000 - 2000</a></li>
+                                    <li><a href="#">HK$. 2000 - 3000</a></li>
+                                    <li><a href="#">HK$. 3000 - 4000</a></li>
+                                    <li><a href="#">HK$. 4000 - 5000</a></li>
+                                    <li><a href="#">HK$. 5001 +</a></li>
                                 </ul>
                                 <form class="price-range">
                                     <input type="number" name="min_price" class="min_price text-center"
@@ -60,7 +60,7 @@
                                 <div class="sticky-sidebar">
                                     <div class="filter-actions">
                                         <label>Filter :</label>
-                                        
+
                                     </div>
                                     <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><span>All Categories</span></h3>
@@ -100,13 +100,13 @@
                                         <h3 class="widget-title"><span>Price</span></h3>
                                         <div class="widget-body">
                                             <ul class="filter-items search-ul" id="priceUl">
-                                                <li><a href="#">Tk. 0 - 500</a></li>
-                                                <li><a href="#">Tk. 500 - 1000</a></li>
-                                                <li><a href="#">Tk. 1000 - 2000</a></li>
-                                                <li><a href="#">Tk. 2000 - 3000</a></li>
-                                                <li><a href="#">Tk. 3000 - 4000</a></li>
-                                                <li><a href="#">Tk. 4000 - 5000</a></li>
-                                                <li><a href="#">Tk. 5001 +</a></li>
+                                                <li><a href="#">HK$. 0 - 500</a></li>
+                                                <li><a href="#">HK$. 500 - 1000</a></li>
+                                                <li><a href="#">HK$. 1000 - 2000</a></li>
+                                                <li><a href="#">HK$. 2000 - 3000</a></li>
+                                                <li><a href="#">HK$. 3000 - 4000</a></li>
+                                                <li><a href="#">HK$. 4000 - 5000</a></li>
+                                                <li><a href="#">HK$. 5001 +</a></li>
                                             </ul>
                                             <form class="price-range">
                                                 <input type="number" name="min_price" class="min_price text-center"
@@ -140,9 +140,9 @@
                                                                 title="Add to wishlist"></a>
                                                             @endif
                                                         </div>
-                                                        <!-- <div class="product-action-horizontal">    
-                                                            @if($item->online_payment==1)                   
-                                                            <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>                                                                          
+                                                        <!-- <div class="product-action-horizontal">
+                                                            @if($item->online_payment==1)
+                                                            <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>
                                                             @else
                                                             <small class="text-success font-weight-bold text-uppercase">Cash On Delivery</small>
                                                             @endif
@@ -161,7 +161,7 @@
                                                         </h3>
                                                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                                                             <div class="product-price">
-                                                                TK <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
+                                                                HK$ <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
                                                             </div>
                                                             <div class="ratings-container">
                                                                 <div class="ratings-full">

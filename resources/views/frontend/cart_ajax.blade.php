@@ -53,7 +53,7 @@
                     class="product-name">{{ $cart_item->product->name }}</a>
                 <div class="price-box">
                     <span class="product-quantity">{{ $cart_item->qty }}</span>
-                    <span class="product-price">Tk. {{ $cart_item->subtotal }}</span>
+                    <span class="product-price">HK$. {{ $cart_item->subtotal }}</span>
                 </div>
             </div>
             <figure class="product-media">
@@ -68,14 +68,14 @@
         @endif
     @endforeach
     </div>
-    
+
     @auth
     <div class="sidebar-cart-footer">
         <div class="cart-total">
             <label>{{ languageChange('Subtotal') }}:</label>
             <span class="price">{{ \App\Model\Cart::whereHas('product')->where('user_id', auth()->id())->sum('subtotal') }}</span>
         </div>
-    
+
         <div class="cart-action">
             <a href="{{ route('view.cart') }}"
                 class="btn btn-dark btn-outline btn-rounded">{{ languageChange('View Cart') }}</a>
@@ -84,7 +84,7 @@
         </div>
     </div>
     @endauth
-    
+
     @guest
         <div class="cart-action">
             <a href="{{ route('customer.login') }}" class="btn btn-dark btn-outline btn-rounded"

@@ -5,8 +5,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.3.7/jquery.jscroll.min.js"></script>
 </head>
 <main class="container py-5">
-    
-    
+
+
 
                 <div class="infinite-scroll">
                 <div class="main-content mt-2">
@@ -53,7 +53,7 @@
 
                                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                                             <div class="product-price">
-                                                TK @if($item->price == 0)<ins class="new-price">{{ $item->previous_price }}</ins> @else <ins class="new-price">{{ $item->price }}</ins><del class="old-price">{{ $item->previous_price }}</del>@endif
+                                                HK$ @if($item->price == 0)<ins class="new-price">{{ $item->previous_price }}</ins> @else <ins class="new-price">{{ $item->price }}</ins><del class="old-price">{{ $item->previous_price }}</del>@endif
                                             </div>
 
                                             <div class="ratings-container">

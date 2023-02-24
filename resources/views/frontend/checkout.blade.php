@@ -104,7 +104,7 @@
                                             class="form-control text-dark form-control-md" name="city" required
                                             id="city">
                                     </div>
-                                  
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -179,7 +179,7 @@
                                             @forelse ($ship as $item)
                                                 <div>
                                                     <input type="radio"
-                                                        value="{{ $item->price .'TK '. $item->title }}"
+                                                        value="{{ $item->price .'HK$ '. $item->title }}"
                                                         class="ship" id="ship" name="ship">
                                                     <label class="color-dark">{{ $item->title }}:
                                                         {{ $item->price }}</label>
@@ -200,12 +200,12 @@
                                         </div>
                                         <!-- <tr class="shipping-methods">
                                             <td colspan="2" class="text-lefts">
-                                                
-                                                
+
+
 
                                                         </td>
                                                         </tr>
-                                                        
+
                                         </tfoot> -->
                                         <h4 class="title font-weight-bold ls-25 pb-0 mb-1">
                                             {{ languageChange('Payment Methods') }}</h4>
@@ -236,7 +236,7 @@
                                                         </button>
 
                                                         <button id="sslczPayBtn" class="ssl-btn"  token="if you have any token validation"
-                                                            postdata="" endpoint="/pay-via-ajax"> 
+                                                            postdata="" endpoint="/pay-via-ajax">
                                                             <img src="{{ asset('ssl-pay.png') }}" alt=""> Pay with SSLCOMMERZ
                                                         </button>
                                                     </div>

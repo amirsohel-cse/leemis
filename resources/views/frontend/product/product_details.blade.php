@@ -91,7 +91,7 @@
                                         <hr class="product-divider">
                                         <div class="product-price">
 
-                                            TK @if ($item->price == 0)
+                                            HK$ @if ($item->price == 0)
                                                 <ins class="new-price">{{ $item->previous_price }}</ins>
                                             @else
                                                 <ins class="new-price">{{ $item->price }}</ins><del
@@ -238,12 +238,12 @@
                                     if ($right) {
                                         $right = $right->text;
                                     }
-                                    
+
                                     $right2 = \App\Model\HeaderText::where('type', '=', 'right2')->first();
                                     if ($right2) {
                                         $right2 = $right2->text;
                                     }
-                                    
+
                                 @endphp
                                 <div class="col-md-4">
                                     <div class="widget widget-icon-box mb-6 product-details-widget">
@@ -434,7 +434,7 @@
                                         ->where('product_id', $item->id)
                                         ->where('rating', 1)
                                         ->count();
-                                    
+
                                     $star2 = $item->ratings
                                         ->where('product_id', $item->id)
                                         ->where('rating', 2)
@@ -451,14 +451,14 @@
                                         ->where('product_id', $item->id)
                                         ->where('rating', 5)
                                         ->count();
-                                    
+
                                     $tot_stars = $star1 + $star2 + $star3 + $star4 + $star5;
                                     if ($tot_stars > 0) {
                                         $ar = 1 * $star1 + 1 * $star2 + 1 * $star3 + 1 * $star4 + (1 * $star5) / 5;
                                     } else {
                                         $ar = 0;
                                     }
-                                    
+
                                     ?>
 
 
@@ -483,7 +483,7 @@
                                                     </div>
                                                     <div class="rating-overview-area">
                                                         <?php
-                                                        
+
                                                         for ($i = 1; $i <= 5; ++$i) {
                                                             $var = "star$i";
                                                             $count = $$var;
@@ -492,13 +492,13 @@
                                                             } else {
                                                                 $percent = 0;
                                                             }
-                                                        
+
                                                             for ($j = 1; $j <= 5; ++$j) {
                                                                 echo $j <= $i ? '<i class="fas fa-star"></i>' : '  ';
                                                             }
                                                             printf("\t%2d (%5.2f%%)\n <p></p>", $count, $percent, 2);
                                                         }
-                                                        
+
                                                         ?>
                                                     </div>
 
@@ -753,7 +753,7 @@
                                 </div>
 
                                 <div class="product-price">
-                                    <ins class="new-price">TK {{ $item->price }}</ins><del class="old-price">TK
+                                    <ins class="new-price">HK$ {{ $item->price }}</ins><del class="old-price">HK$
                                         {{ $item->previous_price }}</del>
                                 </div>
                             </div>
@@ -823,7 +823,7 @@
                                                                             <img src="{{ url("storage/advertise/$item->image_file") }}" width="240" height="260"
                                                                                 style="background-color: #7def78;" />
                                                                         </figure>
-                                                                    
+
                                                                     </div>
                                                                 </div>
                         @empty

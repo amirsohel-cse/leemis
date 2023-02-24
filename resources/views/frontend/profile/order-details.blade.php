@@ -140,20 +140,20 @@ th, td {
                             <tr>
                               <th width="45%">Total Product</th>
                               <th width="10%">:</th>
-                              <td width="45%">{{$orders->qty}} 
+                              <td width="45%">{{$orders->qty}}
                                 @if($orders->attributes != null)
                                   @foreach ($orders->attributes as $attr)
                                     <p>{{\App\Model\CategoryAttribute::find($attr['attribute'])->name}} : {{\App\Model\AttributeOption::find($attr['option'])->option}}</p>
                                   @endforeach
                                   @else
-                                @endif 
+                                @endif
                               </td>
                             </tr>
                             <tr>
                               <th width="45%">Total Cost</th>
                               <th width="10%">:</th>
                               <td width="45%">
-                                <b>TK {{$orders->product->price}}</b>
+                                <b>HK$ {{$orders->product->price}}</b>
                               </td>
                             </tr>
                             <tr>
@@ -218,7 +218,7 @@ th, td {
                                 <th width="10%">:</th>
                                 <td width="45%">{{$orders->order->address}}</td>
                             </tr>
-                          
+
                             <tr>
                                 <th width="45%">City</th>
                                 <th width="10%">:</th>
@@ -229,7 +229,7 @@ th, td {
                                 <th width="10%">:</th>
                                 <td width="45%">{{$orders->order->zip}}</td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                   </div>
@@ -252,18 +252,18 @@ th, td {
                           <th class="cell100 column5">Quantity</th>
                           <th class="cell100 column5">Order Status</th>
                         </tr>
-                      
+
                         <tr class="row100 body border-bottom">
-                          <td style="padding:15px 20px" class="cell100 column1"><img width="100" src="{{url($orders->product->photo)}}"></td>   
+                          <td style="padding:15px 20px" class="cell100 column1"><img width="100" src="{{url($orders->product->photo)}}"></td>
 
                           <td style="padding:15px 20px" class="cell100 column1">
                           <a class="text-dark" href={{ url('productdetails',$orders->product->id.'/'.$orders->product->slug) }}>{{$orders->product->name}}</a></td>
 
                           <td style="padding:15px 20px" class="cell100 column2">@if(isset($orders->vendor->shop_name))<a href="{{route('shop.product',[$orders->vendor->id,Str::slug($orders->vendor->shop_name)])}}">{{$orders->vendor->shop_name}}</a>@endif</td>
 
-                          <td style="padding:15px 20px" class="cell100 column3">TK {{$orders->product->price}}</td>	
+                          <td style="padding:15px 20px" class="cell100 column3">HK$ {{$orders->product->price}}</td>
 
-                          <td style="padding:15px 20px" class="cell100 column4 nowrap">{{$orders->order->shipping_method}}</td>	
+                          <td style="padding:15px 20px" class="cell100 column4 nowrap">{{$orders->order->shipping_method}}</td>
 
                           <td style="padding:15px 20px" class="cell100 column5">{{$orders->qty}}</td>
 
@@ -279,13 +279,13 @@ th, td {
                               @elseif($orders->order->status == 'On Delivery')
                               <span id="order-status" class="text-dark font-weight-bold">On Delivery</span>
                             @endif
-                          </td>           
+                          </td>
                         </tr>
                         <tr class="order-table-bottom">
                           <td></td>
                           <td></td>
                           <td style="padding:15px 20px">Total Price</td>
-                          <td style="padding:15px 20px"><strong>TK {{$orders->order->total}}</strong></td>
+                          <td style="padding:15px 20px"><strong>HK$ {{$orders->order->total}}</strong></td>
                         </tr>
                       </tbody>
                     </table>

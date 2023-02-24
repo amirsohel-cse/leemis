@@ -68,13 +68,13 @@
                                             <h3 class="widget-title"><span>Price</span></h3>
                                             <div class="widget-body">
                                                 <ul class="filter-items search-ul" id="priceUl">
-                                                    <li><a href="#">Tk. 0 - 500</a></li>
-                                                    <li><a href="#">Tk. 500 - 1000</a></li>
-                                                    <li><a href="#">Tk. 1000 - 2000</a></li>
-                                                    <li><a href="#">Tk. 2000 - 3000</a></li>
-                                                    <li><a href="#">Tk. 3000 - 4000</a></li>
-                                                    <li><a href="#">Tk. 4000 - 5000</a></li>
-                                                    <li><a href="#">Tk. 5001 +</a></li>
+                                                    <li><a href="#">HK$. 0 - 500</a></li>
+                                                    <li><a href="#">HK$. 500 - 1000</a></li>
+                                                    <li><a href="#">HK$. 1000 - 2000</a></li>
+                                                    <li><a href="#">HK$. 2000 - 3000</a></li>
+                                                    <li><a href="#">HK$. 3000 - 4000</a></li>
+                                                    <li><a href="#">HK$. 4000 - 5000</a></li>
+                                                    <li><a href="#">HK$. 5001 +</a></li>
                                                 </ul>
                                                 <form class="price-range">
                                                     <input type="number" name="min_price" class="min_price text-center"
@@ -121,7 +121,7 @@
                                                                     class="btn btn-primary btn-cart" href="#"> <i
                                                                         class="fas fa-shopping-cart"></i>&nbsp Buy Now</a>
                                                             @else
-                                                                
+
                                                                 <button
                                                                     style="width: 100%; background-color: darkred; color: white"
                                                                     type="button" class="btn btn-danger" disabled><i
@@ -130,7 +130,7 @@
                                                             @endif
                                                         </div>
 
-                                                       
+
                                                     </figure>
                                                     <div class="badge-overlay">
                                                         <span class="top-left badge pink">SALE</span>
@@ -177,7 +177,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="product-price">
-                                                            TK <ins class="new-price">{{ $item->price }}</ins><del
+                                                            HK$ <ins class="new-price">{{ $item->price }}</ins><del
                                                                 class="old-price">{{ $item->previous_price }}</del>
                                                         </div>
                                                     </div>

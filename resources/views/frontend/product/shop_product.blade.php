@@ -9,13 +9,13 @@
 	width: 100%;
 	height: 200px;
 	@if(isset($banner->file))
-	
+
 	background: linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.3)), url("{{"/storage/storeFavicon/".$banner->file}}") center no-repeat;
 	@endif
 	background-size: cover;
 	position: relative;
     overflow: hidden;
-  
+
 }
         </style>
     </head>
@@ -33,7 +33,7 @@
                     <div class="ml-5">
                         <h3 class="banner-subtitle m-0  text-white font-weight-bold">{{$vendor->shop_name}}</h3>
                         <h6 class=" text-white m-0 text-uppercase ">{{$vendor->address}}</h6>
-                       
+
                         <input type="text" id="vendor_id" value="{{$vendor->id}}" hidden>
                     </div>
                 </div>
@@ -68,10 +68,10 @@
                                                             <button style="width: 100%; background-color: darkred; color: white" type="button" class="btn btn-danger" disabled><i class="fas fa-shopping-cart"></i>&nbsp  Stock Out</button>
                                                         @endif
                                                         </div>
-                                                        
-                                                    <!-- <div class="product-action-horizontal">    
-                                                        @if($item->online_payment==1)                   
-                                                       <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>                                                                          
+
+                                                    <!-- <div class="product-action-horizontal">
+                                                        @if($item->online_payment==1)
+                                                       <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>
                                                     @else
                                                     <small class="text-success font-weight-bold text-uppercase">Cash On Delivery</small>
                                                     @endif
@@ -128,7 +128,7 @@
                                                                 )</a>
                                                         </div>
                                                         <div class="product-price">
-                                                            TK <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
+                                                            HK$ <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -142,9 +142,9 @@
                                 {{ $shopProduct->links() }}
                             </div>
 
-                        
+
                         <!-- End of Main Content -->
-                    
+
                     <!-- End of Shop Content -->
                 </div>
             </div>
@@ -167,10 +167,10 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
             {{--Please Wait Modal--}}
 
-            
+
 
     </main>
 @endsection

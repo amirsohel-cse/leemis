@@ -297,8 +297,6 @@ class TranslationController extends Controller
                 'error' => ["Translation already exists"],
             ]);
         }
-
-
     }
 
     // public function editProductTranslationView(Request $request)

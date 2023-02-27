@@ -172,7 +172,7 @@
                         $('#addLangProductModal').modal('hide');
 
                         setTimeout(() => {
-                            location.reload();
+                            window.location.href = "{{ URL::to('admin/product/translations/') }}"+'/'+product_id
                         }, 1000);
                     } else {
                         printErrorMsg(data.error);

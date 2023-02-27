@@ -201,107 +201,6 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-scripts'); ?>
     <script>
-        $(document).ready(function() {
-            $('.editDataBtn').on('click', function() {
-                $('#translation_id').val($(this).data('id'));
-                $('#edit_language').val($(this).data('lang'));
-                $('#edit_translated_name').val($(this).data('name'));
-            });
-        });
-    </script>
-    <script>
-        $(".add-btn-submit").click(function(e) {
-            e.preventDefault();
-            var category_id = $("#category_id").val();
-            var name = $("#translated_name").val();
-            var lang = $("#language").val();
-
-            $.ajax({
-                type: 'POST',
-                url: "<?php echo e(route('admin.addProductTranslation')); ?>",
-                data: {
-                    category_id: category_id,
-                    name: name,
-                    lang: lang
-                },
-                beforeSend: function() {
-                    $(".add-btn-submit").addClass('disabled');
-                    $(".add-btn-submit").html('<i class="fa fa-spinner fa-spin"></i> Loading');
-                },
-                success: function(data) {
-                    if ($.isEmptyObject(data.error)) {
-                        toastr.success(data.success);
-                        $('#addLangProductModal').modal('hide');
-
-                        setTimeout(() => {
-                            location.reload();
-                        }, 1000);
-                    } else {
-                        printErrorMsg(data.error);
-                    }
-                    $(".add-btn-submit").removeClass('disabled');
-                    $(".add-btn-submit").html('Add Translation');
-                }
-            });
-
-        });
-
-        function printErrorMsg(msg) {
-            $(".print-error-msg").find("ul").html('');
-            $(".print-error-msg").css('display', 'block');
-            $.each(msg, function(key, value) {
-                $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
-            });
-
-        }
-
-        $(".edit-btn-submit").click(function(e) {
-            e.preventDefault();
-            var category_id = $("#edit_category_id").val();
-            var translation_id = $("#translation_id").val();
-            var name = $("#edit_translated_name").val();
-            var lang = $("#edit_language").val();
-
-            $.ajax({
-                type: 'POST',
-                url: "<?php echo e(route('admin.editProductTranslation')); ?>",
-                data: {
-                    category_id: category_id,
-                    translation_id: translation_id,
-                    name: name,
-                    lang: lang
-                },
-                beforeSend: function() {
-                    $(".edit-btn-submit").addClass('disabled');
-                    $(".edit-btn-submit").html('<i class="fa fa-spinner fa-spin"></i> Loading');
-                },
-                success: function(data) {
-                    if ($.isEmptyObject(data.error)) {
-                        toastr.success(data.success);
-                        $('#editLangProductModal').modal('hide');
-
-                        setTimeout(() => {
-                            location.reload();
-                        }, 1000);
-                    } else {
-                        printEditErrorMsg(data.error);
-                    }
-                    $(".edit-btn-submit").removeClass('disabled');
-                    $(".edit-btn-submit").html('Update Translation');
-                }
-            });
-
-        });
-
-        function printEditErrorMsg(msg) {
-            $(".print-edit-error-msg").find("ul").html('');
-            $(".print-edit-error-msg").css('display', 'block');
-            $.each(msg, function(key, value) {
-                $(".print-edit-error-msg").find("ul").append('<li>' + value + '</li>');
-            });
-
-        }
-
         $(".deleteBtn").click(function(e) {
             var translation_id = $(this).data('id');
 
@@ -325,14 +224,14 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'POST',
-                        url: "<?php echo e(route('admin.deleteCategoryTranslation')); ?>",
+                        url: "<?php echo e(route('admin.deleteProductTranslation')); ?>",
                         data: {
                             translation_id: translation_id
                         },
                         success: function(data) {
                             swalWithBootstrapButtons.fire(
                                 'Deleted',
-                                'Your file has been deleted successfully)',
+                                'Translation has been deleted successfully)',
                                 'success'
                             )
                             setTimeout(() => {
@@ -345,7 +244,7 @@
                 ) {
                     swalWithBootstrapButtons.fire(
                         'Cancelled',
-                        'Your file is safe :)',
+                        'Translation is safe :)',
                         'error'
                     )
                 }

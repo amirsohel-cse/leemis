@@ -287,6 +287,8 @@ class TranslationController extends Controller
             $trans->product_id = $request->get('product_id');
             $trans->name = $request->get('name');
             $trans->lang = $request->get('lang');
+            $trans->details = $request->get('description');
+            $trans->specification = json_encode($request->get('specifications'));
             $trans->save();
 
             return response()->json(['success' => 'Translation added successfully.']);

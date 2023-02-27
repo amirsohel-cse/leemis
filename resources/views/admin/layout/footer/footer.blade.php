@@ -50,7 +50,9 @@
 <script src="{{ asset('/backend/js/pages/ui/dialogs.js') }}"></script>
 
 <script>
-    $('#summernote').summernote();
+    $('#summernote').summernote({
+        height: 170,
+    });
     $('.dropdown-toggle').dropdown();
 </script>
 

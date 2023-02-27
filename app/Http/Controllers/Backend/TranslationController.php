@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Model\Product;
 use App\Model\Category;
+use App\Model\SubCategory;
+use App\Model\ChildCategory;
 use Illuminate\Http\Request;
 use App\Model\CategoryTranslation;
 use App\Http\Controllers\Controller;
-use App\Model\ChildCategory;
-use App\Model\ChildCategoryTranslation;
-use App\Model\SubCategory;
 use App\Model\SubCategoryTranslation;
+use App\Model\ChildCategoryTranslation;
+use App\model\ProductTranslation;
 use Illuminate\Support\Facades\Validator;
 
 class TranslationController extends Controller
@@ -245,6 +247,99 @@ class TranslationController extends Controller
     public function deleteChildCategoryTranslation(Request $request)
     {
         $category = ChildCategoryTranslation::find($request->translation_id);
+        $category->delete();
+
+        return response()->json(['success' => 'Translation deleted successfully.']);
+    }
+
+    //Product Translation
+    public function productTranslation(Request $request)
+    {
+        $product = Product::find($request->id);
+        $translations = ProductTranslation::where('product_id', $request->id)->get();
+
+        return view('admin.product.translations.product-translation', compact('product', 'translations'));
+    }
+
+    public function addProductTranslationView(Request $request)
+    {
+        $product = Product::find($request->id);
+
+        return view('admin.product.translations.add-translation', compact('product'));
+    }
+
+    public function addProductTranslation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'lang' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all(),
+            ]);
+        }
+
+        $getTranslation = ProductTranslation::where('product_id', $request->product_id)->where('lang', $request->lang)->first();
+        if (!$getTranslation) {
+            $trans = new ProductTranslation();
+            $trans->product_id = $request->get('product_id');
+            $trans->name = $request->get('name');
+            $trans->lang = $request->get('lang');
+            $trans->save();
+
+            return response()->json(['success' => 'Translation added successfully.']);
+        } else{
+            return response()->json([
+                'error' => ["Translation already exists"],
+            ]);
+        }
+
+
+    }
+
+    // public function editProductTranslationView(Request $request)
+    // {
+    //     $product = Product::find($request->id);
+
+    //     return view('admin.product.translations.add-translation', compact('product'));
+    // }
+
+    public function editProductTranslation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'lang' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all(),
+            ]);
+        }
+
+        $getTranslation = ProductTranslation::where('product_id', $request->product_id)->where('id', '!=', $request->translation_id)->where('lang', $request->lang)->first();
+        if (!$getTranslation) {
+            $trans = ProductTranslation::where('id', $request->translation_id)->first();
+            $trans->product_id = $request->get('product_id');
+            $trans->name = $request->get('name');
+            $trans->lang = $request->get('lang');
+            $trans->save();
+
+            return response()->json(['success' => 'Translation updated successfully.']);
+        } else{
+            return response()->json([
+                'error' => ["Translation already exists"],
+            ]);
+        }
+
+
+    }
+
+    public function deleteProductTranslation(Request $request)
+    {
+        $category = ProductTranslation::find($request->translation_id);
         $category->delete();
 
         return response()->json(['success' => 'Translation deleted successfully.']);

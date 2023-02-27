@@ -591,6 +591,13 @@ Route::middleware('optimizeImages')->group(function () {
                 // Route::get('/productDelete/{id}','Backend\Product\ProductController@productDelete')->name("productDelete");
                 Route::get('/productView/{id}', 'Backend\Product\ProductController@productView')->name("productView");
                 Route::get('/deActivatedProducts', 'Backend\Product\ProductController@deActivatedProducts')->name("deActivatedProducts");
+
+                //translations
+                Route::get('/translations/{id}', 'Backend\TranslationController@productTranslation')->name('admin.productTranslations');
+                Route::post('/translations/delete', 'Backend\TranslationController@deleteProductTranslation')->name('admin.deleteProductTranslation');
+                Route::get('/add-product-translation/{id}', 'Backend\TranslationController@addProductTranslationView')->name('admin.addProductTranslationView');
+                Route::post('/add-product-translation-post', 'Backend\TranslationController@addProductTranslation')->name('admin.addProductTranslation');
+                Route::post('/update-product-translation-post', 'Backend\TranslationController@editProductTranslation')->name('admin.editProductTranslation');
             });
         });
 

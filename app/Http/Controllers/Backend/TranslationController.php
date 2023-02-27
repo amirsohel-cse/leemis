@@ -288,7 +288,7 @@ class TranslationController extends Controller
             $trans->name = $request->get('name');
             $trans->lang = $request->get('lang');
             $trans->details = $request->get('description');
-            $trans->specification = json_encode($request->get('specifications'));
+            $trans->specification = $request->get('specifications');
             $trans->save();
 
             return response()->json(['success' => 'Translation added successfully.']);
@@ -299,14 +299,15 @@ class TranslationController extends Controller
         }
     }
 
-    // public function editProductTranslationView(Request $request)
-    // {
-    //     $product = Product::find($request->id);
+    public function editProductTranslationView(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        $translation = ProductTranslation::find($request->translation_id);
 
-    //     return view('admin.product.translations.add-translation', compact('product'));
-    // }
+        return view('admin.product.translations.edit-translation', compact('product','translation'));
+    }
 
-    public function editProductTranslation(Request $request)
+    public function updateProductTranslation(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',

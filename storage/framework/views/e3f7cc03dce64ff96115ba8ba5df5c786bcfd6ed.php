@@ -34,10 +34,7 @@
                                         <td><?php echo e($row->name); ?></td>
                                         <td><?php echo e($row->lang); ?></td>
                                         <td style="width: 20%;" class="text-center">
-                                            <button data-id="<?php echo e($row->id); ?>" data-name="<?php echo e($row->name); ?>" data-lang="<?php echo e($row->lang); ?>" data-toggle="modal"
-                                                data-target="#editLangProductModal"
-                                                class="btn btn-primary btn-round mr-1 editDataBtn" style="cursor: pointer"
-                                                type="button"><i class="fa fa-edit"></i> Edit</button>
+                                            <a href="<?php echo e(route('admin.editProductTranslationView', ['product_id'=>$product->id, 'translation_id'=>$row->id])); ?>" class="btn btn-primary btn-round mr-1 editDataBtn" style="cursor: pointer"><i class="fa fa-edit"></i> Edit</a>
 
                                             <button data-id="<?php echo e($row->id); ?>" class="btn btn-danger btn-round deleteBtn"
                                                 style="cursor: pointer" type="submit"><i class="fa fa-trash"></i></button>

@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h5 class="card-title float-left">Ad Translations for <b>{{ $product->name }}</b></h5>
+                    <h5 class="card-title float-left">Add Translations for <b>{{ $product->name }}</b></h5>
                     <a href="{{ route('admin.productTranslations', ['id' => $product->id]) }}"
                         class="btn btn-success btn-round float-right" id="addProductBtn"><i class="fa fa-plus"></i> All
                         Translations</a>
@@ -192,57 +192,5 @@
             });
 
         }
-
-
-        // $(".deleteBtn").click(function(e) {
-        //     var translation_id = $(this).data('id');
-
-        //     const swalWithBootstrapButtons = Swal.mixin({
-        //         customClass: {
-        //             confirmButton: 'btn btn-success ml-2',
-        //             cancelButton: 'btn btn-danger'
-        //         },
-        //         buttonsStyling: false
-        //     });
-
-        //     swalWithBootstrapButtons.fire({
-        //         title: 'Are you sure?',
-        //         text: "You won't be able to revert this!",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonText: 'Yes, delete it!',
-        //         cancelButtonText: 'No, cancel!',
-        //         reverseButtons: true
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             $.ajax({
-        //                 type: 'POST',
-        //                 url: "{{ route('admin.deleteCategoryTranslation') }}",
-        //                 data: {
-        //                     translation_id: translation_id
-        //                 },
-        //                 success: function(data) {
-        //                     swalWithBootstrapButtons.fire(
-        //                         'Deleted',
-        //                         'Your file has been deleted successfully)',
-        //                         'success'
-        //                     )
-        //                     setTimeout(() => {
-        //                         location.reload();
-        //                     }, 1000);
-        //                 }
-        //             });
-        //         } else if (
-        //             result.dismiss === Swal.DismissReason.cancel
-        //         ) {
-        //             swalWithBootstrapButtons.fire(
-        //                 'Cancelled',
-        //                 'Your file is safe :)',
-        //                 'error'
-        //             )
-        //         }
-        //     })
-
-        // });
     </script>
 @endsection

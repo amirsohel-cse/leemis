@@ -597,7 +597,8 @@ Route::middleware('optimizeImages')->group(function () {
                 Route::post('/translations/delete', 'Backend\TranslationController@deleteProductTranslation')->name('admin.deleteProductTranslation');
                 Route::get('/add-product-translation/{id}', 'Backend\TranslationController@addProductTranslationView')->name('admin.addProductTranslationView');
                 Route::post('/add-product-translation-post', 'Backend\TranslationController@addProductTranslation')->name('admin.addProductTranslation');
-                Route::post('/update-product-translation-post', 'Backend\TranslationController@editProductTranslation')->name('admin.editProductTranslation');
+                Route::get('/edit-product-translation/{product_id}/translation/{translation_id}', 'Backend\TranslationController@editProductTranslationView')->name('admin.editProductTranslationView');
+                Route::post('/update-product-translation-post', 'Backend\TranslationController@updateProductTranslation')->name('admin.updateProductTranslation');
             });
         });
 

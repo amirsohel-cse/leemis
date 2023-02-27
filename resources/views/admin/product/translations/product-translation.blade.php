@@ -36,10 +36,7 @@
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->lang }}</td>
                                         <td style="width: 20%;" class="text-center">
-                                            <button data-id="{{ $row->id }}" data-name="{{ $row->name }}" data-lang="{{ $row->lang }}" data-toggle="modal"
-                                                data-target="#editLangProductModal"
-                                                class="btn btn-primary btn-round mr-1 editDataBtn" style="cursor: pointer"
-                                                type="button"><i class="fa fa-edit"></i> Edit</button>
+                                            <a href="{{ route('admin.editProductTranslationView', ['product_id'=>$product->id, 'translation_id'=>$row->id]) }}" class="btn btn-primary btn-round mr-1 editDataBtn" style="cursor: pointer"><i class="fa fa-edit"></i> Edit</a>
 
                                             <button data-id="{{ $row->id }}" class="btn btn-danger btn-round deleteBtn"
                                                 style="cursor: pointer" type="submit"><i class="fa fa-trash"></i></button>

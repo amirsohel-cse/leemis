@@ -57,7 +57,7 @@
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Enter Description" id="summernote_editor" name="details" rows="7">{!! $translation->details !!}</textarea>
 
-                                    <textarea style="display: none;" id="description"></textarea>
+                                    <textarea style="display: none;" id="description">{!! $translation->details !!}</textarea>
                                 </div>
                             </div>
 
@@ -78,13 +78,13 @@
                                                 <div class="col-md-4">
                                                     <label>Specification Title</label>
                                                     <input name="specification[{{ $key }}][title]"
-                                                        class="form-control" value="{{ $spec['title'] }}" required>
+                                                        class="form-control spec_title" value="{{ $spec['title'] }}" required>
                                                 </div>
 
                                                 <div class="col-md-8">
                                                     <label>Specification Details</label>
                                                     <input name="specification[{{ $key }}][details]"
-                                                        class="form-control" value="{{ $spec['details'] }}" required>
+                                                        class="form-control spec_details" value="{{ $spec['details'] }}" required>
                                                 </div>
                                             </div>
                                             @continue
@@ -95,13 +95,13 @@
                                             <div class="col-md-4">
                                                 <label>Specification Title</label>
                                                 <input name="specification[{{ $key }}][title]"
-                                                    class="form-control" value="{{ $spec['title'] }}" required>
+                                                    class="form-control spec_title" value="{{ $spec['title'] }}" required>
                                             </div>
 
                                             <div class="col-md-7">
                                                 <label>Specification Details</label>
                                                 <input name="specification[{{ $key }}][details]"
-                                                    class="form-control" value="{{ $spec['details'] }}" required>
+                                                    class="form-control spec_details" value="{{ $spec['details'] }}" required>
                                             </div>
 
                                             <div class="col-md-1">
@@ -117,12 +117,12 @@
 
                                         <div class="col-md-4">
                                             <label>Specification Title</label>
-                                            <input name="specification[0][title]" class="form-control" required>
+                                            <input name="specification[0][title]" class="form-control spec_title" required>
                                         </div>
 
                                         <div class="col-md-8">
                                             <label>Specification Details</label>
-                                            <input name="specification[0][details]" class="form-control" required>
+                                            <input name="specification[0][details]" class="form-control spec_details" required>
                                         </div>
                                     </div>
                                 @endif
@@ -173,7 +173,7 @@
                         <label>Specification Title</label>
                         <input name="specification" id="spec_title" class="form-control spec_title" placeholder="Enter title" required>
                     </div>
-                    
+
                     <div class="col-md-7">
                         <label>Specification Details</label>
                         <input name="specification" id="spec_details" class="form-control spec_details" placeholder="Enter details" required>
@@ -195,6 +195,7 @@
     <script>
         $(".add-btn-submit").click(function(e) {
             e.preventDefault();
+            var translation_id = $("#translation_id").val();
             var product_id = $("#product_id").val();
             var name = $("#translated_name").val();
             var lang = $("#language").val();
@@ -213,6 +214,7 @@
                 type: 'POST',
                 url: "{{ route('admin.updateProductTranslation') }}",
                 data: {
+                    translation_id: translation_id,
                     product_id: product_id,
                     name: name,
                     lang: lang,

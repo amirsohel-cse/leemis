@@ -320,22 +320,22 @@ class TranslationController extends Controller
             ]);
         }
 
-        $getTranslation = ProductTranslation::where('product_id', $request->product_id)->where('id', '!=', $request->translation_id)->where('lang', $request->lang)->first();
+        $getTranslation = ProductTranslation::where('product_id', $request->product_id)->where('lang', $request->lang)->where('id', '!=', $request->get('translation_id'))->first();
         if (!$getTranslation) {
-            $trans = ProductTranslation::where('id', $request->translation_id)->first();
+            $trans = ProductTranslation::find($request->get('translation_id'));
             $trans->product_id = $request->get('product_id');
             $trans->name = $request->get('name');
             $trans->lang = $request->get('lang');
+            $trans->details = $request->get('description');
+            $trans->specification = $request->get('specifications');
             $trans->save();
 
-            return response()->json(['success' => 'Translation updated successfully.']);
+            return response()->json(['success' => 'Translation added successfully.']);
         } else{
             return response()->json([
                 'error' => ["Translation already exists"],
             ]);
         }
-
-
     }
 
     public function deleteProductTranslation(Request $request)

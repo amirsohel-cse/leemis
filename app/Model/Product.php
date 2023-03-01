@@ -3,8 +3,9 @@
 namespace App\Model;
 
 use App\ProductCategoryAttribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -14,10 +15,16 @@ class Product extends Model
         'specification' => 'array'
     ];
     protected $guarded = [];
-    
+
     protected $appends = ['photo_path','plain_description','rating_avg'];
 
-   
+
+    public function getTranslation($field = '') {
+        $lang = session()->get('lang') ? session()->get('lang') : 'cn';
+        $product_translations = $this->hasMany(ProductTranslation::class)->where('lang', $lang)->first();
+        return $product_translations != null ? $product_translations->$field : $this->$field;
+    }
+
 
     public function categories()
     {
@@ -66,18 +73,18 @@ class Product extends Model
     {
         return $this->hasOne(Cart::class, 'product_id', 'id');
     }
-    
-    
+
+
     public function getPhotoPathAttribute()
     {
         return asset($this->photo);
     }
-    
+
      public function getRatingAvgAttribute()
     {
         return $this->ratings()->avg('rating');
     }
-    
+
      public function getPlainDescriptionAttribute()
     {
         return strip_tags($this->details);
@@ -87,19 +94,19 @@ class Product extends Model
     {
         return $this->hasMany(ProductCategoryAttribute::class);
     }
-    
+
      public static function boot() {
 
         parent::boot();
 
         self::creating(function ($model) {
-    
+
             $model->code = random_int(100000, 999999);
-    
+
         });
-        
-       
+
+
      }
 
-    
+
 }

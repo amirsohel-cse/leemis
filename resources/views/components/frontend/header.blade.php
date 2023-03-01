@@ -239,7 +239,7 @@
 
                 </select>
 
-		<select class="header-lang changeLang">
+		        <select class="header-lang changeLang">
                     @foreach ($language as $lang)
                         <option value="{{ $lang->short_code }}" @if (session('lang') == $lang->short_code) selected @endif>
                             {{ __($lang->name) }}</option>
@@ -247,6 +247,7 @@
 
 
                 </select>
+
                 @guest
                     <a class="d-lg-show login compare label-down link d-xs-show ml-4 header-middle-btn" data-toggle="modal"
                         href="#LoginModal">

@@ -7,25 +7,25 @@ use App\Model\Advertise;
 
 function languageChange($key)
 {
-    
-    
-    $lang = session('lang') ?? 'EN';
-    
-    
 
-  
-   
+
+    $lang = session('lang') ?? 'EN';
+
+
+
+
+
     $website = json_decode(file_get_contents(resource_path('lang/'.$lang.'.json')),true);
-    
-    
-   
-    
+
+
+
+
     $key = ucwords(trim($key));
 
     if(array_key_exists($key,$website)){
 
         if(session('lang') == null || session('lang') == 'en'){
-           
+
             return $key;
         }
 
@@ -41,7 +41,12 @@ function languageChange($key)
     }
 
     return $website[$key];
-    
+
+}
+
+function translate()
+{
+    # code...
 }
 
 
@@ -53,7 +58,7 @@ function advertisements($size, $fixed = 0)
         $ad = Advertise::select('redirect_url', 'ad_image','status','is_slider','script','resolution','type')->where('resolution', $size)->where('status', 1)->where('is_slider', $fixed)->first();
     }else{
         $ad = Advertise::select('redirect_url', 'ad_image','status','is_slider','script','resolution','type')->where('resolution', $size)->where('status', 1)->inRandomOrder()->first();
-        
+
     }
 
     if (!empty($ad)) {

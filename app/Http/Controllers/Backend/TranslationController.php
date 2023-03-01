@@ -98,7 +98,7 @@ class TranslationController extends Controller
     public function subCategoryTranslation(Request $request)
     {
         $category = SubCategory::find($request->id);
-        $translations = SubCategoryTranslation::where('category_id', $request->id)->get();
+        $translations = SubCategoryTranslation::where('sub_category_id', $request->id)->get();
 
         return view('admin.sub-category.sub-category-translation', compact('category', 'translations'));
     }
@@ -116,10 +116,10 @@ class TranslationController extends Controller
             ]);
         }
 
-        $getTranslation = SubCategoryTranslation::where('category_id', $request->category_id)->where('lang', $request->lang)->first();
+        $getTranslation = SubCategoryTranslation::where('sub_category_id', $request->category_id)->where('lang', $request->lang)->first();
         if (!$getTranslation) {
             $trans = new SubCategoryTranslation();
-            $trans->category_id = $request->get('category_id');
+            $trans->sub_category_id = $request->get('category_id');
             $trans->name = $request->get('name');
             $trans->lang = $request->get('lang');
             $trans->save();
@@ -147,10 +147,10 @@ class TranslationController extends Controller
             ]);
         }
 
-        $getTranslation = SubCategoryTranslation::where('category_id', $request->category_id)->where('id', '!=', $request->translation_id)->where('lang', $request->lang)->first();
+        $getTranslation = SubCategoryTranslation::where('sub_category_id', $request->category_id)->where('id', '!=', $request->translation_id)->where('lang', $request->lang)->first();
         if (!$getTranslation) {
             $trans = SubCategoryTranslation::where('id', $request->translation_id)->first();
-            $trans->category_id = $request->get('category_id');
+            $trans->sub_category_id = $request->get('category_id');
             $trans->name = $request->get('name');
             $trans->lang = $request->get('lang');
             $trans->save();
@@ -177,7 +177,7 @@ class TranslationController extends Controller
     public function childCategoryTranslation(Request $request)
     {
         $category = ChildCategory::find($request->id);
-        $translations = ChildCategoryTranslation::where('category_id', $request->id)->get();
+        $translations = ChildCategoryTranslation::where('child_category_id', $request->id)->get();
 
         return view('admin.child-category.child-category-translation', compact('category', 'translations'));
     }
@@ -195,10 +195,10 @@ class TranslationController extends Controller
             ]);
         }
 
-        $getTranslation = ChildCategoryTranslation::where('category_id', $request->category_id)->where('lang', $request->lang)->first();
+        $getTranslation = ChildCategoryTranslation::where('child_category_id', $request->category_id)->where('lang', $request->lang)->first();
         if (!$getTranslation) {
             $trans = new ChildCategoryTranslation();
-            $trans->category_id = $request->get('category_id');
+            $trans->child_category_id = $request->get('category_id');
             $trans->name = $request->get('name');
             $trans->lang = $request->get('lang');
             $trans->save();
@@ -226,10 +226,10 @@ class TranslationController extends Controller
             ]);
         }
 
-        $getTranslation = ChildCategoryTranslation::where('category_id', $request->category_id)->where('id', '!=', $request->translation_id)->where('lang', $request->lang)->first();
+        $getTranslation = ChildCategoryTranslation::where('child_category_id', $request->category_id)->where('id', '!=', $request->translation_id)->where('lang', $request->lang)->first();
         if (!$getTranslation) {
             $trans = ChildCategoryTranslation::where('id', $request->translation_id)->first();
-            $trans->category_id = $request->get('category_id');
+            $trans->child_category_id = $request->get('category_id');
             $trans->name = $request->get('name');
             $trans->lang = $request->get('lang');
             $trans->save();

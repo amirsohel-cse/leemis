@@ -239,7 +239,7 @@
 
                 </select>
 
-		<select class="header-lang changeLang">
+		        <select class="header-lang changeLang">
                     <?php $__currentLoopData = $language; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <option value="<?php echo e($lang->short_code); ?>" <?php if(session('lang') == $lang->short_code): ?> selected <?php endif; ?>>
                             <?php echo e(__($lang->name)); ?></option>
@@ -247,6 +247,7 @@
 
 
                 </select>
+
                 <?php if(auth()->guard()->guest()): ?>
                     <a class="d-lg-show login compare label-down link d-xs-show ml-4 header-middle-btn" data-toggle="modal"
                         href="#LoginModal">

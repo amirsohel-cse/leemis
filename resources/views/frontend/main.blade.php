@@ -66,7 +66,7 @@
                     <div class="single-slide">
                         <a href="{{ route('subCategorize.product', [$category->id, Str::slug($category->name)]) }}">
                             <img src="{{ asset('uploads/category-images/' . $category->photo) }}" alt="image">
-                            <h6 class="banner-category-title">{{ $category->name }}</h6>
+                            <h6 class="banner-category-title">{{ $category->getTranslation('name') }}</h6>
                         </a>
                     </div>
                 @endforeach
@@ -133,7 +133,7 @@
                                         </figure>
                                         <div class="product-details">
                                             <h4 class="product-title"><a style="font-size: 14px"
-                                                    href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                                    href="{{ route('product.details', [$item->id, Str::slug($item->getTranslation('name'))]) }}">{{ $item->getTranslation('name') }}</a>
                                             </h4>
 
                                             <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -263,7 +263,7 @@
                                     <div class="product-details">
 
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->getTranslation('name') }}</a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap align-items-center justify-content-between">
@@ -392,7 +392,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->getTranslation('name') }}</a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -505,7 +505,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->getTranslation('name') }}</a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -643,7 +643,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->getTranslation('name') }}</a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -768,7 +768,7 @@
                         <div class="single-sub-cat-wrapper">
                             <div class="col-lg-12 mb-5">
                                 <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                    <h3 class="mb-2">{{ @$category->name }}</h3>
+                                    <h3 class="mb-2">{{ @$category->getTranslation('name') }}</h3>
                                     <a href="{{ route('categorize.product', [$category->id, Str::slug($category->name)]) }}"
                                         class="btn btn-dark mb-2">
                                         View All
@@ -785,7 +785,7 @@
                                                 <img src="{{ asset('uploads/category-images/' . $subcategory->photo) }}"
                                                     alt="image" class="lazy-img">
                                             </div>
-                                            <span>{{ @$subcategory->name }}</span>
+                                            <span>{{ @$subcategory->getTranslation('name') }}</span>
                                         </a>
                                     </div>
                                 @endforeach

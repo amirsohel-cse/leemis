@@ -53,8 +53,7 @@ class FrontendController extends Controller
 
         $pop = Campaign::select('file', 'link')->where('type', '=', 'popup')->first();
 
-        $product = DB::table('products')
-            ->where('featured', 1)->where('status', 1)->where('stock', '>', 0)
+        $product = Product::where('featured', 1)->where('status', 1)->where('stock', '>', 0)
             ->leftJoin('ratings', 'products.id', '=', 'ratings.product_id')
             ->select('products.id', 'products.name', 'products.photo', 'products.stock', 'products.price', 'products.previous_price', 'products.avg_rating', DB::raw('count(ratings.rating) as ratings_count'))
             ->groupBy('products.id')
@@ -64,7 +63,7 @@ class FrontendController extends Controller
         $offer_product = Product::select('id', 'name', 'photo', 'stock', 'price', 'previous_price', 'avg_rating')->whereHas('vendor', function ($q) {
             $q->where('s_status', 1);
         })->where('offer_product', '=', 1)->where('stock', '>', 0)->where('status', 1)->limit(12)->latest()->withCount('ratings')->get();
-        
+
         $shop = Vendor::whereHas('products', function ($q) {
             $q->where('status', 1);
         })->where('s_status', '=', 1)->where('feature', 1)->limit(12)->cursor();
@@ -255,7 +254,7 @@ class FrontendController extends Controller
         if($request->status == 'top_selling'){
 
             $product->where('featured', 1)->where('status', 1)->where('top', 1)->where('stock', '>', 0);
-            
+
         }elseif($request->status == 'feature'){
 
             $product->where('featured', 1)->where('status', 1)->where('stock', '>', 0);
@@ -266,7 +265,7 @@ class FrontendController extends Controller
             $product->where('status', 1)->where('stock', '>', 0);
         }
 
-        
+
         $product = $product->whereHas('vendor', function ($q) {
             $q->where('s_status', 1);
         })->latest()->paginate();
@@ -753,8 +752,6 @@ class FrontendController extends Controller
 
     public function lang(Request $request)
     {
-
-
         session()->put('lang', $request->lang);
 
         return back();

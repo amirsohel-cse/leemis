@@ -65,7 +65,7 @@
                     <div class="single-slide">
                         <a href="<?php echo e(route('subCategorize.product', [$category->id, Str::slug($category->name)])); ?>">
                             <img src="<?php echo e(asset('uploads/category-images/' . $category->photo)); ?>" alt="image">
-                            <h6 class="banner-category-title"><?php echo e($category->name); ?></h6>
+                            <h6 class="banner-category-title"><?php echo e($category->getTranslation('name')); ?></h6>
                         </a>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -132,7 +132,7 @@
                                         </figure>
                                         <div class="product-details">
                                             <h4 class="product-title"><a style="font-size: 14px"
-                                                    href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->name); ?></a>
+                                                    href="<?php echo e(route('product.details', [$item->id, Str::slug($item->getTranslation('name'))])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                             </h4>
 
                                             <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -260,7 +260,7 @@
                                     <div class="product-details">
 
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->name); ?></a>
+                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap align-items-center justify-content-between">
@@ -391,7 +391,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->name); ?></a>
+                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -506,7 +506,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->name); ?></a>
+                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -646,7 +646,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->name); ?></a>
+                                                href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -773,7 +773,7 @@
                         <div class="single-sub-cat-wrapper">
                             <div class="col-lg-12 mb-5">
                                 <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                    <h3 class="mb-2"><?php echo e(@$category->name); ?></h3>
+                                    <h3 class="mb-2"><?php echo e(@$category->getTranslation('name')); ?></h3>
                                     <a href="<?php echo e(route('categorize.product', [$category->id, Str::slug($category->name)])); ?>"
                                         class="btn btn-dark mb-2">
                                         View All
@@ -790,7 +790,7 @@
                                                 <img src="<?php echo e(asset('uploads/category-images/' . $subcategory->photo)); ?>"
                                                     alt="image" class="lazy-img">
                                             </div>
-                                            <span><?php echo e(@$subcategory->name); ?></span>
+                                            <span><?php echo e(@$subcategory->getTranslation('name')); ?></span>
                                         </a>
                                     </div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

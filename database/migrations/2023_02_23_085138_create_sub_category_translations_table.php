@@ -15,7 +15,7 @@ class CreateSubCategoryTranslationsTable extends Migration
     {
         Schema::create('sub_category_translations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->bigInteger('sub_category_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->string('lang')->nullable();
             $table->timestamps();

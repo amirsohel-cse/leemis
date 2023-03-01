@@ -353,18 +353,18 @@
                                     <li class="has-submenu">
                                         <a
                                             href="{{ route('categorize.product', [$category->id, Str::slug($category->name)]) }}">
-                                            {{ $category->name }}
+                                            {{ $category->getTranslation('name') }}
                                         </a>
 
                                         <ul class="megamenu">
                                             <li>
 
-                                                <h4 class="menu-title">{{ $category->name }}</h4>
+                                                <h4 class="menu-title">{{ $category->getTranslation('name') }}</h4>
                                                 <hr class="divider">
                                                 <ul>
                                                     @forelse($category->sub_categories as $subCategory)
                                                         <li><a
-                                                                href="{{ route('subCategorize.product', [$subCategory->id, Str::slug($subCategory->name)]) }}">{{ $subCategory->name }}</a>
+                                                                href="{{ route('subCategorize.product', [$subCategory->id, Str::slug($subCategory->name)]) }}">{{ $subCategory->getTranslation('name') }}</a>
                                                         </li>
                                                     @empty
                                                     @endforelse
@@ -421,7 +421,7 @@
 
                                                     @foreach ($item->menuCategories()->whereHas('category')->get() as $menu)
                                                         <li><a
-                                                                href="{{ route('subCategorize.product', [$menu->category_id, Str::slug($menu->category->name)]) }}">{{ @$menu->category->name }}</a>
+                                                                href="{{ route('subCategorize.product', [$menu->category_id, Str::slug($menu->category->name)]) }}">{{ @$menu->category->getTranslation('name') }}</a>
                                                         </li>
                                                     @endforeach
 

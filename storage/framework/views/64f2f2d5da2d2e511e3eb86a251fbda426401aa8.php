@@ -353,19 +353,19 @@
                                     <li class="has-submenu">
                                         <a
                                             href="<?php echo e(route('categorize.product', [$category->id, Str::slug($category->name)])); ?>">
-                                            <?php echo e($category->name); ?>
+                                            <?php echo e($category->getTranslation('name')); ?>
 
                                         </a>
 
                                         <ul class="megamenu">
                                             <li>
 
-                                                <h4 class="menu-title"><?php echo e($category->name); ?></h4>
+                                                <h4 class="menu-title"><?php echo e($category->getTranslation('name')); ?></h4>
                                                 <hr class="divider">
                                                 <ul>
                                                     <?php $__empty_2 = true; $__currentLoopData = $category->sub_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_2 = false; ?>
                                                         <li><a
-                                                                href="<?php echo e(route('subCategorize.product', [$subCategory->id, Str::slug($subCategory->name)])); ?>"><?php echo e($subCategory->name); ?></a>
+                                                                href="<?php echo e(route('subCategorize.product', [$subCategory->id, Str::slug($subCategory->name)])); ?>"><?php echo e($subCategory->getTranslation('name')); ?></a>
                                                         </li>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_2): ?>
                                                     <?php endif; ?>
@@ -422,7 +422,7 @@
 
                                                     <?php $__currentLoopData = $item->menuCategories()->whereHas('category')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <li><a
-                                                                href="<?php echo e(route('subCategorize.product', [$menu->category_id, Str::slug($menu->category->name)])); ?>"><?php echo e(@$menu->category->name); ?></a>
+                                                                href="<?php echo e(route('subCategorize.product', [$menu->category_id, Str::slug($menu->category->name)])); ?>"><?php echo e(@$menu->category->getTranslation('name')); ?></a>
                                                         </li>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

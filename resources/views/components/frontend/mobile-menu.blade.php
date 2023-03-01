@@ -4,7 +4,7 @@
     <div class="mobile-menu-overlay"></div>
 
     <a href="#" class="mobile-menu-close"><i class="close-icon"></i></a>
-   
+
 
     <div class="mobile-menu-container scrollable">
         {{-- <form action="#" method="get" class="input-wrapper">
@@ -44,17 +44,17 @@
                     @forelse($categories as $category)
                     <li>
                         <a href="{{route('categorize.product',[$category->id, Str::slug($category->name)])}}">
-                            <i class="w-icon-category"></i>{{$category->name}}
+                            <i class="w-icon-category"></i>{{$category->getTranslation('name')}}
                         </a>
                         <ul>
                             @forelse($category->sub_categories as $subCategory)
                             <li>
-                                <a href="{{route('subCategorize.product', [$subCategory->id, Str::slug($subCategory->name)])}}">{{$subCategory->name}}</a>
+                                <a href="{{route('subCategorize.product', [$subCategory->id, Str::slug($subCategory->name)])}}">{{$subCategory->getTranslation('name')}}</a>
                                 <ul>
                                     @forelse($subCategory->child_categories as $childCategory)
                                     <li>
                                         <a href="{{route('childCategorize.product', [$childCategory->id,Str::slug($childCategory->name)])}}">
-                                            {{$childCategory->name}}</a>
+                                            {{$childCategory->getTranslation('name')}}</a>
                                     </li>
                                     @empty
                                         <li>Empty</li>
@@ -69,7 +69,7 @@
                     @empty
                         <li>Empty</li>
                     @endforelse
-                    
+
                     <li>
                         <a href="{{url('/all-categories')}}" class="text-center">{{languageChange('All Categories')}}</a>
                     </li>

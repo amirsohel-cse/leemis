@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\model\CategoryTranslation;
+use App\Model\CategoryTranslation;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model

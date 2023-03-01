@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\model\ProductTranslation;
+use App\Model\ProductTranslation;
 use App\ProductCategoryAttribute;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;

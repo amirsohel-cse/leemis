@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\model\SubCategoryTranslation;
+use App\Model\SubCategoryTranslation;
 use Illuminate\Database\Eloquent\Model;
 
 class SubCategory extends Model

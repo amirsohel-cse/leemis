@@ -56,7 +56,7 @@
                                 <div class="col-md-4 mb-6 mb-md-8">
                                     <div class="product-details pt-5 pb-md-5 single-product-details"
                                         data-sticky-options="{'minWidth': 767}">
-                                        <h1 class="product-title">{{ $item->name }}</h1>
+                                        <h1 class="product-title">{{ $item->getTranslation('name') }}</h1>
                                         <div class="product-bm-wrapper">
                                             <figure class="brand">
                                                 @if (isset($item->brand->photo))
@@ -330,8 +330,8 @@
                                             @endif
 
 
-                                            @if ($item->specification != null)
-                                                @foreach ($item->specification as $spec)
+                                            @if ($item->getTranslation('specification') != null)
+                                                @foreach ($item->getTranslation('specification') as $spec)
                                                     <tr>
                                                         <th style="width:30%">{{ $spec['title'] }}</th>
 
@@ -347,7 +347,7 @@
                                     <div class="tab-pane" id="product-tab-description">
                                         <div class="row mb-4">
                                             <div class="col-md-8 mb-5">
-                                                <p class="mb-4">{!! $item->details !!}</p>
+                                                <p class="mb-4">{!! $item->getTranslation('details') !!}</p>
                                                 <ul class="list-type-check">
                                                 </ul>
                                                 <div class="banner banner-video product-video br-xs">
@@ -715,7 +715,7 @@
 
                             <div class="product-details">
                                 <h4 class="product-name mb-1"><a
-                                        href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                        href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->getTranslation('name') }}</a>
                                 </h4>
                                 <div class="ratings-container">
                                     <div class="ratings-full">

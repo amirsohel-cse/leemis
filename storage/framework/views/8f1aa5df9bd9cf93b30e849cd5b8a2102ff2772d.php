@@ -56,7 +56,7 @@
                                 <div class="col-md-4 mb-6 mb-md-8">
                                     <div class="product-details pt-5 pb-md-5 single-product-details"
                                         data-sticky-options="{'minWidth': 767}">
-                                        <h1 class="product-title"><?php echo e($item->name); ?></h1>
+                                        <h1 class="product-title"><?php echo e($item->getTranslation('name')); ?></h1>
                                         <div class="product-bm-wrapper">
                                             <figure class="brand">
                                                 <?php if(isset($item->brand->photo)): ?>
@@ -331,8 +331,8 @@
                                             <?php endif; ?>
 
 
-                                            <?php if($item->specification != null): ?>
-                                                <?php $__currentLoopData = $item->specification; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $spec): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($item->getTranslation('specification') != null): ?>
+                                                <?php $__currentLoopData = $item->getTranslation('specification'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $spec): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
                                                         <th style="width:30%"><?php echo e($spec['title']); ?></th>
 
@@ -348,7 +348,7 @@
                                     <div class="tab-pane" id="product-tab-description">
                                         <div class="row mb-4">
                                             <div class="col-md-8 mb-5">
-                                                <p class="mb-4"><?php echo $item->details; ?></p>
+                                                <p class="mb-4"><?php echo $item->getTranslation('details'); ?></p>
                                                 <ul class="list-type-check">
                                                 </ul>
                                                 <div class="banner banner-video product-video br-xs">
@@ -711,7 +711,7 @@
 
                             <div class="product-details">
                                 <h4 class="product-name mb-1"><a
-                                        href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->name); ?></a>
+                                        href="<?php echo e(route('product.details', [$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                 </h4>
                                 <div class="ratings-container">
                                     <div class="ratings-full">

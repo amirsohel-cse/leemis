@@ -257,7 +257,7 @@ th, td {
                           <td style="padding:15px 20px" class="cell100 column1"><img width="100" src="{{url($orders->product->photo)}}"></td>
 
                           <td style="padding:15px 20px" class="cell100 column1">
-                          <a class="text-dark" href={{ url('productdetails',$orders->product->id.'/'.$orders->product->slug) }}>{{$orders->product->name}}</a></td>
+                          <a class="text-dark" href={{ url('productdetails',$orders->product->id.'/'.$orders->product->slug) }}>{{$orders->product->getTranslation('name')}}</a></td>
 
                           <td style="padding:15px 20px" class="cell100 column2">@if(isset($orders->vendor->shop_name))<a href="{{route('shop.product',[$orders->vendor->id,Str::slug($orders->vendor->shop_name)])}}">{{$orders->vendor->shop_name}}</a>@endif</td>
 

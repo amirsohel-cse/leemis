@@ -1,17 +1,16 @@
-@extends('frontend.master.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <head>
-        <link rel="stylesheet" type="text/css" href="{{('frontend/assets/css/style.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="<?php echo e(('frontend/assets/css/style.min.css')); ?>">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.3.7/jquery.jscroll.min.js"></script>
         <style>
             #s-ban{
 	width: 100%;
 	height: 200px;
-	@if(isset($banner->file))
+	<?php if(isset($banner->file)): ?>
 
-	background: linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.3)), url("{{"/storage/storeFavicon/".$banner->file}}") center no-repeat;
-	@endif
+	background: linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.3)), url("<?php echo e("/storage/storeFavicon/".$banner->file); ?>") center no-repeat;
+	<?php endif; ?>
 	background-size: cover;
 	position: relative;
     overflow: hidden;
@@ -23,18 +22,18 @@
     <main class="main container">
         <!-- Start of Page Content -->
         <div class="page-content ">
-            @php($asset = $banner ? asset("/storage/storeFavicon/$banner->file") : "")
-            @php($backgroundImg = $asset ? "background-color: #FFC74E; " : "background-color: #FFC74E;")
+            <?php ($asset = $banner ? asset("/storage/storeFavicon/$banner->file") : ""); ?>
+            <?php ($backgroundImg = $asset ? "background-color: #FFC74E; " : "background-color: #FFC74E;"); ?>
             <div id="s-ban" class="rounded mt-5 shop-default-banner shop-boxed-banner border banner d-flex align-items-end mb-6" >
                 <div class="container banner-content d-flex align-items-center">
                     <div class="vendor-shop-logo">
-                        <img src="{{"/uploads/vendors/".$vendor->shop_image}}" />
+                        <img src="<?php echo e("/uploads/vendors/".$vendor->shop_image); ?>" />
                     </div>
                     <div class="ml-5">
-                        <h3 class="banner-subtitle m-0  text-white font-weight-bold">{{$vendor->shop_name}}</h3>
-                        <h6 class=" text-white m-0 text-uppercase ">{{$vendor->address}}</h6>
+                        <h3 class="banner-subtitle m-0  text-white font-weight-bold"><?php echo e($vendor->shop_name); ?></h3>
+                        <h6 class=" text-white m-0 text-uppercase "><?php echo e($vendor->address); ?></h6>
 
-                        <input type="text" id="vendor_id" value="{{$vendor->id}}" hidden>
+                        <input type="text" id="vendor_id" value="<?php echo e($vendor->id); ?>" hidden>
                     </div>
                 </div>
 
@@ -43,103 +42,105 @@
                             <div class="infinite-scroll">
 
                                 <div style="padding-right:0;padding-left:0;margin:0;" class="product-wrapper row col-md-12 col-sm-12 col-12" id="all_products">
-                                    @forelse ($shopProduct as $item)
+                                    <?php $__empty_1 = true; $__currentLoopData = $shopProduct; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                         <div class="col-md-2 col-sm-4 col-6">
 
                                             <div class="product-wrap mt-2">
                                                 <div  class="product mb-5">
                                                     <figure class="product-media">
-            <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">
-                                                            <img style="height:200px; width:100%;" src="{{"/$item->photo"}}" alt="Product" >
-                                                            <img style="height:200px; width:100%;" src="{{"/$item->photo"}}" alt="Product">
+            <a href="<?php echo e(route('product.details',[$item->id, Str::slug($item->name)])); ?>">
+                                                            <img style="height:200px; width:100%;" src="<?php echo e("/$item->photo"); ?>" alt="Product" >
+                                                            <img style="height:200px; width:100%;" src="<?php echo e("/$item->photo"); ?>" alt="Product">
                                                         </a>
-                                                        @if($item->stock > 0)
+                                                        <?php if($item->stock > 0): ?>
                                                             <div class="product-action-vertical">
-                                                                <a href="#" data-id="{{$item->id}}" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                                <a href="#" data-id="<?php echo e($item->id); ?>" class="btn-product-icon btn-wishlist w-icon-heart"
                                                                    title="Add to wishlist"></a>
 
                                                             </div>
-                                                        @endif
+                                                        <?php endif; ?>
 
                                                         <div class="shopping-action">
-                                                        @if($item->stock > 0)
-                                                            <a style="width:100%" data-id="{{$item->id}}" class="btn btn-primary btn-cart" href="#"> <i class="fas fa-shopping-cart"></i>&nbsp  Buy Now</a>
-                                                        @else
+                                                        <?php if($item->stock > 0): ?>
+                                                            <a style="width:100%" data-id="<?php echo e($item->id); ?>" class="btn btn-primary btn-cart" href="#"> <i class="fas fa-shopping-cart"></i>&nbsp  Buy Now</a>
+                                                        <?php else: ?>
                                                             <button style="width: 100%; background-color: darkred; color: white" type="button" class="btn btn-danger" disabled><i class="fas fa-shopping-cart"></i>&nbsp  Stock Out</button>
-                                                        @endif
+                                                        <?php endif; ?>
                                                         </div>
 
                                                     <!-- <div class="product-action-horizontal">
-                                                        @if($item->online_payment==1)
+                                                        <?php if($item->online_payment==1): ?>
                                                        <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>
-                                                    @else
+                                                    <?php else: ?>
                                                     <small class="text-success font-weight-bold text-uppercase">Cash On Delivery</small>
-                                                    @endif
+                                                    <?php endif; ?>
                                                     </div> -->
                                                     </figure>
-                                                    @if($item->offer_product==1)
+                                                    <?php if($item->offer_product==1): ?>
                                                     <div hidden class="product-price">
-                                                        <ins class="new-price">{{$item->previous_price}}</ins><del class="old-price">{{$item->price}}</del>
+                                                        <ins class="new-price"><?php echo e($item->previous_price); ?></ins><del class="old-price"><?php echo e($item->price); ?></del>
                                                     </div>
                                                     <div class="badge-overlay">
                                                         <span class="top-left badge pink">SALE</span>
                                                          </div>
-                                                @else
+                                                <?php else: ?>
                                                     <div hidden class="product-price">
-                                                        <ins class="new-price">{{$item->price}}</ins>
+                                                        <ins class="new-price"><?php echo e($item->price); ?></ins>
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
                                                     <div class="product-details">
                                                         <h3 class="product-name mb-1">
-    <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">{{$item->getTranslation('name')}}</a>
+    <a href="<?php echo e(route('product.details',[$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                                         </h3>
                                                         <div class="ratings-container">
                                                             <div class="ratings-full">
-                                                                @if(ceil($item->avg_rating) > 0)
+                                                                <?php if(ceil($item->avg_rating) > 0): ?>
                                                                     <span class="ratings" style="width: 0%;"></span>
-                                                                @endif
+                                                                <?php endif; ?>
 
-                                                                @if(ceil($item->avg_rating) == 1)
+                                                                <?php if(ceil($item->avg_rating) == 1): ?>
                                                                     <span class="ratings" style="width: 20%;"></span>
-                                                                @endif
-                                                                @if(ceil($item->avg_rating) == 2)
+                                                                <?php endif; ?>
+                                                                <?php if(ceil($item->avg_rating) == 2): ?>
                                                                     <span class="ratings" style="width: 40%;"></span>
-                                                                @endif
-                                                                @if(ceil($item->avg_rating) == 3)
+                                                                <?php endif; ?>
+                                                                <?php if(ceil($item->avg_rating) == 3): ?>
                                                                     <span class="ratings" style="width: 60%;"></span>
-                                                                @endif
-                                                                @if(ceil($item->avg_rating) == 4)
+                                                                <?php endif; ?>
+                                                                <?php if(ceil($item->avg_rating) == 4): ?>
                                                                     <span class="ratings" style="width: 80%;"></span>
-                                                                @endif
-                                                                @if(ceil($item->avg_rating) == 5)
+                                                                <?php endif; ?>
+                                                                <?php if(ceil($item->avg_rating) == 5): ?>
                                                                     <span class="ratings" style="width: 100%;"></span>
-                                                                @endif
+                                                                <?php endif; ?>
                                                                 <!--<span class="tooltiptext tooltip-top"></span>-->
                                                             </div>
                                                             <a href="#" class="rating-reviews">(
 
-                                                                @if ($item->ratings->count()>0)
+                                                                <?php if($item->ratings->count()>0): ?>
 
-                                                                    {{$item->ratings->count()}}
-                                                                @else
+                                                                    <?php echo e($item->ratings->count()); ?>
+
+                                                                <?php else: ?>
                                                                     0
-                                                                @endif
+                                                                <?php endif; ?>
                                                                 Reviews
                                                                 )</a>
                                                         </div>
                                                         <div class="product-price">
-                                                            HK$ <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
+                                                            HK$ <ins class="new-price"><?php echo e($item->price); ?></ins><del class="old-price"><?php echo e($item->previous_price); ?></del>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                    @empty
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                         <p class="text-danger">Product Not found</p>
-                                    @endforelse
+                                    <?php endif; ?>
                                 </div>
-                                {{ $shopProduct->links() }}
+                                <?php echo e($shopProduct->links()); ?>
+
                             </div>
 
 
@@ -150,7 +151,7 @@
             </div>
         </div>
 
-        {{--Please Wait Modal--}}
+        
         <div class="modal fade bd-example-modal-sm" id="pleaseWaitModal" tabindex="-1" role="dialog" aria-labelledby="pleaseWaitModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content m-0 p-0 text-center" style="background-color: transparent !important; border: none !important;">
@@ -168,16 +169,16 @@
                 </div>
             </div>
         </div>
-            {{--Please Wait Modal--}}
+            
 
 
 
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('page-scripts')
+<?php $__env->startSection('page-scripts'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.3.7/jquery.jscroll.min.js"></script>
-    <script src="{{asset('frontend/js/shop-products.js')}}"></script>
+    <script src="<?php echo e(asset('frontend/js/shop-products.js')); ?>"></script>
     <script type="text/javascript">
                 $('ul.pagination').hide();
                 $('.infinite-scroll').jscroll({
@@ -192,4 +193,6 @@
                     }
                 });
             </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/frontend/product/shop_product.blade.php ENDPATH**/ ?>

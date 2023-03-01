@@ -41,14 +41,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                              
+
                                 @foreach ($carts as $cart)
                                   @if($cart->product != null)
                                     <tr>
                                         <td>
                                             <div class="cart-table-item">
                                                 <img src="{{asset($cart->product->photo)}}" alt="">
-                                                <p>{{ $cart->product->name }}</p>
+                                                <p>{{ $cart->product->getTranslation('name') }}</p>
                                             </div>
                                         </td>
 
@@ -56,12 +56,12 @@
                                             @if($cart->attributes != null)
                                                 @foreach ($cart->attributes as $attr)
                                                     <p>{{\App\Model\CategoryAttribute::find($attr['attribute'])->name}} : {{\App\Model\AttributeOption::find($attr['option'])->option}}</p>
-                                                        
+
                                                 @endforeach
 
                                            @else
 
-                                            
+
 
                                            @endif
                                         </td>
@@ -71,7 +71,7 @@
                                         </td>
 
                                         <td>
-                                            
+
                                             <div class="cart-update-part">
                                                 <button type="button" class="decrement_qty" data-cart="{{$cart->id}}">-</button>
                                                 <input type="number" value="{{$cart->qty}}" class="cart_qty">
@@ -125,7 +125,7 @@
                                                     margin-bottom: 0;
                                                 }
                                             </style>
-                                           
+
                                         </td>
 
                                         <td class="subtotal">
@@ -359,7 +359,7 @@
                     type: 'GET',
                     url: `/${userId}/get-grand-total-price`,
                     success: (data) => {
-                        
+
                         $('#totalPrice').text(data);
                         console.log('=============')
                     },

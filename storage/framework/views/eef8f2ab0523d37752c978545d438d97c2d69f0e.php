@@ -1,7 +1,6 @@
-@extends('frontend.master.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <head>
-    <link rel="stylesheet" type="text/css" href="{{('frontend/assets/css/style.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(('frontend/assets/css/style.min.css')); ?>">
 
 </head>
 <style>
@@ -12,13 +11,13 @@
 </style>
 <main class="container">
     <div class="category-top-slider">
-        @foreach ($sliders as $slider)
+        <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="single-slide">
-            <a href="{{$slider->link}}">
-                <img src="\storage\storeSliders\{{$slider->photo}}" alt="image">
+            <a href="<?php echo e($slider->link); ?>">
+                <img src="\storage\storeSliders\<?php echo e($slider->photo); ?>" alt="image">
             </a>
         </div>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 
     <div class="banner-promo-wrapper">
@@ -36,7 +35,7 @@
     </div>
 
     <div class="title-link-wrapper my-5 title-deals mb-4">
-        <h2 class="title title-link">{{$category ? $category->getTranslation('name') : "Not Found"}}</h2>
+        <h2 class="title title-link"><?php echo e($category ? $category->getTranslation('name') : "Not Found"); ?></h2>
         <div class="product-countdown-container font-size-sm text-white align-items-center mr-auto"> </div>
         <a href="/" class="ls-normal">Back<i class="w-icon-long-arrow-left"></i></a>
     </div>
@@ -55,38 +54,14 @@
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title"><span>All Categories</span></h3>
                             <ul class="widget-body filter-items search-ul">
-                                @forelse($categories as $category)
-                                    <li><a data-id="{{$category->id}}" class="product_category1" href="#">{{$category->getTranslation('name')}}</a></li>
-                                @empty
-                                @endforelse
+                                <?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                    <li><a data-id="<?php echo e($category->id); ?>" class="product_category1" href="#"><?php echo e($category->getTranslation('name')); ?></a></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <?php endif; ?>
                             </ul>
                         </div>
 
-                        {{-- <div class="widget widget-collapsible">
-                            <h3 class="widget-title"><span>New Arrivals</span></h3>
-                            <div class="widget-body">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="arrival1">
-                                    <label class="form-check-label" for="arrival1">Last 7 Days</label>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="arrival2">
-                                    <label class="form-check-label" for="arrival2">Last 10 Days</label>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="arrival3">
-                                    <label class="form-check-label" for="arrival3">Last 15 Days</label>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="arrival4">
-                                    <label class="form-check-label" for="arrival4">Last 20 Days</label>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="arrival5">
-                                    <label class="form-check-label" for="arrival5">Last 30 Days</label>
-                                </div>
-                            </div>
-                        </div> --}}
+                        
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title"><span>Price</span></h3>
                             <div class="widget-body">
@@ -117,87 +92,88 @@
             <div class="infinite-scroll">
                 <div class="mt-2">
                     <div  id="all_products" class="product-wrapper row" id="shops">
-                        @forelse ($products as $item)
+                        <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="product-wrap col-md-3 col-sm-4 col-6 mb-4">
                             <div class="product">
                                 <figure class="product-media">
-                                    <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">
-                                        <img style="height:200px; width:200px;" src="{{"/$item->photo"}}" alt="Product" >
-                                        <img style="height:200px; width:200px;" src="{{"/$item->photo"}}" alt="Product" >
+                                    <a href="<?php echo e(route('product.details',[$item->id, Str::slug($item->name)])); ?>">
+                                        <img style="height:200px; width:200px;" src="<?php echo e("/$item->photo"); ?>" alt="Product" >
+                                        <img style="height:200px; width:200px;" src="<?php echo e("/$item->photo"); ?>" alt="Product" >
                                     </a>
-                                    <!-- @if($item->stock > 0)
+                                    <!-- <?php if($item->stock > 0): ?>
                                     <div class="product-action-vertical">
-                                        <a href="#" data-id="{{$item->id}}" class="btn-product-icon btn-wishlist w-icon-heart"
+                                        <a href="#" data-id="<?php echo e($item->id); ?>" class="btn-product-icon btn-wishlist w-icon-heart"
                                             title="Add to wishlist"></a>
                                     </div>
-                                    @endif -->
+                                    <?php endif; ?> -->
 
                                     <!-- <div class="product-action-horizontal">
-                                        @if($item->online_payment==1)
+                                        <?php if($item->online_payment==1): ?>
                                     <small class="text-primary font-weight-bold text-uppercase">Payment Only</small>
-                                    @else
+                                    <?php else: ?>
                                     <small class="text-success font-weight-bold text-uppercase">Cash On Delivery</small>
-                                    @endif
+                                    <?php endif; ?>
                                     </div> -->
                                     <div class="shopping-action">
-                                        @if($item->stock > 0)
-                                            <a style="width:100%" data-id="{{$item->id}}" class="btn btn-primary btn-cart" href="#"> <i class="las la-shopping-cart"></i>&nbsp  Buy Now</a>
-                                        @else
+                                        <?php if($item->stock > 0): ?>
+                                            <a style="width:100%" data-id="<?php echo e($item->id); ?>" class="btn btn-primary btn-cart" href="#"> <i class="las la-shopping-cart"></i>&nbsp  Buy Now</a>
+                                        <?php else: ?>
                                             <button style="width: 100%; background-color: darkred; color: white" type="button" class="btn btn-danger" disabled><i class="las la-shopping-cart"></i>&nbsp  Out of Stock</button>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
 
                                 </figure>
-                                @if($item->offer_product==1)
+                                <?php if($item->offer_product==1): ?>
                                 <div hidden class="product-price">
-                                    <ins class="new-price">{{$item->previous_price}}</ins><del class="old-price">{{$item->price}}</del>
+                                    <ins class="new-price"><?php echo e($item->previous_price); ?></ins><del class="old-price"><?php echo e($item->price); ?></del>
                                 </div>
                                 <div class="badge-overlay">
                                     <span class="top-left badge pink">SALE</span>
                                 </div>
-                                @else
+                                <?php else: ?>
                                     <div hidden class="product-price">
-                                        <ins class="new-price">{{$item->price}}</ins>
+                                        <ins class="new-price"><?php echo e($item->price); ?></ins>
                                     </div>
-                                @endif
+                                <?php endif; ?>
                                 <div class="product-details">
                                     <h4 class="product-name">
-                                        <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">{{$item->getTranslation('name')}}</a>
+                                        <a href="<?php echo e(route('product.details',[$item->id, Str::slug($item->name)])); ?>"><?php echo e($item->getTranslation('name')); ?></a>
                                     </h4>
 
                                     <div class="d-flex flex-wrap align-items-center justify-content-between">
                                         <div class="product-price mr-2">
-                                            HK$ <ins class="new-price">{{$item->price}}</ins><del class="old-price">{{$item->previous_price}}</del>
+                                            HK$ <ins class="new-price"><?php echo e($item->price); ?></ins><del class="old-price"><?php echo e($item->previous_price); ?></del>
                                         </div>
                                         <div class="ratings-container">
                                             <div class="ratings-full">
-                                                @if(ceil($item->avg_rating) > 0)
+                                                <?php if(ceil($item->avg_rating) > 0): ?>
                                                 <span class="ratings" style="width: 0%;"></span>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if(ceil($item->avg_rating) == 1)
+                                                <?php if(ceil($item->avg_rating) == 1): ?>
                                                 <span class="ratings" style="width: 20%;"></span>
-                                                @endif
-                                                @if(ceil($item->avg_rating) == 2)
+                                                <?php endif; ?>
+                                                <?php if(ceil($item->avg_rating) == 2): ?>
                                                 <span class="ratings" style="width: 40%;"></span>
-                                                @endif
-                                                @if(ceil($item->avg_rating) == 3)
+                                                <?php endif; ?>
+                                                <?php if(ceil($item->avg_rating) == 3): ?>
                                                 <span class="ratings" style="width: 60%;"></span>
-                                                @endif
-                                                @if(ceil($item->avg_rating) == 4)
+                                                <?php endif; ?>
+                                                <?php if(ceil($item->avg_rating) == 4): ?>
                                                 <span class="ratings" style="width: 80%;"></span>
-                                                @endif
-                                                @if(ceil($item->avg_rating) == 5)
+                                                <?php endif; ?>
+                                                <?php if(ceil($item->avg_rating) == 5): ?>
                                                 <span class="ratings" style="width: 100%;"></span>
-                                                @endif
+                                                <?php endif; ?>
                                                 <!--<span class="tooltiptext tooltip-top"></span>-->
                                             </div>
                                             <a href="#" class="rating-reviews">(
-                                                @if ($item->ratings->count()>0)
-                                                {{$item->ratings->count()}}
-                                                @else
+                                                <?php if($item->ratings->count()>0): ?>
+                                                <?php echo e($item->ratings->count()); ?>
+
+                                                <?php else: ?>
                                                     0
-                                                @endif
+                                                <?php endif; ?>
                                                 Reviews
                                                 )</a>
                                         </div>
@@ -205,11 +181,12 @@
                                 </div>
                             </div>
                         </div>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <p class="text-danger">No product Found</p>
-                        @endforelse
+                        <?php endif; ?>
                     </div>
-                    {{$products->links() }}
+                    <?php echo e($products->links()); ?>
+
                 </div>
             </div>
         </div>
@@ -222,7 +199,7 @@
         <?= advertisements('1440x250') ?>
     </div>
 
-    {{--Please wait modal--}}
+    
     <div class="modal fade bd-example-modal-sm" id="pleaseWaitModal" tabindex="-1" role="dialog" aria-labelledby="pleaseWaitModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content m-0 p-0 text-center" style="background-color: transparent !important; border: none !important;">
@@ -240,15 +217,15 @@
             </div>
         </div>
     </div>
-    {{--Please wait modal--}}
+    
 </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
-@section('page-scripts')
+<?php $__env->startSection('page-scripts'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.3.7/jquery.jscroll.min.js"></script>
-    <script src="{{asset('/frontend/js/all-products.js')}}"></script>
+    <script src="<?php echo e(asset('/frontend/js/all-products.js')); ?>"></script>
      <script type="text/javascript">
         $('ul.pagination').hide();
         $('.infinite-scroll').jscroll({
@@ -263,4 +240,6 @@
             }
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/frontend/category/categorizeProducts.blade.php ENDPATH**/ ?>

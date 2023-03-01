@@ -17,7 +17,7 @@
     </div>
 
     <div class="title-link-wrapper m-5 title-deals appear-animate mb-4">
-        <h2 class="title title-link">{{$SubCategory ? $SubCategory->name : "Not Found"}}</h2>
+        <h2 class="title title-link">{{$SubCategory ? $SubCategory->getTranslation('name') : "Not Found"}}</h2>
         <div class="product-countdown-container font-size-sm text-white align-items-center mr-auto"> </div>
         <a href="/" class="ls-normal">Back <i class="w-icon-long-arrow-left"></i></a>
     </div>
@@ -37,7 +37,7 @@
                             <h3 class="widget-title"><span>All Categories</span></h3>
                             <ul class="widget-body filter-items search-ul">
                                 @forelse($categories as $category)
-                                    <li><a data-id="{{$category->id}}" class="product_category1" href="#">{{$category->name}}</a></li>
+                                    <li><a data-id="{{$category->id}}" class="product_category1" href="#">{{$category->getTranslation('name')}}</a></li>
                                 @empty
                                 @endforelse
                             </ul>
@@ -133,7 +133,7 @@
                                 @endif
                                 <div class="product-details">
                                     <h4 class="product-name">
-                                        <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">{{$item->name}}</a>
+                                        <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">{{$item->getTranslation('name')}}</a>
                                     </h4>
                                     <div class="ratings-container">
                                         <div class="ratings-full">

@@ -23,7 +23,7 @@
                             <h3 style="border: 1px solid #fd3d11;" class="widget-title m-4 p-3 collapsed"><span class="m-3">All Categories &nbsp</span></h3>
                             <ul class="widget-body filter-items search-ul m-3" style="display: none">
                                 @forelse($categories as $category)
-                                <li><a data-id="{{$category->id}}" class="product_category1" href="#">{{$category->name}}</a></li>
+                                <li><a data-id="{{$category->id}}" class="product_category1" href="#">{{$category->getTranslation('name')}}</a></li>
                                 @empty
                                 @endforelse
                             </ul>
@@ -66,7 +66,7 @@
                                         <h3 class="widget-title"><span>All Categories</span></h3>
                                         <ul class="widget-body filter-items search-ul">
                                             @forelse($categories as $category)
-                                                <li><a data-id="{{$category->id}}" class="product_category1" href="#">{{$category->name}}</a></li>
+                                                <li><a data-id="{{$category->id}}" class="product_category1" href="#">{{$category->getTranslation('name')}}</a></li>
                                             @empty
                                             @endforelse
                                         </ul>
@@ -157,7 +157,7 @@
                                                     </figure>
                                                     <div class="product-details">
                                                         <h3 class="product-name">
-                                                            <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">{{$item->name}}</a>
+                                                            <a href="{{route('product.details',[$item->id, Str::slug($item->name)])}}">{{$item->getTranslation('name')}}</a>
                                                         </h3>
                                                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                                                             <div class="product-price">

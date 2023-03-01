@@ -50,7 +50,7 @@
         <div style="width:240px" class="product product-cart sidebar-cart-product">
             <div class="product-detail">
                 <a href="{{ route('product.details', [$cart_item->product->id, Str::slug($cart_item->product->name)]) }}"
-                    class="product-name">{{ $cart_item->product->name }}</a>
+                    class="product-name">{{ $cart_item->product->getTranslation('name') }}</a>
                 <div class="price-box">
                     <span class="product-quantity">{{ $cart_item->qty }}</span>
                     <span class="product-price">HK$. {{ $cart_item->subtotal }}</span>

@@ -36,7 +36,7 @@
                         <div>
                             <a href="{{route('brand.product',[$item->id, Str::slug($item->name)])}}"><img style="height:120px;width:100%" src="{{"/uploads/brand-images/$item->photo"}}" alt=""></a>
                         </div>
-                        <a href="{{route('brand.product',[$item->id,Str::slug($item->name)])}}"><h5 style="margin-bottom:0px" class="mt-1">{{$item->name}}</h5></a>
+                        <a href="{{route('brand.product',[$item->id,Str::slug($item->name)])}}"><h5 style="margin-bottom:0px" class="mt-1">{{$item->getTranslation('name')}}</h5></a>
                     </div>
                 </div>
                 @empty

@@ -225,7 +225,7 @@
                                                 </td>
                                                 <td class="product-name">
                                                     <a href="{{route('product.details',[$row->product_id, Str::slug($row->name)])}}">
-                                                        {{$row->name}}
+                                                        {{$row->getTranslation('name')}}
                                                    </a>
                                                 </td>
                                                 <td class="product-price">

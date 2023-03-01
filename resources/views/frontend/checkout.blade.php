@@ -149,7 +149,7 @@
                                                 @forelse ($carts as $item)
                                                     <tr class="bb-no">
                                                         <td style="word-wrap: break-word" class="product-name">
-                                                            {{ $item->product->name }}<i class="fas fa-times"></i> <span
+                                                            {{ $item->product->getTranslation('name') }}<i class="fas fa-times"></i> <span
                                                                 class="product-quantity">{{ $item->qty }}</span></td>
                                                         <td class="product-total">{{ $item->qty * $item->price }}</td>
                                                     </tr>

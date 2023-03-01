@@ -1,7 +1,6 @@
-@extends('frontend.master.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <head>
-        <link rel="stylesheet" type="text/css" href="{{('frontend/assets/css/style.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="<?php echo e(('frontend/assets/css/style.min.css')); ?>">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.3.7/jquery.jscroll.min.js"></script>
     </head>
@@ -18,26 +17,27 @@
         <div class="main-content container">
             <div class="infinite-scroll">
                 <div class="row col-md-12 col-sm-12 col-12">
-            @forelse ($categories as $item)
+            <?php $__empty_1 = true; $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="col-md-2 col-sm-4 col-6 mb-3">
                     <div style="text-align:center;padding:10px" class="border bg-white">
                         <div>
-                            <a href="{{route('categorize.product',[$item->id, Str::slug($item->name)])}}"><img style="height:120px;width:100%" src="{{"/uploads/category-images/$item->photo"}}" alt="Category image"></a>
+                            <a href="<?php echo e(route('categorize.product',[$item->id, Str::slug($item->name)])); ?>"><img style="height:120px;width:100%" src="<?php echo e("/uploads/category-images/$item->photo"); ?>" alt="Category image"></a>
                         </div>
-                        <a href="{{route('categorize.product',[$item->id, Str::slug($item->name)])}}"><h5 style="margin-bottom:0px" class="mt-1">{{$item->getTranslation('name')}}</h5></a>
+                        <a href="<?php echo e(route('categorize.product',[$item->id, Str::slug($item->name)])); ?>"><h5 style="margin-bottom:0px" class="mt-1"><?php echo e($item->getTranslation('name')); ?></h5></a>
                     </div>
                 </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </div>
-                {{ $categories->links() }}
+                <?php echo e($categories->links()); ?>
+
 
             </div>
         </div>
 
     </main>
 
-    {{--    Please wait modal--}}
+    
     <div class="modal fade bd-example-modal-sm" id="pleaseWaitModal" tabindex="-1" role="dialog" aria-labelledby="pleaseWaitModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content m-0 p-0 text-center" style="background-color: transparent !important; border: none !important;">
@@ -56,7 +56,7 @@
         </div>
     </div>
     </main>
-    {{--    Please wait modal end--}}
+    
 
     <script type="text/javascript">
         $('ul.pagination').hide();
@@ -72,9 +72,11 @@
             }
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('page-scripts')
-    <script src="{{asset('/frontend/js/brand-search.js')}}"></script>
-@endsection
+<?php $__env->startSection('page-scripts'); ?>
+    <script src="<?php echo e(asset('/frontend/js/brand-search.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('frontend.master.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\My Workspace\Web\Laravel\Work\leemis\resources\views/frontend/category/allCategories.blade.php ENDPATH**/ ?>

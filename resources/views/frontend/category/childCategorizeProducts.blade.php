@@ -48,7 +48,7 @@
                                     <div class="product-details">
 
                                         <h4 class="product-title"><a style="font-size: 14px"
-                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->getTranslation('name') }}</a>
                                         </h4>
 
                                         <div class="d-flex flex-wrap align-items-center justify-content-between">

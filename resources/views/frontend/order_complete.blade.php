@@ -18,7 +18,7 @@
   justify-content: center;
   align-items: center;
   height: 50vh;
-  
+
 }
 
 /*.modal {*/
@@ -51,8 +51,8 @@
 @keyframes scaleCup {
   0% {
     transform: scale(0.6);
-  } 
-  
+  }
+
   100% {
     transform: scale(1);
   }
@@ -85,8 +85,8 @@ h1 {
     opacity: 1;
     margin-top: -100vh;
     margin-left: -200px;
-  } 
-  
+  }
+
   100% {
     opacity: 1;
     margin-top: 100vh;
@@ -117,7 +117,7 @@ h1 {
             <nav class="breadcrumb-nav">
                 <div class="container">
                     <ul class="breadcrumb shop-breadcrumb bb-no">
-                       
+
                         <li class="active"><a href="#">Order Complete</a></li>
                     </ul>
                 </div>
@@ -129,16 +129,16 @@ h1 {
                 <div class="container">
                 <div>
   <div class="shadow p-5 col-md-5 ml-auto mr-auto">
- <span class="emoji"><i style="color:#16C60C" class="fas fa-check-circle"></i></span> 
+ <span class="emoji"><i style="color:#16C60C" class="fas fa-check-circle"></i></span>
     <!-- <span class="emoji round">🏆✅</span> -->
     <h1>Thank You, Your Order has been received</h1>
-    
+
   </div>
   <div id="confetti-wrapper">
   </div>
 </div>
                     <!-- End of Order Success -->
-                   
+
                     <ul class="order-view list-style-none">
                         <li class="shadow">
                             <label>Order code</label>
@@ -210,13 +210,13 @@ h1 {
                                 </tfoot>
                             </table>
                         </div>
-                      
+
                         <div id="account-addresses" class="">
-                            
+
                                 <div class="col-sm-6 mb-8 ">
                                     <div class="ecommerce-address billing-address">
                                         <h3 style="font-size:20px;padding-bottom: -0.6rem !important" class=" text-uppercase ls-25 mb-5">shipping Details</h3>
-                                        
+
                                             <table style="width: 400px;" class="border address-table">
                                                 <tbody>
                                                     <tr class="p-2">
@@ -238,7 +238,7 @@ h1 {
                                                     {{-- <tr>
                                                         <td >{{$orders[0]->order->country}}</td>
                                                     </tr> --}}
-                                                   
+
                                                     <tr class="p-2">
                                                         <th class="p-3">Contact Number</th>
                                                         <td>{{$orders[0]->order->phone}}</td>
@@ -249,7 +249,7 @@ h1 {
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                       
+
                                     </div>
                                 </div>
                                 {{-- <div class="col-sm-6 mb-8">
@@ -281,7 +281,7 @@ h1 {
                                         </address>
                                     </div>
                                 </div> --}}
-                           
+
                         </div>
                     </div> -->
 
@@ -313,7 +313,7 @@ h1 {
 
 								<tr class="row100 body border-bottom">
 
-									<td style="padding:22px" class="cell100 column1"><a href={{ url('productdetails',$orders->product->id.'/'.$orders->product->slug) }}>{{$orders->product->name}}</a></td>
+									<td style="padding:22px" class="cell100 column1"><a href={{ url('productdetails',$orders->product->id.'/'.$orders->product->slug) }}>{{$orders->product->getTranslation('name')}}</a></td>
                                     <td style="padding:22px" class="cell100 column1"><img width="100" src="{{$orders->product->photo}}"</td>
                                     <td style="padding:22px" class="cell100 column2">@if(isset($orders->product->vendor->shop_name))<a href="{{route('shop.product',[$orders->product->vendor->id,Str::slug($orders->product->vendor->shop_name)])}}">{{$orders->product->vendor->shop_name}}</a>@endif</td>
 									<td style="padding:22px" class="cell100 column3">{{$orders->product->price}}</td>
@@ -321,23 +321,23 @@ h1 {
                                         @if($orders->attributes != null)
                                                 @foreach ($orders->attributes as $attr)
                                                     <p>{{\App\Model\CategoryAttribute::find($attr['attribute'])->name}} : {{\App\Model\AttributeOption::find($attr['option'])->option}}</p>
-                                                        
+
                                                 @endforeach
 
                                            @else
 
-                                            
+
 
                                            @endif
                                     </td>
                                     <td class="cell100 column4">
                                         {{$orders->additional_price * $orders->qty}}
                                     </td>
-									 
+
 									<td style="padding:22px" class="cell100 column4">{{$orders->order->payment_method}}</td>
 									<td style="padding:22px" class="cell100 column5">{{$orders->qty}}</td>
-									
-									
+
+
 									<td style="padding:22px" class="cell100 column5">@if ($orders->order->status == 'pending')
                                                     <span id="order-status" class=" bg-warning text-white">Pending</span>
                                             @elseif($orders->order->status == 'Processing')-->
@@ -349,12 +349,12 @@ h1 {
                                                     @elseif($orders->order->status == 'On Delivery')-->
                                                   <span id="order-status" class=" bg-dark text-white">On Delivery</span>
                                                @endif</td>
-                                    <td style="padding:22px" class="cell100 column5">{{$orders->order->created_at->format('d-m-Y')}}</td>   
-                                 
+                                    <td style="padding:22px" class="cell100 column5">{{$orders->order->created_at->format('d-m-Y')}}</td>
+
 								</tr>
 								   @endforeach
 
-							
+
 							</tbody>
 						</table>
 					</div>
@@ -391,7 +391,7 @@ h1 {
                                     <th width="10%">:</th>
                                     <td width="45%">{{$orders->order->address}}</td>
                                 </tr>
-                             
+
                                 <tr>
                                     <th width="45%">City</th>
                                     <th width="10%">:</th>
@@ -402,7 +402,7 @@ h1 {
                                     <th width="10%">:</th>
                                     <td width="45%">{{$orders->order->zip}}</td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -421,7 +421,7 @@ h1 {
 
         <script>
             localStorage.clear();
-          
+
 if (window.history.replaceState) {
     window.history.replaceState(null, null, '/viewcart');
 }
@@ -446,7 +446,7 @@ for(i=0; i<100; i++) {
   // Random width & height between 0 and viewport
   var randomWidth = Math.floor(Math.random() * Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
   var randomHeight =  Math.floor(Math.random() * Math.max(document.documentElement.clientHeight, window.innerHeight || 500));
-  
+
   // Random animation-delay
   var randomAnimationDelay = Math.floor(Math.random() * 15);
   console.log(randomAnimationDelay);

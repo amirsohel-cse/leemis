@@ -34,7 +34,7 @@
                                             <ul class="widget-body filter-items search-ul">
                                                 @forelse($categories as $category)
                                                     <li><a data-id="{{ $category->id }}" class="product_category1"
-                                                            href="#">{{ $category->name }}</a></li>
+                                                            href="#">{{ $category->getTranslation('name') }}</a></li>
                                                 @empty
                                                 @endforelse
                                             </ul>
@@ -138,7 +138,7 @@
                                                     <div class="product-details">
                                                         <h3 class="product-name mb-1">
                                                             <a
-                                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->name }}</a>
+                                                                href="{{ route('product.details', [$item->id, Str::slug($item->name)]) }}">{{ $item->getTranslation('name') }}</a>
                                                         </h3>
                                                         <div class="ratings-container">
                                                             <div class="ratings-full">

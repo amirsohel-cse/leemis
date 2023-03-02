@@ -61,9 +61,9 @@
                         class="w-icon-long-arrow-right"></i></a>
             </div>
             <div class="banner-category-slider d-flex flex-wrap justify-content-center">
-                <?php $__currentLoopData = $subCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $mainCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="single-slide">
-                        <a href="<?php echo e(route('subCategorize.product', [$category->id, Str::slug($category->name)])); ?>">
+                        <a href="<?php echo e(route('categorize.product', [$category->id, Str::slug($category->name)])); ?>">
                             <img src="<?php echo e(asset('uploads/category-images/' . $category->photo)); ?>" alt="image">
                             <h6 class="banner-category-title"><?php echo e($category->getTranslation('name')); ?></h6>
                         </a>

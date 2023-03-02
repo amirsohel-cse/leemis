@@ -126,11 +126,9 @@ class FrontendController extends Controller
             $q->where('status', 1);
         })->where('status', 1)->where('is_featured', 1)->latest()->with('sub_categories.child_categories')->limit(15)->get();
 
-        $subCategories =  SubCategory::select('name', 'id', 'photo')->where('status', 1)->with(['child_categories' => function($query){
-            $query->select('sub_category_id','id','name','slug','status')->limit(15);
-        }])->limit(10)->get();
+        $mainCategories =  Category::select('name', 'id', 'photo')->where('status', 1)->where('is_featured', 1)->limit(10)->get();
 
-        return view('frontend.main', compact('product', 'offer_product', 'shop', 'slider','categories', 'tShops', 'pop', 'top_selling', 'trendings', 'latest', 'subCategories'));
+        return view('frontend.main', compact('product', 'offer_product', 'shop', 'slider','categories', 'tShops', 'pop', 'top_selling', 'trendings', 'latest', 'mainCategories'));
     }
 
     public function moreBrand()

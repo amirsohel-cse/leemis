@@ -62,9 +62,9 @@
                         class="w-icon-long-arrow-right"></i></a>
             </div>
             <div class="banner-category-slider d-flex flex-wrap justify-content-center">
-                @foreach ($subCategories as $category)
+                @foreach ($mainCategories as $category)
                     <div class="single-slide">
-                        <a href="{{ route('subCategorize.product', [$category->id, Str::slug($category->name)]) }}">
+                        <a href="{{ route('categorize.product', [$category->id, Str::slug($category->name)]) }}">
                             <img src="{{ asset('uploads/category-images/' . $category->photo) }}" alt="image">
                             <h6 class="banner-category-title">{{ $category->getTranslation('name') }}</h6>
                         </a>

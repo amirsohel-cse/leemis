@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<title>Hypershop|Login</title>
+<title>Yuu Solution | Login</title>
 <?php
 $data=\App\Model\Favicon::first();
 ?>
@@ -10,7 +10,7 @@ $data=\App\Model\Favicon::first();
     <link rel="icon" type="image/png" href="\storage\storeFavicon\{{$data->file}}">
 @else
     <link rel="icon" type="image/png" href="\storage\storeFavicon\common.png">
-@endif 
+@endif
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -28,13 +28,13 @@ $data=\App\Model\Favicon::first();
 </head>
 
 <body>
-    
+
 <div id="body" class="theme-cyan">
 
     <div class="auth-main">
         <div class="auth_div vivify fadeIn">
             <div class="auth_brand">
-                <a class="navbar-brand" href="#"><img src="{{asset('backend/assets/images/icon.svg')}}" width="50" class="d-inline-block align-top mr-2" alt="">Admin</a>                                                
+                <a class="navbar-brand" href="#"><img src="{{asset('backend/assets/images/icon.svg')}}" width="50" class="d-inline-block align-top mr-2" alt="">Admin</a>
             </div>
             <div class="card">
                 <div class="header">
@@ -65,7 +65,7 @@ $data=\App\Model\Favicon::first();
                             <label class="fancy-checkbox element-left">
                                 <input type="checkbox">
                                 <span>Remember me</span>
-                            </label>								
+                            </label>
                         </div>
                         <button type="submit" class="btn btn-dark btn-lg btn-block">LOGIN</button>
 
@@ -73,7 +73,7 @@ $data=\App\Model\Favicon::first();
                             <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">Forgot password?</a></span>
                             <span>Don't have an account? <a href="page-register.html">Register</a></span>
                         </div> --}}
-                        
+
                     </form>
                 </div>
             </div>
@@ -89,16 +89,16 @@ $data=\App\Model\Favicon::first();
     </div>
 
 </div>
-    
-<script src="{{asset('backend/assets/bundles/libscripts.bundle.js')}}"></script>    
+
+<script src="{{asset('backend/assets/bundles/libscripts.bundle.js')}}"></script>
 <script src="{{asset('backend/assets/bundles/vendorscripts.bundle.js')}}"></script>
 
-<!-- Vedor js file and create bundle with grunt  --> 
+<!-- Vedor js file and create bundle with grunt  -->
 <script>
     $('.choose-skin li').on('click', function() {
 	    var $body = $('body');
 	    var $this = $(this);
-  
+
 	    var existTheme = $('.choose-skin li.active').data('theme');
 
 	    $('.choose-skin li').removeClass('active');
@@ -108,7 +108,7 @@ $data=\App\Model\Favicon::first();
 	    $body.addClass('theme-' + $this.data('theme'));
 	});
 
-	// Theme Setting 
+	// Theme Setting
 	$('.themesetting .theme_btn').on('click', function() {
 		$('.themesetting').toggleClass('open');
 	});
